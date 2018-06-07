@@ -1,0 +1,6 @@
+ applications:
+ - name: opol-fred
+   memory: 256M
+   command: node node_modules/node-red/red.js --settings ./bluemix-settings.js
+   services:
+   - Opol6-cloudantNoSQLDB

@@ -1,0 +1,36 @@
+{
+    "name": "Node-RED Starter",
+    "services": [
+        {
+            "name": "cloudantNoSQLDB"
+        }
+    ],
+    "categories": ["boilerplate"],
+    "defaultMemory": 256,
+    "description": "This application demonstrates how to run the Node-RED open-source project within the IBM Cloud.",
+    "version": "0.8.0",
+    "smallIcon": "nr-24x24.png",
+    "marqueeIcon": "nr-260x100.png",
+    "icon": "nr-32x32.png",
+    "mediumIcon": "nr-32x32.png",
+    "headingIcon": "nr-500x190.png",
+    "largeIcon": "nr-50x50.png",
+    "featuredIcon": "nr-64x64.png",
+
+    "system_tags": ["ibm_community"],
+
+    "docURL": "/#starters/Node-RED/nodered.html#nodered",
+    "metadata": {
+        "termsUrl": "http://www-03.ibm.com/software/sla/sladb.nsf/sla/bm-6622-01"
+    },
+    "source": {
+        "scmType": "git",
+        "url": "git",
+        "appPath": "app"
+    },
+    "runtime_id": "763dcb4a-8642-4676-ae17-ca5bd032ad9e",
+    "runtime": {
+        "name": "SDK for Node.js™"
+    },
+    "runtime_template_id": "nodejsHelloWorld"
+}
