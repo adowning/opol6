@@ -1,0 +1,114 @@
+<script>
+  import Vue from 'vue'
+  // import { API_GATEWAY_ENDPOINT } from '../globals/resources'
+  const url = 'https://z1mp2pbwcg.execute-api.us-west-2.amazonaws.com/dev'
+  const nrUrl = 'http://localhost:1880'
+  import axios from 'axios'
+  //console.log('url is: ', url)
+  
+  export default {
+    methods: {
+      
+      noderedLogin( username) {
+        // Vue.http.headers.common['Authorization'] = token
+        // console.log(token)
+        // console.log(nrUrl)
+        return Vue.http.post(`${nrUrl}/employees/login`,  { username }).then((res) => {
+          return res.body
+        })
+      },
+      sendGroupMessage(token, message) {
+        Vue.http.headers.common['Authorization'] = token
+        return Vue.http.post(`${url}/group-chat`, message).then((res) => {
+          return res.body
+        })
+      },
+      deleteChat(token, chatId) {
+        Vue.http.headers.common['Authorization'] = token
+        return Vue.http.delete(`${url}/user/chats/${chatId}`).then((response) => {
+          //console.log(response)
+          return response
+        })
+      },
+      updateUserActivity(token) {
+        Vue.http.headers.common['Authorization'] = token
+        return Vue.http.put(`${url}/user/last-activity`).then((response) => {
+          //console.log(response)
+          return response
+        })
+      },
+      deleteUser(token) {
+        Vue.http.headers.common['Authorization'] = token
+        return Vue.http.delete(`${url}/user`).then((res) => {
+          return res.body
+        })
+      },
+      getUser(token) {
+        //console.log('token is: ', token)
+        Vue.http.headers.common['Authorization'] = token
+        return Vue.http.get(`${url}/user`).then((res) => {
+          //console.log('res is: ', res.body)
+          return res.body
+        })
+      },
+      getChats(token) {
+        Vue.http.headers.common['Authorization'] = token
+        return Vue.http.get(`${url}/user/chats`).then((res) => {
+          return res.body
+        })
+      },
+      getMessages(chatId, token) {
+        Vue.http.headers.common['Authorization'] = token
+        return Vue.http.get(`${url}/user/chats/${chatId}/messages`).then((res) => {
+          //console.log('response: ', res.body)
+          return res.body
+        })
+      },
+      sendMessage(body, chatId, token) {
+        Vue.http.headers.common['Authorization'] = token
+        return Vue.http.post(`${url}/user/chats/${chatId}/messages`, { messageBody: body}).then((res) => {
+          //console.log('response is: ', res.body)
+          return res.body
+        })
+      },
+      sendInvite(user, token, type) {
+        let body
+        if (type === 'username') {
+          body = { username: user }
+        } else {
+          body = { userId: user }
+        }
+        Vue.http.headers.common['Authorization'] = token
+        return Vue.http.post(`${url}/invites/send`, body).then((res) => {
+          //console.log('res is: ', res.body)
+          return res.body
+        })
+      },
+      acceptInvite(userId, token) {
+        Vue.http.headers.common['Authorization'] = token
+        return Vue.http.post(`${url}/invites/accept`, { userId }).then((res) => {
+          //console.log('res is : ', res.body)
+          return res.body
+        })
+      },
+      getUsers(token) {
+        //console.log('getting users...')
+        Vue.http.headers.common['Authorization'] = token
+        return Vue.http.get(`${url}/users/online`).then((res) => {
+          //console.log('response is: ', res.body)
+          return res.body
+        })
+      },
+      getInvites(token) {
+        Vue.http.headers.common['Authorization'] = token
+        //console.log('getting invites...')
+        return Vue.http.get(`${url}/user/invites`).then((res) => {
+          //console.log('invites are: ', res.body)
+          return res.body
+        }).catch((err) => {
+          // console.error(err)
+        })
+      }
+    }
+  }
+</script>

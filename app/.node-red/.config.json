@@ -382,6 +382,24 @@
      "file": "/home/ash/Documents/tmp/node-red-bluemix/public/app/.node-red/node_modules/node-red-contrib-async/async.js"
     }
    }
+  },
+  "node-red-contrib-flow-combine": {
+   "name": "node-red-contrib-flow-combine",
+   "version": "0.1.1",
+   "local": true,
+   "nodes": {
+    "Flow-Combine": {
+     "name": "Flow-Combine",
+     "types": [
+      "Combine Start",
+      "Combine End"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-flow-combine",
+     "file": "/home/ash/Documents/tmp/node-red-bluemix/public/app/.node-red/node_modules/node-red-contrib-flow-combine/combine.js"
+    }
+   }
   }
  },
  "_credentialSecret": "ac7f92345be2e04f079069ad344952a55c3b1592b963bb5521bcb979741f0bb7",

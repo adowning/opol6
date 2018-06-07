@@ -365,6 +365,23 @@
      "file": "/home/ash/.nvm/versions/node/v8.10.0/lib/node_modules/node-red/node_modules/node-red-node-twitter/27-twitter.js"
     }
    }
+  },
+  "node-red-contrib-async": {
+   "name": "node-red-contrib-async",
+   "version": "0.0.4",
+   "local": true,
+   "nodes": {
+    "async": {
+     "name": "async",
+     "types": [
+      "async"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-async",
+     "file": "/home/ash/Documents/tmp/node-red-bluemix/public/app/.node-red/node_modules/node-red-contrib-async/async.js"
+    }
+   }
   }
  },
  "_credentialSecret": "ac7f92345be2e04f079069ad344952a55c3b1592b963bb5521bcb979741f0bb7",
