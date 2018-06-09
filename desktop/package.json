@@ -1,0 +1,92 @@
+{
+  "name": "AndrewsAdmin",
+  "version": "0.1.0",
+  "description": "Administration Application for Andrews Company",
+  "homepage": "https://opol-fred.mybluemix.net",
+  "main": "index.js",
+  "author": {
+    "name": "ashdowning",
+    "email": "andrewsgroup2017@gmail.com"
+  },
+  "license": "GPLv3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adowning/opol6.git"
+  },
+  "scripts": {
+    "electron": "electron .",
+    "start": "./node_modules/.bin/electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "build": "./node_modules/.bin/electron-builder build",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "devDependencies": {
+    "electron": "~1.7.12",
+    "electron-builder": "^19.55.3"
+  },
+  "dependencies": {},
+  "files": [
+    "*.js",
+    "src",
+    "node_modules"
+  ],
+  "build": {
+    "appId": "com.groupandrews.andrews.desktop",
+    "productName": "Andrews Admin",
+    "copyright": "Copyright © 2018 andrewsgroup.com",
+    "mac": {
+      "category": "public.app-category.finance",
+      "target": [
+        {
+          "target": "dmg"
+        },
+        {
+          "target": "mas"
+        }
+      ],
+      "icon": "build/icon.icns"
+    },
+    "dmg": {},
+    "mas": {},
+    "win": {
+      "target": [
+        {
+          "target": "appx"
+        },
+        {
+          "target": "portable"
+        }
+      ],
+      "icon": "build/icon.ico",
+      "legalTrademarks": "Copyright © 2018 groupandrews.com",
+      "publisherName": "xTools"
+    },
+    "appx": {
+      "applicationId": "GroupAndrews.AndrewsApp",
+      "backgroundColor": "#F8F8F8",
+      "displayName": "Andrews App",
+      "identityName": "AndrewsApp.GroupAndrews",
+      "publisher": "CN=84B32E2F-0B83-4D35-8A43-109EF795E8E1",
+      "publisherDisplayName": "groupAndrews",
+      "languages": [
+        "en"
+      ]
+    },
+    "portable": {},
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage"
+        }
+      ],
+      "maintainer": "xTools",
+      "vendor": "leasingrechnen.at",
+      "synopsis": "Leasingrechner App",
+      "category": "Office"
+    },
+    "appImage": {
+      "systemIntegration": "doNotAsk"
+    }
+  }
+}

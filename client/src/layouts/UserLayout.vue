@@ -1,31 +1,39 @@
 <template>
-<v-app>
+<div>
   <sidenav app/>
       <v-content>
+
+
         <v-container fluid>
-      <router-view/>
+ 
+
+      <router-view /> 
+
         </v-container>
-          <notifications group="auth" />
       </v-content>
- <coms-panel right-drawer="false"/>
+
+          <notifications group="auth" />
+
+
+ <coms-panel right-drawer="true"/>
+
   <a-footer app/>
-   <!-- <dev-footer
-      v-if="$_isAuthenticated"
-      app/>      -->
-</v-app>
+</div>
 </template>
 
 <script>
 import SideNav from "../components/SideNav";
 import AFooter from "../components/AFooter";
 import ComsPanel from "../components/ComsPanel";
+import StatusWidget from "../components/StatusWidget";
 
 export default {
   name: "App",
   components: {
     sidenav: SideNav,
     "a-footer": AFooter,
-    "coms-panel": ComsPanel
+    "coms-panel": ComsPanel,
+    "status-widget": StatusWidget
     // "dev-footer": DevFooter
   },
   data() {

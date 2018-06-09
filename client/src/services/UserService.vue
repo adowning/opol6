@@ -2,7 +2,7 @@
   import Vue from 'vue'
   // import { API_GATEWAY_ENDPOINT } from '../globals/resources'
   const url = 'https://z1mp2pbwcg.execute-api.us-west-2.amazonaws.com/dev'
-  const nrUrl = 'http://localhost:1880'
+  const nrUrl = 'https://opol-fred.mybluemix.net'
   import axios from 'axios'
   //console.log('url is: ', url)
   
@@ -13,7 +13,7 @@
         // Vue.http.headers.common['Authorization'] = token
         // console.log(token)
         // console.log(nrUrl)
-        return Vue.http.post(`${nrUrl}/employees/login`,  { username }).then((res) => {
+        return Vue.http.post(`/api/employees/login`,  { username }).then((res) => {
           return res.body
         })
       },

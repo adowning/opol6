@@ -131,7 +131,7 @@ export default {
         .startOf("week")
         .format("LLL");
       const _clocks = await axios.get(
-        `http://localhost:1880/employees/timeclocks`,
+        `/api/employees/timeclocks`,
         {
           params: {
             username: this.$store.state.auth.user.username,
@@ -145,7 +145,7 @@ export default {
       console.log('getting sttaus')
       console.log(this.$_AuthUser.username)
       const _clockStatus = await Vue.http
-        .post(`http://localhost:1880/employees/clockstatus`, 
+        .post(`/api/employees/clockstatus`, 
        { username: this.$_AuthUser.username }
         )
         .then(res => {
@@ -157,7 +157,7 @@ export default {
       const vm = this;
       this.timeFigured = true;
       let { data } = await Vue.http
-        .get(`http://localhost:1880/employees/clock`, {
+        .get(`/api/employees/clock`, {
           params: { username: this.$store.state.auth.user.username }
         })
         .then(res => {

@@ -1,6 +1,11 @@
 module.exports = {
+  lintOnSave: true,
   configureWebpack: {
-    devtool: 'sourcemap'
+    // output: {
+    //   path: __dirname + "../app/public/"
+    // },
+    devtool: 'sourcemap',
+   
   },
     devServer: {
       proxy: {
@@ -9,7 +14,7 @@ module.exports = {
           secure: false
         },
         "/api": {
-          target: "https://opol.mybluemix.net/",
+          target: "https://opol-fred.mybluemix.net/",
           pathRewrite: {"^/api" : ""},
           secure: false
         },

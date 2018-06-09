@@ -2,8 +2,9 @@
   <v-footer
     flat
     dense
+    dark
+    style="max-height: 18px;"
     app>
-
     <!-- <v-toolbar
       color="primary"
       style="max-height: 24px;"
@@ -25,13 +26,13 @@
         <v-badge
           overlap>
           <span v-if="chatMessages" slot="badge"></span>
-          <i class="material-icons orange600">chat</i>
+         
         </v-badge>
       </v-btn> -->
       <!-- </v-btn> -->
       <!-- <span>2 unread notifications</span> -->
       <!-- </v-tooltip> -->
-      <v-menu
+      <!-- <v-menu
         bottom
         left>
         <v-btn
@@ -39,7 +40,7 @@
           icon>
           <!-- <v-avatar> <img
             :src="src"
-            alt="avatar"></v-avatar> -->
+            alt="avatar"></v-avatar> 
           <v-avatar class="white" >
             <v-icon color="primary">person</v-icon>
           </v-avatar>
@@ -79,8 +80,9 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
-      </v-menu>
+      </v-menu> -->
     <!-- </v-toolbar> -->
+     <i class="material-icons dark">tag_faces</i>
   </v-footer>
 
 </template>
@@ -141,14 +143,15 @@ export default {
   }
 };
 </script>
-<style>
+<style style="stylus">
 .footer {
   position: absolute;
   right: 0;
+  min-height: 18px;
   bottom: 0;
   left: 0;
   padding: 1rem;
-  background-color: #efefef;
+  background-color: #0092db !important;
   text-align: center;
 }
 </style>

@@ -57,7 +57,7 @@
             class="pa-0">
 
             <v-list-tile
-              to="/home"
+              to="/"
               exact>
               <v-list-tile-action>
                 <v-icon>home</v-icon>
@@ -193,7 +193,7 @@ export default {
       {
         icon: "supervisor_account",
         title: "Employees",
-        link: "/directory"
+        // link: "/directory"
       },
       {
         icon: "supervisor_account",
@@ -205,17 +205,17 @@ export default {
       {
         icon: "dashboard",
         title: "Dashboard",
-        link: "/dashboard/dashboard"
+        // link: "/dashboard/dashboard"
       },
       {
         icon: "local_shipping",
         title: "Live View",
-        link: "/liveview/liveview"
+        // link: "/liveview/liveview"
       },
       {
         icon: "book",
         title: "Schedule",
-        link: "/schedule/schedule"
+        // link: "/schedule/schedule"
       }
     ],
     lastItems: [
@@ -227,12 +227,12 @@ export default {
       {
         icon: "invert_colors",
         title: "Consumables",
-        link: "/assets/consumables"
+        // link: "/assets/consumables"
       },
       {
         icon: "build",
         title: "Maintenance",
-        link: "/assets/maintenance"
+        // link: "/assets/maintenance"
       }
     ],
     utilitiesItems: [
@@ -244,7 +244,7 @@ export default {
       {
         icon: "work",
         title: "Documents",
-        link: "/documents"
+        // link: "/documents"
       },
       {
         icon: "comment",
