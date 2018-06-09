@@ -18,10 +18,10 @@ const Constants = {
     useLinuxShell: false,     // all 3 require 'nodeIntegrationEnabled: true'.
   },
   mainWindow: {
-    width: 1420,
-    height: 860,
-    largeWidth: 1420,
-    largeHeight: 860,
+    width: 1600,
+    height: 900,
+    largeWidth: 1600,
+    largeHeight: 900,
   },
   strings: {
     open: 'Open',

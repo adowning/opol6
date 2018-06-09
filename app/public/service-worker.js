@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.2.0/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.1f0dae08e42338796888cffe8164e0d9.js"
+  "/precache-manifest.22c9ce14f685ee7ee55fd5f856f462b8.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "cli-error-axios"});

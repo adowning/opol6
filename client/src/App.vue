@@ -1,7 +1,8 @@
 <template>
   <v-app>
     <notifications position="bottom right" group="all" />
-    <v-speed-dial
+    <v-speed-dial 
+     v-if="$_isAuthenticated"
      v-model="fab"
       :top="top"
       :hover="hover"
@@ -71,7 +72,7 @@ export default {
      direction: 'left',
       fab: false,
       fixed: true,
-      fling: false,
+      fling: true,
       hover: true,
       tabs: null,
       top: false,
@@ -93,7 +94,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .speed-dial--bottom:not(.speed-dial--absolute){
-  bottom: 50%;
+  bottom: 40%;
   right: 5px;
 }
 .fab {
@@ -131,5 +132,8 @@ export default {
 }
 .v-container {
   background-color: #F8F8F8;
+}
+.app {
+  font-size: 16px;
 }
 </style>

@@ -8,6 +8,7 @@
 html, body {
     height: 100%;
     font-family: 'Roboto', Calibri, Helvetica, Arial, sans-serif;
+    font-size: medium;
 }
 body {
     margin: 0;
