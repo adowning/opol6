@@ -29,16 +29,16 @@ var userDir = path.join(__dirname,".node-red");
 // localfilesystem storage when running locally
 //fs.mkdirSync(userDir);
 //fs.mkdirSync(path.join(userDir,"node_modules"));
-//if(process.env.NODE_ENV == 'development'){
-//process.env.NODE_RED_STORAGE_NAME='localhost'}else{
-//process.env.NODE_RED_STORAGE_NAME='Opol6-cloudantNoSQLDB'}
+if(process.env.NODE_ENV == 'development'){
+proccess.env.NODE_RED_STORAGE_NAME='localhost'}else{
+proccess.env.NODE_RED_STORAGE_NAME='Opol6-cloudantNoSQLDB'}
 var settings = module.exports = {
     uiPort: process.env.PORT || 1880,
     mqttReconnectTime: 15000,
     debugMaxLength: 1000,
-    debugUseColors: true,
+
     userDir: userDir,
-    flowFilePretty: true,
+
     flowFile: "flows.json",
 
     // Add the bluemix-specific nodes in
@@ -97,4 +97,3 @@ if (!couchService) {
     settings.storageModule = require("./couchstorage");
     settings.couchUrl = couchService.credentials.url;
 }
-console.log(settings.couchUrl)

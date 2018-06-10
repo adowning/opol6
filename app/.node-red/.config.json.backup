@@ -359,27 +359,10 @@
       "twitter in",
       "twitter out"
      ],
-     "enabled": true,
+     "enabled": false,
      "local": false,
      "module": "node-red-node-twitter",
      "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/node_modules/node-red-node-twitter/27-twitter.js"
-    }
-   }
-  },
-  "node-red-contrib-async": {
-   "name": "node-red-contrib-async",
-   "version": "0.0.4",
-   "local": true,
-   "nodes": {
-    "async": {
-     "name": "async",
-     "types": [
-      "async"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-async",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-async/async.js"
     }
    }
   },
@@ -419,25 +402,6 @@
     }
    }
   },
-  "node-red-contrib-actionflows": {
-   "name": "node-red-contrib-actionflows",
-   "version": "2.0.0",
-   "local": true,
-   "nodes": {
-    "actionfilters": {
-     "name": "actionfilters",
-     "types": [
-      "actionflows",
-      "actionflows_in",
-      "actionflows_out"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-actionflows",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-actionflows/actionflows/actionflows.js"
-    }
-   }
-  },
   "node-red-contrib-match": {
    "name": "node-red-contrib-match",
    "version": "1.0.2",
@@ -455,23 +419,6 @@
     }
    }
   },
-  "node-red-contrib-jsonfilter": {
-   "name": "node-red-contrib-jsonfilter",
-   "version": "0.1.0",
-   "local": true,
-   "nodes": {
-    "JSONFilter": {
-     "name": "JSONFilter",
-     "types": [
-      "JSONFilter"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-jsonfilter",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-jsonfilter/filter.js"
-    }
-   }
-  },
   "node-red-contrib-filter": {
    "name": "node-red-contrib-filter",
    "version": "0.1.3",
@@ -486,50 +433,6 @@
      "local": true,
      "module": "node-red-contrib-filter",
      "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-filter/18-filter.js"
-    }
-   }
-  },
-  "node-red-contrib-git-nodes": {
-   "name": "node-red-contrib-git-nodes",
-   "version": "0.2.2",
-   "local": true,
-   "nodes": {
-    "git-nodes": {
-     "name": "git-nodes",
-     "types": [
-      "git-nodes"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-git-nodes",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-git-nodes/git-nodes.js"
-    },
-    "git-nodes-config": {
-     "name": "git-nodes-config",
-     "types": [
-      "git-nodes-config"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-git-nodes",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-git-nodes/git-nodes-config.js"
-    }
-   }
-  },
-  "node-red-contrib-git-ui": {
-   "name": "node-red-contrib-git-ui",
-   "version": "0.1.10",
-   "local": true,
-   "nodes": {
-    "git-ui": {
-     "name": "git-ui",
-     "types": [
-      "git-ui"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-git-ui",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-git-ui/git/git.js"
     }
    }
   },
@@ -589,111 +492,6 @@
     }
    }
   },
-  "node-red-node-google": {
-   "name": "node-red-node-google",
-   "version": "0.1.4",
-   "local": true,
-   "nodes": {
-    "google plus": {
-     "name": "google plus",
-     "types": [
-      "google plus"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-node-google",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/plus.js"
-    },
-    "google places": {
-     "name": "google places",
-     "types": [
-      "google places"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-node-google",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/places.js"
-    },
-    "google-api-config": {
-     "name": "google-api-config",
-     "types": [
-      "google-credentials",
-      "google-api-config"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-node-google",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/google.js"
-    },
-    "google geocoding": {
-     "name": "google geocoding",
-     "types": [
-      "google geocoding"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-node-google",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/geocoding.js"
-    },
-    "google directions": {
-     "name": "google directions",
-     "types": [
-      "google directions"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-node-google",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/directions.js"
-    },
-    "google calendar": {
-     "name": "google calendar",
-     "types": [
-      "google calendar in",
-      "google calendar",
-      "google calendar out"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-node-google",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/calendar.js"
-    }
-   }
-  },
-  "node-red-contrib-viseo-google-spreadsheet": {
-   "name": "node-red-contrib-viseo-google-spreadsheet",
-   "version": "0.2.11",
-   "local": true,
-   "nodes": {
-    "google-spreadsheet": {
-     "name": "google-spreadsheet",
-     "types": [
-      "google-spreadsheet"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-viseo-google-spreadsheet",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-viseo-google-spreadsheet/google-spreadsheet.js"
-    }
-   }
-  },
-  "node-red-contrib-google": {
-   "name": "node-red-contrib-google",
-   "version": "0.2.0",
-   "local": true,
-   "nodes": {
-    "google": {
-     "name": "google",
-     "types": [
-      "google-conn",
-      "google"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-google",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-google/google.js"
-    }
-   }
-  },
   "node-red-contrib-process-env": {
    "name": "node-red-contrib-process-env",
    "version": "0.1.5",
@@ -708,6 +506,25 @@
      "local": true,
      "module": "node-red-contrib-process-env",
      "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-process-env/process-env.js"
+    }
+   }
+  },
+  "@nickcis/node-red-node-cf-cloudant": {
+   "name": "@nickcis/node-red-node-cf-cloudant",
+   "version": "0.2.18",
+   "local": true,
+   "nodes": {
+    "cloudant-cf": {
+     "name": "cloudant-cf",
+     "types": [
+      "cloudant",
+      "cloudant out",
+      "cloudant in"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "@nickcis/node-red-node-cf-cloudant",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/@nickcis/node-red-node-cf-cloudant/77-cloudant-cf.js"
     }
    }
   }

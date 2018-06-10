@@ -1,1 +1,1755 @@
-[{"id":"137a9152.2c26cf","type":"tab","label":"Assets","disabled":false,"info":""},{"id":"b7b775e0.9589b8","type":"tab","label":"Employees","disabled":false,"info":""},{"id":"3c1f6dd2.c28162","type":"tab","label":"Backup","disabled":true,"info":""},{"id":"5d4e82a1.6b341c","type":"tab","label":"Liveview","disabled":true,"info":""},{"id":"6b628289.79f0ac","type":"subflow","name":"humanity","info":"","in":[{"x":72.00000381469727,"y":68.00000381469727,"wires":[{"id":"a2287ef.3c7478"}]}],"out":[]},{"id":"48984b9c.f764e4","type":"mqtt-broker","z":"","name":"rabbit","broker":"white-swan.rmq.cloudamqp.com","port":"1883","tls":"","clientid":"","usetls":true,"compatmode":true,"keepalive":"60","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"8de3c01b.03c44","type":"mqtt-broker","broker":"10.0.1.10","port":"1883"},{"id":"9b5a5bab.b045b8","type":"git-nodes-config","z":"","name":"github opol6","git":"git@github.com:adowning/opol6.git"},{"id":"8c5fc8f9.567368","type":"json-db-collection","z":"","name":"assets","collection":"assets","save":true},{"id":"a653adb3.e0809","type":"mqtt-broker","z":"","name":"rabbit","broker":"white-swan.rmq.cloudamqp.com","port":"1883","tls":"","clientid":"","usetls":true,"compatmode":true,"keepalive":"60","cleansession":true,"birthTopic":"","birthQos":"0","birthPayload":"","closeTopic":"","closeQos":"0","closePayload":"","willTopic":"","willQos":"0","willPayload":""},{"id":"351736bb.017b9a","type":"cloudantplus","z":"","host":"938d6de2-a827-4db5-9031-ec0143d91b2b-bluemix.cloudant.com","name":"bluemix_opol6"},{"id":"d7812501.91ffc8","type":"ibmiot","z":"3c1f6dd2.c28162","name":"","keepalive":"60","serverName":"","cleansession":true,"appId":"","shared":false},{"id":"bac7517a.0b476","type":"ibmiot","z":"","name":"opol6-iot-connection","keepalive":"60","serverName":"opol6-iot","cleansession":true,"appId":"","shared":false},{"id":"2d25d467.3a0ffc","type":"ibmiot","z":"","name":"iot-server","keepalive":"60","serverName":"8f83wm.messaging.internetofthings.ibmcloud.com","cleansession":true,"appId":"","shared":false},{"id":"a56be3a0.bbc3e","type":"websocket-listener","path":"/ws/location","wholemsg":"false"},{"id":"93bc2ec2.739f7","type":"cloudantplus","z":"","host":"http://74.194.202.74:8085","name":"local cloudant"},{"id":"a2287ef.3c7478","type":"function","z":"6b628289.79f0ac","name":"","func":"msg.headers = {}\nlet config = {\n   client_id: '1de720f9636d0f17d61540fbd9c030c30fae3f1f',\n   client_secret: '33c1bfc4f96d5ca7e68b859af8d58fde36867bbd',\n   grant_type: 'password',\n   username: 'ash@andrewscarpetcleaning.com',\n   password: 'sugarlips42'\n}\nmsg.headers[\"content-type\"] = 'application/x-www-form-urlencoded' //should be set to application/x-www-form-urlencoded.\nmsg.payload = config\nmsg.redirect = false\nconsole.log(msg)\nreturn msg;\n\n// url string\n// If not configured in the node, this optional property sets the url of the request.\n// method string\n// If not configured in the node, this optional property sets the HTTP method of the request. Must be one of GET, PUT, POST, PATCH or DELETE.\n// headers object\n// Sets the HTTP headers of the request.\n// cookies object\n// If set, can be used to send cookies with the request.\n// payload\n// Sent as the body of the request.\n// rejectUnauthorized\n// If set to false, allows requests to be made to https sites that use self signed certificates.\n// followRedirects","outputs":1,"noerr":0,"x":207.18058395385742,"y":66.65971374511719,"wires":[["e8bf1739.737218"]]},{"id":"e8bf1739.737218","type":"http request","z":"6b628289.79f0ac","name":"","method":"POST","ret":"txt","url":"https://www.humanity.com/oauth2/token.php","tls":"","x":372.1875915527344,"y":67.7152910232544,"wires":[["113e2666.ace95a","f7cd729f.4f457"]]},{"id":"113e2666.ace95a","type":"function","z":"6b628289.79f0ac","name":"","func":"console.log(msg)\nconst _token = JSON.parse(msg.payload)\nconst humanity = {\n    token: _token['access_token']\n}\nglobal.set('humanity', humanity)\nmsg.token = humanity.token\nconsole.log(global.get('humanity').token)\n\nreturn msg;","outputs":1,"noerr":0,"x":531.1805391311646,"y":67.55556869506836,"wires":[[]]},{"id":"f7cd729f.4f457","type":"debug","z":"6b628289.79f0ac","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"payload","x":534.1944732666016,"y":106.52083587646484,"wires":[]},{"id":"6edfa716.7635e8","type":"http request","z":"6b628289.79f0ac","name":"","method":"GET","ret":"txt","url":"https://www.humanity.com/api/v2/companies/135324?access_token={{{token}}}","tls":"","x":118.18056106567383,"y":157.7187442779541,"wires":[["cd23e99a.170058"]]},{"id":"cd23e99a.170058","type":"function","z":"6b628289.79f0ac","name":"","func":"const staff = JSON.parse(msg.payload).staff\nglobal.set('humanity_staff', staff)\nreturn msg;","outputs":1,"noerr":0,"x":286.1909942626953,"y":157.44098663330078,"wires":[[]]},{"id":"eaa1acff.7e5f4","type":"http request","z":"b7b775e0.9589b8","name":"time clocks","method":"GET","ret":"obj","url":"https://www.humanity.com/api/v2/timeclocks?start_date={{{start_date}}}&employee={{{payload.humanityid}}}&access_token={{{token}}}","tls":"","x":590,"y":240,"wires":[["3aeb169d.ac343a"]]},{"id":"44532437.4d6efc","type":"http in","z":"b7b775e0.9589b8","name":"","url":"/employees/timeclocks/","method":"get","upload":false,"swaggerDoc":"","x":188.1944465637207,"y":239.78472232818604,"wires":[["b20be952.a99428"]]},{"id":"b20be952.a99428","type":"function","z":"b7b775e0.9589b8","name":"","func":"\nconsole.log(msg.payload)\nvar start_date = msg.payload.start_date\nmsg.start_date = start_date\n\nmsg.headers = {}\nmsg.token = global.get('humanity').token\nmsg.headers[\"content-type\"] = 'application/x-www-form-urlencoded' //should be set to application/x-www-form-urlencoded.\nmsg.redirect = false\nmsg.payload = global.get(msg.payload.username)\n\nreturn msg;","outputs":1,"noerr":0,"x":410,"y":240,"wires":[["eaa1acff.7e5f4"]]},{"id":"bcdc20a8.2cd35","type":"http response","z":"b7b775e0.9589b8","name":"","statusCode":"","headers":{},"x":930,"y":240,"wires":[]},{"id":"3aeb169d.ac343a","type":"change","z":"b7b775e0.9589b8","name":"Set Headers","rules":[{"t":"set","p":"headers","pt":"msg","to":"{}","tot":"json"},{"t":"set","p":"headers.content-type","pt":"msg","to":"application/json","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":770,"y":240,"wires":[["bcdc20a8.2cd35"]]},{"id":"17a92fcc.3de4e","type":"http request","z":"b7b775e0.9589b8","name":"time clocks","method":"GET","ret":"obj","url":"http://www.humanity.com/api/v2/timeclocks/status/{{{payload.humanityid}}}/0?access_token={{{token}}}","tls":"","x":590,"y":280,"wires":[["14db9de7.dc1802"]]},{"id":"274d8e69.700032","type":"http in","z":"b7b775e0.9589b8","name":"","url":"/employees/clockstatus","method":"get","upload":false,"swaggerDoc":"","x":185,"y":285.7673578262329,"wires":[["a5766f38.f6681"]]},{"id":"a5766f38.f6681","type":"function","z":"b7b775e0.9589b8","name":"","func":"msg.headers = {}\nmsg.token = global.get('humanity').token\nmsg.headers[\"content-type\"] = 'application/x-www-form-urlencoded' //should be set to application/x-www-form-urlencoded.\nmsg.redirect = false\nmsg.payload = global.get( msg.payload.username)\nvar username = msg.payload.username\nreturn msg;","outputs":1,"noerr":0,"x":410,"y":280,"wires":[["17a92fcc.3de4e"]]},{"id":"925f121a.70f56","type":"http response","z":"b7b775e0.9589b8","name":"","statusCode":"","headers":{},"x":930,"y":280,"wires":[]},{"id":"14db9de7.dc1802","type":"change","z":"b7b775e0.9589b8","name":"Set Headers","rules":[{"t":"set","p":"headers","pt":"msg","to":"{}","tot":"json"},{"t":"set","p":"headers.content-type","pt":"msg","to":"application/json","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":770,"y":280,"wires":[["925f121a.70f56"]]},{"id":"b1dbbbe4.b30ab8","type":"http request","z":"b7b775e0.9589b8","name":"clock in","method":"POST","ret":"obj","url":"https://www.humanity.com/api/v2/employees/{{{id}}}/clockin?access_token={{{token}}}","tls":"","x":880,"y":360,"wires":[["5f351aa5.5b7a14"]]},{"id":"b469ec11.76db7","type":"http in","z":"b7b775e0.9589b8","name":"","url":"/employees/clock","method":"get","upload":false,"swaggerDoc":"","x":140,"y":380,"wires":[["5abed814.929f78"]]},{"id":"5f351aa5.5b7a14","type":"http response","z":"b7b775e0.9589b8","name":"","statusCode":"","headers":{},"x":1050,"y":360,"wires":[]},{"id":"6373b207.0376bc","type":"http in","z":"b7b775e0.9589b8","name":"","url":"/employees/login","method":"post","upload":false,"swaggerDoc":"","x":160,"y":160,"wires":[["3cd14f63.881bd"]]},{"id":"3cd14f63.881bd","type":"http response","z":"b7b775e0.9589b8","name":"","statusCode":"200","headers":{},"x":500,"y":160,"wires":[]},{"id":"913488d.e300278","type":"function","z":"b7b775e0.9589b8","name":"","func":"\nglobal.set(msg.payload.Items[0].username, msg.payload.Items[0])\nconsole.log(global.get(msg.payload.Items[0].username))\nmsg.topic = \"\"\nconsole.log(global.get('ash2'))\nreturn msg;\n","outputs":1,"noerr":0,"x":330,"y":140,"wires":[["3cd14f63.881bd"]]},{"id":"6d196626.5ed558","type":"http request","z":"b7b775e0.9589b8","name":"clock out","method":"PUT","ret":"obj","url":"https://www.humanity.com/api/v2/employees/4041624/clockout?access_token={{{token}}}","tls":"","x":540,"y":460,"wires":[["4e2f68ad.97d648"]]},{"id":"b808d774.42add8","type":"http in","z":"b7b775e0.9589b8","name":"","url":"/employees/clockout","method":"put","upload":false,"swaggerDoc":"","x":140,"y":453.75694274902344,"wires":[["a12b026c.e148a"]]},{"id":"a12b026c.e148a","type":"function","z":"b7b775e0.9589b8","name":"","func":"// msg.headers = {}\nmsg.token = global.get('humanity').token\n// msg.headers[\"content-type\"] = 'application/x-www-form-urlencoded' //should be set to application/x-www-form-urlencoded.\nmsg.redirect = false\nconsole.log(msg.payload.username)\nmsg.payload = global.get( msg.payload.username)\nvar username = msg.payload.username\nreturn msg;\n\n// msg.headers = {}\n\n// msg.headers[\"content-type\"] = 'application/x-www-form-urlencoded' //should be set to application/x-www-form-urlencoded.\n// msg.redirect = false\n// msg.token =  global.get('humanity').token\n// // msg.id = msg.payload.id\n// console.log(msg.payload.id)\n// var username = msg.payload.username\n// console.log(username)\n// msg.payload = {\n//     key: \"userId\",\n//     reservedKey: \"username\",\n//     value: username,\n//     operator: \"=\"\n// }\n\n// return msg;","outputs":1,"noerr":0,"x":370,"y":460,"wires":[["6d196626.5ed558"]]},{"id":"4e2f68ad.97d648","type":"http response","z":"b7b775e0.9589b8","name":"","statusCode":"200","headers":{},"x":720,"y":460,"wires":[]},{"id":"b81106a2.c3cff8","type":"http request","z":"b7b775e0.9589b8","name":"time clocks","method":"GET","ret":"obj","url":"http://www.humanity.com/api/v2/timeclocks/status/{{{payload.humanityid}}}/0?access_token={{{token}}}","tls":"","x":530,"y":380,"wires":[["bf034636.95b0b8"]]},{"id":"5abed814.929f78","type":"function","z":"b7b775e0.9589b8","name":"","func":"msg.headers = {}\nmsg.token = global.get('humanity').token\nmsg.headers[\"content-type\"] = 'application/x-www-form-urlencoded' //should be set to application/x-www-form-urlencoded.\nmsg.redirect = false\nmsg.uname = msg.payload.username\nmsg.payload = global.get( msg.payload.username)\nmsg.id = global.get( msg.payload.username).humanityid\nreturn msg;","outputs":1,"noerr":0,"x":350,"y":380,"wires":[["b81106a2.c3cff8"]]},{"id":"bf034636.95b0b8","type":"switch","z":"b7b775e0.9589b8","name":"","property":"payload.data","propertyType":"msg","rules":[{"t":"eq","v":"out","vt":"str"},{"t":"eq","v":"in","vt":"str"}],"checkall":"true","repair":false,"outputs":2,"x":710,"y":380,"wires":[["b1dbbbe4.b30ab8"],["14cbbb9.6ec3144"]]},{"id":"14cbbb9.6ec3144","type":"http request","z":"b7b775e0.9589b8","name":"clock out","method":"PUT","ret":"obj","url":"https://www.humanity.com/api/v2/employees/{{{payload.humanityid}}}/clockout?access_token={{{token}}}","tls":"","x":880,"y":400,"wires":[["68bfb194.51673"]]},{"id":"68bfb194.51673","type":"http response","z":"b7b775e0.9589b8","name":"","statusCode":"","headers":{},"x":1050,"y":400,"wires":[]},{"id":"3803f0a5.464b5","type":"http in","z":"b7b775e0.9589b8","name":"","url":"/api/putprofiles","method":"get","upload":false,"swaggerDoc":"","x":1230,"y":120,"wires":[["f10c377c.023a88","1c692060.5bf0b"]]},{"id":"1c692060.5bf0b","type":"http response","z":"b7b775e0.9589b8","name":"profiles inserted","statusCode":"","headers":{},"x":1720,"y":120,"wires":[]},{"id":"889bd60c.2ed098","type":"http in","z":"b7b775e0.9589b8","name":"","url":"/api/getprofiles","method":"get","upload":false,"swaggerDoc":"","x":1230,"y":180,"wires":[["30f18643.e8411a"]]},{"id":"70ead7f9.ddaf18","type":"http response","z":"b7b775e0.9589b8","name":"return profiles","statusCode":"","headers":{},"x":1720,"y":180,"wires":[]},{"id":"f10c377c.023a88","type":"cloudantplus out","z":"b7b775e0.9589b8","name":"insert profiles","cloudant":"93bc2ec2.739f7","database":"profiles","service":"_ext_","payonly":true,"operation":"insert","x":1490,"y":100,"wires":[]},{"id":"30f18643.e8411a","type":"cloudantplus in","z":"b7b775e0.9589b8","name":"Retrieve profiles","cloudant":"93bc2ec2.739f7","database":"profiles","service":"_ext_","search":"_all_","design":"","index":"","x":1460,"y":180,"wires":[["70ead7f9.ddaf18"]]},{"id":"d16eaba5.182198","type":"http in","z":"b7b775e0.9589b8","name":"","url":"/api/employees/login","method":"post","upload":false,"swaggerDoc":"","x":1470,"y":680,"wires":[["b679f57.dbaf608","1e15c9f0.889cc6"]]},{"id":"90b9ade4.2d05c","type":"function","z":"b7b775e0.9589b8","name":"","func":"// var username = msg.payload.username\n// // msg.payload = {\n// //     key: \"userId\",\n// //     reservedKey: \"username\",\n// //     value: username,\n// //     operator: \"=\"\n// // }\n\n// return msgurn msg;","outputs":1,"noerr":0,"x":1550,"y":760,"wires":[[]]},{"id":"83bec5ac.0e8338","type":"function","z":"b7b775e0.9589b8","name":"ashdowning@gmail.com","func":"\nfor(var profile in msg.payload){\n    if(profile.username == msg.payload.username){\n        // global.set(profile.username, msg.payload[0])\n        return msg\n    }\n}\nmsg.payload = '404'\nreturn msg","outputs":1,"noerr":0,"x":2030,"y":640,"wires":[[]]},{"id":"4cc306b0.eb7c38","type":"http response","z":"b7b775e0.9589b8","name":"","statusCode":"","headers":{},"x":1970,"y":680,"wires":[]},{"id":"8cf2782.b1efc88","type":"inject","z":"b7b775e0.9589b8","name":"","topic":"","payload":"{\"username\" :\"ash2\"}","payloadType":"json","repeat":"","crontab":"","once":false,"onceDelay":0.1,"x":1470,"y":640,"wires":[[]]},{"id":"b679f57.dbaf608","type":"debug","z":"b7b775e0.9589b8","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"payload","x":1990,"y":720,"wires":[]},{"id":"1e15c9f0.889cc6","type":"cloudantplus in","z":"b7b775e0.9589b8","name":"","cloudant":"93bc2ec2.739f7","database":"profiles","service":"_ext_","search":"_id_","design":"","index":"","x":1720,"y":680,"wires":[["b679f57.dbaf608","4cc306b0.eb7c38","83bec5ac.0e8338"]]},{"id":"66d4b6dd.b8ebf8","type":"http in","z":"137a9152.2c26cf","name":"","url":"/api/putconsumables","method":"get","upload":false,"swaggerDoc":"","x":170,"y":100,"wires":[["7a2231cc.7b064","23d92c4c.0470c4"]]},{"id":"23d92c4c.0470c4","type":"http response","z":"137a9152.2c26cf","name":"consumables inserted","statusCode":"","headers":{},"x":660,"y":100,"wires":[]},{"id":"259333b3.7e5e8c","type":"http in","z":"137a9152.2c26cf","name":"","url":"/api/getconsumables","method":"get","upload":false,"swaggerDoc":"","x":160,"y":160,"wires":[["5e9b44a4.73411c"]]},{"id":"4b61c774.b9ca68","type":"http response","z":"137a9152.2c26cf","name":"return consumables","statusCode":"","headers":{},"x":640,"y":160,"wires":[]},{"id":"974ce453.c26ad8","type":"http in","z":"137a9152.2c26cf","name":"","url":"/api/assets/checkouthardware","method":"post","upload":false,"swaggerDoc":"","x":1020,"y":160,"wires":[["40fba81.fb2d758"]]},{"id":"5bdc4573.fcb91c","type":"http in","z":"137a9152.2c26cf","name":"","url":"/api/assets/checkinhardware","method":"get","upload":false,"swaggerDoc":"","x":1030,"y":220,"wires":[["e9f14b02.7dba48"]]},{"id":"40fba81.fb2d758","type":"function","z":"137a9152.2c26cf","name":"checkouthardware","func":"msg.headers = {}\nvar msg2 = msg\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nmsg.assetId = msg.payload.assetId\nmsg.username = msg.payload.username\nmsg.username = msg.payload.username\nnode.warn(msg.username)\nmsg.snipeit_host = global.get('snipeit_host')\n//msg2 = msg.payload = global.get('profiles')\n// node.warn(global.get('profiles'))\nconsole.log(msg.username)\nmsg.profiles = global.get('profiles')\nreturn msg","outputs":1,"noerr":0,"x":1270,"y":160,"wires":[["f330e620.db28d8"]]},{"id":"52e314ae.168c9c","type":"http response","z":"137a9152.2c26cf","name":"","statusCode":"","headers":{},"x":1990,"y":120,"wires":[]},{"id":"e9f14b02.7dba48","type":"function","z":"137a9152.2c26cf","name":"checkinhardware","func":"msg.headers = {}\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nconsole.log(msg.payload.assetId)\nmsg.id = msg.payload.assetId\nmsg.snipeit_host = global.get('snipeit_host')\n\n console.log(msg.id)\nreturn msg;","outputs":1,"noerr":0,"x":1270,"y":220,"wires":[["5f1da674.47ae98"]]},{"id":"e5fef8c7.784138","type":"http request","z":"137a9152.2c26cf","name":"","method":"POST","ret":"obj","url":"{{{snipeit_host}}}/hardware/{{{assetId}}}/checkout?assigned_user={{{userId}}}&checkout_to_type=user","tls":"","x":1810,"y":160,"wires":[["52e314ae.168c9c","50c5cb2d.052d04"]]},{"id":"550e98d6.a000a8","type":"function","z":"137a9152.2c26cf","name":"ash","func":"msg.headers = {}\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nmsg.snipeit_host = global.get('snipeit_host')\nmsg.mock = false\nreturn msg;","outputs":1,"noerr":0,"x":1190,"y":340,"wires":[["e5b142d9.61aae"]]},{"id":"e5b142d9.61aae","type":"http request","z":"137a9152.2c26cf","name":"","method":"GET","ret":"obj","url":"{{{snipeit_host}}}/hardware","tls":"","x":1330,"y":340,"wires":[["49161f60.901c5"]]},{"id":"37172944.559d96","type":"function","z":"137a9152.2c26cf","name":"set snipeit shit","func":"global.set('snipeit_token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjQ0ODQ5ZmVjYmQ3YTBiNWUxMjg4MzUzMjZkZjdkNDM0ZjA1YjVmNWVmZjM0MWQ3NTVjM2NmMGVhODIxODNjNjAyNWQ4NWE4OTE2ZWNiMjlmIn0.eyJhdWQiOiIxIiwianRpIjoiNDQ4NDlmZWNiZDdhMGI1ZTEyODgzNTMyNmRmN2Q0MzRmMDViNWY1ZWZmMzQxZDc1NWMzY2YwZWE4MjE4M2M2MDI1ZDg1YTg5MTZlY2IyOWYiLCJpYXQiOjE1MjgzMDkyMDgsIm5iZiI6MTUyODMwOTIwOCwiZXhwIjoxNTU5ODQ1MjA4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.yv1QL0Vbf4EupDdI-9U6somSbALryrk5UXX5cMV_iNILSye7rKqruoLurDghzt6-2PboAHffoiWnBGRp36vdJ5oUTNKWPSYl-PQqLkDVWjinpcQ0jHZM75lLausxkIknDi4bFlXPgWHtewotLUQKdDW-Nkij6EckVUZbn2lOFw2bi2HOGzENVl7H8VHaBXlQw_cBpT7w4K1FaHkYE2qECK-B2GZ0VlVw3sBDESbyT0sb-HRzt-6R1icItzMHUXz0sbJox3LyfGJ3X4Z3-_tKk3mxd9TXldWf7HTdk5d65r9YBCl770Ha1rAKhwyGGvMU6jBfQemGcklzooivRfVjzhRD5BlpJNqus7NquyEYacPdmm7A4Tp3bbzyxNeh_7jlVjqsf7CrWy78nFUdrrtE6gBavMwAz8AE7FScH6NzMjCekTU-pvEuUjEmTwj5p_NCUt8Yjwo9u66UzlgVf45wsG3qngL50D097rTzdA97-XGlt-csbZ_m7v2lJXNjR0yxM29aNFQBnui7RLd0_mAtoP41WtXMNlsLL9uaD3wK2tpcpoZViRWPYeg9gs81goMTzQ0ct370urdwkuNwNMvX5N1yljJIShgXnk75EP6YscOdmvR5FrlLm_5b07k7Ywwd9ZfbuaT9RI6YeUruSlH6-fGeH3Q37Gui1i4QSU5M5uc')\nglobal.set('snipeit_host', 'http://52.39.121.124:8080/api/v1')\n\n\nmsg.headers = {}\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nmsg.snipeit_host = global.get('snipeit_host')\n\nreturn msg;\n","outputs":1,"noerr":0,"x":1220,"y":420,"wires":[["e23b36fd.f711e8","a7b02b70.660408"]]},{"id":"a07ec9a0.7749d8","type":"function","z":"137a9152.2c26cf","name":"ash","func":"\nreturn msg;","outputs":1,"noerr":0,"x":1650,"y":420,"wires":[[]]},{"id":"e23b36fd.f711e8","type":"http request","z":"137a9152.2c26cf","name":"","method":"GET","ret":"txt","url":"https://opol.mybluemix.net/getdata","tls":"","x":1470,"y":420,"wires":[["a07ec9a0.7749d8"]]},{"id":"9d1c79ad.1372a8","type":"inject","z":"137a9152.2c26cf","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":true,"onceDelay":0.1,"x":1050,"y":420,"wires":[["37172944.559d96"]]},{"id":"49161f60.901c5","type":"http response","z":"137a9152.2c26cf","name":"","statusCode":"","headers":{},"x":1490,"y":340,"wires":[]},{"id":"9acf09d0.5dccd8","type":"http in","z":"137a9152.2c26cf","name":"","url":"/api/assets/hardwarelist","method":"get","upload":false,"swaggerDoc":"","x":1000,"y":340,"wires":[["550e98d6.a000a8"]]},{"id":"5f1da674.47ae98","type":"http request","z":"137a9152.2c26cf","name":"","method":"POST","ret":"obj","url":"{{{snipeit_host}}}/hardware/{{{id}}}/checkin","tls":"","x":1490,"y":220,"wires":[["edbaaba6.4d3618","50c5cb2d.052d04"]]},{"id":"edbaaba6.4d3618","type":"http response","z":"137a9152.2c26cf","name":"","statusCode":"","headers":{},"x":1530,"y":260,"wires":[]},{"id":"db54fda9.d806e","type":"function","z":"137a9152.2c26cf","name":"set userId","func":"// msg.assetId = msg.payload[0].assetId\n// msg.userId = msg.payload.userId\nmsg.userId = msg.payload.snipeitId\n// node.warn(msg.userId)\n\nreturn msg;","outputs":1,"noerr":0,"x":1740,"y":80,"wires":[["e5fef8c7.784138"]]},{"id":"95f19601.0dcdf8","type":"debug","z":"137a9152.2c26cf","name":"checkout failed","active":true,"tosidebar":true,"console":true,"tostatus":false,"complete":"true","x":2210,"y":260,"wires":[]},{"id":"93932b5a.409cb8","type":"inject","z":"137a9152.2c26cf","name":"","topic":"","payload":"{\"assetId\":\"1\", \"username\":\"ash\"}","payloadType":"json","repeat":"","crontab":"","once":false,"onceDelay":0.1,"x":1550,"y":80,"wires":[["40fba81.fb2d758"]]},{"id":"2aa925ea.b0c30a","type":"debug","z":"137a9152.2c26cf","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":570,"y":720,"wires":[]},{"id":"af70de30.e3288","type":"ibmiot in","z":"137a9152.2c26cf","authentication":"apiKey","apiKey":"2d25d467.3a0ffc","inputType":"evt","logicalInterface":"","ruleId":"","deviceId":"","applicationId":"","deviceType":"+Tablets","eventType":"+","commandType":"","format":"json","name":"IBM IoT","service":"registered","allDevices":"","allApplications":"","allDeviceTypes":true,"allLogicalInterfaces":"","allEvents":"","allCommands":"","allFormats":"","qos":0,"x":90,"y":820,"wires":[["7a7b5f90.8a4a","2aa925ea.b0c30a"]]},{"id":"be0f2f96.c35dc","type":"DataIn","z":"137a9152.2c26cf","collection":"8c5fc8f9.567368","name":"/assets/checkedoutlist","update":false,"path":"/assets/checkedoutlist","x":1700,"y":480,"wires":[]},{"id":"d7044b7c.ff3998","type":"DataOut","z":"137a9152.2c26cf","collection":"8c5fc8f9.567368","name":"/assets/checkedoutlist","path":"/assets/checkedoutlist","error":false,"x":2520,"y":200,"wires":[["3fb3b4.edc23c4c"]]},{"id":"7a2231cc.7b064","type":"cloudantplus out","z":"137a9152.2c26cf","name":"insert consumables","cloudant":"93bc2ec2.739f7","database":"consumables","service":"_ext_","payonly":true,"operation":"insert","x":390,"y":80,"wires":[]},{"id":"5e9b44a4.73411c","type":"cloudantplus in","z":"137a9152.2c26cf","name":"Retrieve consumables","cloudant":"93bc2ec2.739f7","database":"consumables","service":"_ext_","search":"_id_","design":"","index":"","x":390,"y":160,"wires":[["4b61c774.b9ca68"]]},{"id":"697ae37f.654acc","type":"http in","z":"137a9152.2c26cf","name":"","url":"/api/getowntracks","method":"get","upload":false,"swaggerDoc":"","x":200,"y":560,"wires":[["2613b20d.88424e"]]},{"id":"cc0ff0a2.d436e","type":"http response","z":"137a9152.2c26cf","name":"return owntracks","statusCode":"","headers":{},"x":680,"y":560,"wires":[]},{"id":"2613b20d.88424e","type":"cloudantplus in","z":"137a9152.2c26cf","name":"Retrieve owntracks","cloudant":"93bc2ec2.739f7","database":"owntracks","service":"_ext_","search":"_id_","design":"","index":"","x":430,"y":560,"wires":[["cc0ff0a2.d436e"]]},{"id":"a7a2fc97.0d30b","type":"function","z":"137a9152.2c26cf","name":"ash2","func":"// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\nvar now = Date();\nvar message = \"\";\ndata = JSON.parse(msg.payload);\n\nif ( (data._type == \"location\") && (data.event != undefined ) ) {\n\t\n\t\tif ( data.event == \"enter\" ) {\t\t\t\n\t\t\tmessage = \"Entering Location: \";\n\t\t} else {\n\t\t\tmessage = \"Leaving Location: \";\n\t\t}\n\t\t\n\t\tif ( data.desc != undefined ) {\n\t\t\t// Shared waypoint, comes with a description:\n\t\t\t\tmessage += data.desc;\n \t\t} else {\n \t\t\t// No description is set, non shared \"private\" waypoint\n \t\t\t\tmessage += data.lat + \",\" + data.lon;\n \t\t}\n }\n\nmsg.payload = message;\n//console.log(msg.payload);\n\nreturn msg;","outputs":1,"noerr":0,"x":371,"y":985,"wires":[["b7addbc3.eb6018","8952aaef.7d6b18"]]},{"id":"b7addbc3.eb6018","type":"switch","z":"137a9152.2c26cf","name":"","property":"payload","rules":[{"t":"cont","v":"Location"}],"checkall":"true","outputs":1,"x":532,"y":985,"wires":[[]]},{"id":"8952aaef.7d6b18","type":"debug","z":"137a9152.2c26cf","name":"","active":true,"complete":false,"x":530,"y":1060,"wires":[]},{"id":"fdbddf5d.07118","type":"inject","z":"137a9152.2c26cf","name":"Test Shared Waypoint","topic":"","payload":"{\"_type\": \"location\", \"lat\": \"xxxx\", \"lon\": \"yyyy\", \"tst\": \"1391715492\", \"acc\": \"500.0\", \"batt\": \"48\", \"desc\": \"Shared Test Waypoint\", \"event\": \"enter\"}","payloadType":"string","repeat":"","crontab":"","once":false,"x":176,"y":985,"wires":[["a7a2fc97.0d30b"]]},{"id":"c1784970.6928d8","type":"inject","z":"137a9152.2c26cf","name":"Test Private Waypoint","topic":"","payload":"{\"_type\": \"location\", \"lat\": \"xxxx\", \"lon\": \"yyyy\", \"tst\": \"1391715492\", \"acc\": \"500.0\", \"batt\": \"48\", \"event\": \"enter\"}","payloadType":"string","repeat":"","crontab":"","once":false,"x":175,"y":1050,"wires":[["a7a2fc97.0d30b"]]},{"id":"7a7b5f90.8a4a","type":"function","z":"137a9152.2c26cf","name":"convert owntracks to usable","func":"msg.locationdata = msg.payload\nreturn msg;","outputs":1,"noerr":0,"x":300,"y":820,"wires":[["2aa925ea.b0c30a","fdcc72a.eba9f9"]]},{"id":"a152fc51.89757","type":"filter","z":"137a9152.2c26cf","name":"filter for right","property":"payload","propertyType":"msg","asArray":true,"itemProperty":"id","itemPropertyType":"item","rules":[{"t":"eq","v":"locationdata.tid","vt":"msg","output":1}],"checkall":"true","outputs":1,"x":790,"y":820,"wires":[["f880edc3.a25e3"]]},{"id":"50c5cb2d.052d04","type":"switch","z":"137a9152.2c26cf","name":"was checkout/in success?","property":"payload.status","propertyType":"msg","rules":[{"t":"eq","v":"success","vt":"str"},{"t":"neq","v":"success","vt":"str"}],"checkall":"true","repair":false,"outputs":2,"x":1990,"y":220,"wires":[["2e699900.408db8","26faaf2f.ce21b"],["95f19601.0dcdf8"]]},{"id":"2e699900.408db8","type":"http request","z":"137a9152.2c26cf","name":"?status=Deployed","method":"GET","ret":"obj","url":"{{{snipeit_host}}}/hardware","tls":"","x":2290,"y":140,"wires":[["d7044b7c.ff3998"]]},{"id":"a7b02b70.660408","type":"http request","z":"137a9152.2c26cf","name":"","method":"GET","ret":"obj","url":"{{{snipeit_host}}}/hardware?status=Deployed","tls":"","x":1470,"y":480,"wires":[["be0f2f96.c35dc"]]},{"id":"fdcc72a.eba9f9","type":"DataOut","z":"137a9152.2c26cf","collection":"8c5fc8f9.567368","name":"","path":"/asssets/checkedoutlist","error":false,"x":570,"y":820,"wires":[["a152fc51.89757"]]},{"id":"ecbbc2f3.3a055","type":"cloudantplus out","z":"137a9152.2c26cf","name":"insert owntracks","cloudant":"93bc2ec2.739f7","database":"owntracks","service":"_ext_","payonly":true,"operation":"insert","x":1180,"y":820,"wires":[]},{"id":"f880edc3.a25e3","type":"function","z":"137a9152.2c26cf","name":"","func":"msg.locationdata.username = msg.payload.username\nmsg.payload = msg.locationdata\n  client.on('message', function (topic, message) {\n                        var msg = JSON.parse(message.toString());\n                        if (msg._type === \"location\") {\n                            var event = {};\n                            event.loc = {};\n                            event.loc.type = \"Point\";\n                            event.loc.coordinates = [parseFloat(msg.lon), parseFloat(msg.lat)];\n                            event.alt = parseFloat(msg.alt || 0);\n                            if (msg.acc !== undefined) {\n                                event.acc = parseFloat(msg.acc);\n                            }\n                            event.batt = parseFloat(msg.batt || 100);\n                            if (msg.cog !== undefined) {\n                                event.cog = parseFloat(msg.cog);\n                            }\n                            if (msg.desc !== undefined) {\n                                event.desc = msg.desc;\n                            }\n                            if (msg.rad !== undefined) {\n                                event.rad = parseFloat(msg.rad);\n                            }\n                            if (msg.t !== undefined) {\n                                event.t = msg.t;\n                            }\n                            if (msg.tid !== undefined) {\n                                event.tid = msg.tid;\n                            }\n                            event.ts = new Date(parseInt(msg.tst, 10) * 1000);\n                            if (msg.vacc !== undefined) {\n                                event.vacc = parseFloat(msg.vacc);\n                            }\n                            if (msg.vel !== undefined) {\n                                event.vel = parseFloat(msg.vel);\n                            }\n                            collection.update({topic: topic}, {$addToSet: {events: event}}, {upsert: true, w:0});\n                        }\n                    });\n\n                    client.on('error', function (error) {\n                        // Do nothing, for now.\n                    });\nreturn msg;","outputs":1,"noerr":0,"x":970,"y":820,"wires":[["ecbbc2f3.3a055"]]},{"id":"f7945d6d.485be","type":"http in","z":"b7b775e0.9589b8","name":"","url":"/api/getprofiles","method":"get","upload":false,"swaggerDoc":"","x":230,"y":100,"wires":[["76688cc8.c4e064"]]},{"id":"1077f70e.e415f9","type":"http response","z":"b7b775e0.9589b8","name":"return profiles","statusCode":"","headers":{},"x":720,"y":100,"wires":[]},{"id":"76688cc8.c4e064","type":"cloudantplus in","z":"b7b775e0.9589b8","name":"Retrieve profiles","cloudant":"93bc2ec2.739f7","database":"profiles","service":"_ext_","search":"_all_","design":"","index":"","x":460,"y":100,"wires":[["1077f70e.e415f9"]]},{"id":"2695857d.54434a","type":"websocket out","z":"5d4e82a1.6b341c","name":"","server":"a56be3a0.bbc3e","x":680,"y":240,"wires":[]},{"id":"a0d11838.518478","type":"function","z":"5d4e82a1.6b341c","name":"","func":"// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\ncontext.global.location = msg.payload;\n\nreturn msg;","outputs":1,"noerr":0,"x":441,"y":214,"wires":[["2695857d.54434a"]]},{"id":"eb331716.32f5c8","type":"websocket in","z":"5d4e82a1.6b341c","name":"","server":"a56be3a0.bbc3e","x":270,"y":274,"wires":[["d76fc4eb.eafce8"]]},{"id":"d76fc4eb.eafce8","type":"function","z":"5d4e82a1.6b341c","name":"","func":"// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\n\nmsg.payload = context.global.location;\nreturn msg;","outputs":1,"noerr":0,"x":443,"y":280,"wires":[["2695857d.54434a"]]},{"id":"33ccc697.c4a3aa","type":"template","z":"5d4e82a1.6b341c","name":"","field":"payload","fieldType":"msg","syntax":"mustache","template":"<!DOCTYPE html>\n<html>\n<head>\n  <title>Owntracks & Node-Red Live Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n \n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n \n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://192.168.0.5:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        lat: -12.043333,\n        lng: -77.028333\n      });\n      \n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[el.lat, el.lng]];\n\t\t\t});\n        \n        map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(17);\n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#131540',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script>\n</body>\n</html>","x":473,"y":351,"wires":[["c2fa4a3b.5d1478"]]},{"id":"c2fa4a3b.5d1478","type":"http response","z":"5d4e82a1.6b341c","name":"","x":657,"y":351,"wires":[]},{"id":"1ef4f2ea.da18cd","type":"http in","z":"5d4e82a1.6b341c","name":"","url":"/map","method":"get","x":252,"y":356,"wires":[["33ccc697.c4a3aa"]]},{"id":"61d2f205.871c1c","type":"debug","z":"5d4e82a1.6b341c","name":"","active":true,"console":false,"complete":false,"x":517,"y":159,"wires":[]},{"id":"9fa85e4f.7d432","type":"inject","z":"5d4e82a1.6b341c","name":"Array of Co-ords","topic":"","payload":"[{\"lat\":54.9619349,\"lng\":-1.6003813},{\"lat\":54.9656694,\"lng\":-1.5239833},{\"lat\":54.9696456,\"lng\":-1.5069755},{\"lat\":54.9378907,\"lng\":-1.5273729}]","payloadType":"string","repeat":"","crontab":"","once":false,"x":223,"y":163,"wires":[["a0d11838.518478","61d2f205.871c1c"]]},{"id":"a2f654cc.f99958","type":"inject","z":"5d4e82a1.6b341c","name":"Single Co-ord","topic":"","payload":"[{\"lat\":54.9696456,\"lng\":-1.5069755}]","payloadType":"string","repeat":"","crontab":"","once":false,"x":213,"y":209,"wires":[["a0d11838.518478"]]},{"id":"870188e.8d1d078","type":"debug","z":"137a9152.2c26cf","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":1500,"y":580,"wires":[]},{"id":"516825c2.43935c","type":"DataOut","z":"137a9152.2c26cf","collection":"8c5fc8f9.567368","name":"/assets/checkedoutlist","path":"/assets/checkedoutlist","error":false,"x":1240,"y":520,"wires":[["870188e.8d1d078"]]},{"id":"5d2e6114.99f84","type":"inject","z":"137a9152.2c26cf","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":true,"onceDelay":0.1,"x":1030,"y":520,"wires":[["516825c2.43935c"]]},{"id":"3673fdd5.22b0b2","type":"debug","z":"b7b775e0.9589b8","name":"","active":true,"tosidebar":true,"console":true,"tostatus":false,"complete":"payload","x":730,"y":660,"wires":[]},{"id":"9837dcf5.198a6","type":"inject","z":"b7b775e0.9589b8","name":"","topic":"","payload":"[{\"snipeitId\":46,\"SnipeItUsername\":\"a.dunn\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Adreain\",\"lastname\":\"Dunn\",\"humanityUsername\":\"10112adreaindunn\",\"email\":\"a.dunn@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":11,\"birth_day\":18,\"birth_month\":9,\"cell_phone\":\"903-372-5013\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1447703-54e21cf441430.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1447703-54e21cf441430.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1447703-54e21cf441430.jpg\",\"avatar_url/large\":\"avatars/1447703-54e21cf441430.jpg\",\"avatar_url/small\":\"avatars/sm_1447703-54e21cf441430.jpg\",\"avatar_url/bigger\":\"avatars/la_1447703-54e21cf441430.jpg\",\"avatar_url/full\":\"avatars/full_1447703-54e21cf441430.jpg\",\"avatar_url/profile\":\"avatars/profile_1447703-54e21cf441430.jpg\",\"avatar_url/forum\":\"avatars/forum_1447703-54e21cf441430.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/a12833ba4f1010462836e6284b79f2a8.ics\",\"registered\":1423245533,\"last_active\":1528575746,\"timezone\":88,\"updated_at\":\"2018-03-18 13:24:20\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":1,\"SnipeItUsername\":\"ash\",\"Department\":1,\"Manager\":\"\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Ash\",\"lastname\":\"Downing\",\"humanityUsername\":\"andrewsgroup\",\"email\":\"ash@andrewscarpetcleaning.com\",\"group\":2,\"status\":1,\"wage\":100,\"birth_day\":3,\"birth_month\":1,\"cell_phone\":\"903-530-1197\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1444044-554396f814a94.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1444044-554396f814a94.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1444044-554396f814a94.jpg\",\"avatar_url/large\":\"avatars/1444044-554396f814a94.jpg\",\"avatar_url/small\":\"avatars/sm_1444044-554396f814a94.jpg\",\"avatar_url/bigger\":\"avatars/la_1444044-554396f814a94.jpg\",\"avatar_url/full\":\"avatars/full_1444044-554396f814a94.jpg\",\"avatar_url/profile\":\"avatars/profile_1444044-554396f814a94.jpg\",\"avatar_url/forum\":\"avatars/forum_1444044-554396f814a94.jpg\",\"address\":\"3917 Hanover pl\",\"city\":\"Tyler\",\"state\":\"TX\",\"zip\":75701,\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/f536188bb24232bee8ed75e928617170.ics\",\"registered\":1423094146,\"last_active\":1528634475,\"timezone\":88,\"updated_at\":\"2018-04-15 18:03:01\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Manager\",\"status_name\":\"Activated\"},{\"snipeitId\":47,\"SnipeItUsername\":\"c.rush\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Codey\",\"lastname\":\"Rush\",\"humanityUsername\":\"10112codeyrush\",\"email\":\"c.rush@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/c24a1a5fee0093b5ec42032824cf0fb1.ics\",\"registered\":1509368925,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-18 13:24:02\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":48,\"SnipeItUsername\":\"d.bustos\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Dairi\",\"lastname\":\"Bustos\",\"humanityUsername\":\"10112dairibustos\",\"email\":\"d.bustos@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/4e8ec3605a36237f1d05760eeaaec945.ics\",\"registered\":1508936274,\"last_active\":1527886374,\"timezone\":88,\"updated_at\":\"2018-03-18 13:24:58\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":49,\"SnipeItUsername\":\"d.ramirez\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Daniel\",\"lastname\":\"Ramirez\",\"humanityUsername\":\"10112danielramirez\",\"email\":\"\",\"group\":5,\"status\":1,\"wage\":10.5,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-343-0736\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1875320-573ea851c507b.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1875320-573ea851c507b.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1875320-573ea851c507b.jpg\",\"avatar_url/large\":\"avatars/1875320-573ea851c507b.jpg\",\"avatar_url/small\":\"avatars/sm_1875320-573ea851c507b.jpg\",\"avatar_url/bigger\":\"avatars/la_1875320-573ea851c507b.jpg\",\"avatar_url/full\":\"avatars/full_1875320-573ea851c507b.jpg\",\"avatar_url/profile\":\"avatars/profile_1875320-573ea851c507b.jpg\",\"avatar_url/forum\":\"avatars/forum_1875320-573ea851c507b.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/23157e3f26e09d6ede9d1890fc3f5d24.ics\",\"registered\":1440539561,\"last_active\":1528486378,\"timezone\":88,\"updated_at\":\"2017-08-21 14:20:05\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":50,\"SnipeItUsername\":\"d.dunn\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Darien\",\"lastname\":\"Dunn\",\"humanityUsername\":\"10112dariendunn\",\"email\":\"d.dunn@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9.5,\"birth_day\":8,\"birth_month\":6,\"cell_phone\":\"903-330-9874\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/3987fb111429d71e986ed32817113b69.ics\",\"registered\":1430858169,\"last_active\":1528521528,\"timezone\":88,\"updated_at\":\"2018-03-18 13:25:40\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":51,\"SnipeItUsername\":\"d.rosinski\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Derek\",\"lastname\":\"Rosinski\",\"humanityUsername\":\"10112derekrosinski\",\"email\":\"rosinski.derek@yahoo.com\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-316-2787\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/5231bd91e986273faa90ac052f4ffc38.ics\",\"registered\":1526302675,\"last_active\":1528478100,\"timezone\":88,\"updated_at\":\"2018-05-14 8:03:11\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":52,\"SnipeItUsername\":\"h.robles\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Hilaria\",\"lastname\":\"Robles\",\"humanityUsername\":\"10112hilariarobles\",\"email\":\"h.robles@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/f9b1edc099288591fa544256dfddd4d2.ics\",\"registered\":1423246002,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-18 13:25:52\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":53,\"SnipeItUsername\":\"j.mcgee\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Jerran\",\"lastname\":\"McGee\",\"humanityUsername\":\"10112jerranmcgee\",\"email\":\"jmcgee@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"402-598-8309\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/c1540219b2060ac6a9c61ddb9f21c220.ics\",\"registered\":1515253013,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-18 13:26:39\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":54,\"SnipeItUsername\":\"j.johnson\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Jessica\",\"lastname\":\"Johnson\",\"humanityUsername\":\"10112jessicajohnson\",\"email\":\"delanyanddaniela@gmail.com\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-603-0837\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1956050-5723bed3c0ff0.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1956050-5723bed3c0ff0.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1956050-5723bed3c0ff0.jpg\",\"avatar_url/large\":\"avatars/1956050-5723bed3c0ff0.jpg\",\"avatar_url/small\":\"avatars/sm_1956050-5723bed3c0ff0.jpg\",\"avatar_url/bigger\":\"avatars/la_1956050-5723bed3c0ff0.jpg\",\"avatar_url/full\":\"avatars/full_1956050-5723bed3c0ff0.jpg\",\"avatar_url/profile\":\"avatars/profile_1956050-5723bed3c0ff0.jpg\",\"avatar_url/forum\":\"avatars/forum_1956050-5723bed3c0ff0.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/1e2e34561b3b80f72b0193118fac1799.ics\",\"registered\":1443543965,\"last_active\":1528464545,\"timezone\":88,\"updated_at\":\"2018-04-17 10:01:43\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":55,\"SnipeItUsername\":\"j.chance\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"John\",\"lastname\":\"Chance\",\"humanityUsername\":\"10112johnchance\",\"email\":\"gramm@aol.com\",\"group\":5,\"status\":1,\"wage\":13.25,\"birth_day\":30,\"birth_month\":7,\"cell_phone\":\"903-571-9131\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1444086-55439cab25f68.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1444086-55439cab25f68.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1444086-55439cab25f68.jpg\",\"avatar_url/large\":\"avatars/1444086-55439cab25f68.jpg\",\"avatar_url/small\":\"avatars/sm_1444086-55439cab25f68.jpg\",\"avatar_url/bigger\":\"avatars/la_1444086-55439cab25f68.jpg\",\"avatar_url/full\":\"avatars/full_1444086-55439cab25f68.jpg\",\"avatar_url/profile\":\"avatars/profile_1444086-55439cab25f68.jpg\",\"avatar_url/forum\":\"avatars/forum_1444086-55439cab25f68.jpg\",\"address\":\"3037 new Copeland rd\",\"city\":\"Tyler\",\"state\":\"TX\",\"zip\":75701,\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/772b9e11722f9423d971fe397ba50fc7.ics\",\"registered\":1423094556,\"last_active\":1527287862,\"timezone\":88,\"updated_at\":\"2017-08-21 14:14:04\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":56,\"SnipeItUsername\":\"j.weldon\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"John\",\"lastname\":\"weldon\",\"humanityUsername\":\"10112johnweldon\",\"email\":\"john.w@andrewscarpetcleaning.com\",\"group\":5,\"status\":1,\"wage\":\"\",\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-780-3373\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/60752a6cf748ec9e49cab333e9238a63.ics\",\"registered\":1481605055,\"last_active\":1505521941,\"timezone\":88,\"updated_at\":\"2018-03-21 9:19:49\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":57,\"SnipeItUsername\":\"j.leon\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Juan\",\"lastname\":\"Leon\",\"humanityUsername\":\"10112juanleon\",\"email\":\"j.leon@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":13.25,\"birth_day\":11,\"birth_month\":1,\"cell_phone\":\"903-504-3804\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_2008018-573ea8859a0b8.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_2008018-573ea8859a0b8.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F2008018-573ea8859a0b8.jpg\",\"avatar_url/large\":\"avatars/2008018-573ea8859a0b8.jpg\",\"avatar_url/small\":\"avatars/sm_2008018-573ea8859a0b8.jpg\",\"avatar_url/bigger\":\"avatars/la_2008018-573ea8859a0b8.jpg\",\"avatar_url/full\":\"avatars/full_2008018-573ea8859a0b8.jpg\",\"avatar_url/profile\":\"avatars/profile_2008018-573ea8859a0b8.jpg\",\"avatar_url/forum\":\"avatars/forum_2008018-573ea8859a0b8.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/aa68ed5a014ea82bee4d0ebd34de710a.ics\",\"registered\":1445606080,\"last_active\":1508148521,\"timezone\":88,\"updated_at\":\"2018-03-18 13:27:38\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":58,\"SnipeItUsername\":\"k.loftis\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Kathy\",\"lastname\":\"Loftis\",\"humanityUsername\":\"10112kathyloftis\",\"email\":\"kathy@andrewscarpetcleaning.com\",\"group\":3,\"status\":1,\"wage\":15,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_2394586-57740536a16a4.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_2394586-57740536a16a4.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F2394586-57740536a16a4.jpg\",\"avatar_url/large\":\"avatars/2394586-57740536a16a4.jpg\",\"avatar_url/small\":\"avatars/sm_2394586-57740536a16a4.jpg\",\"avatar_url/bigger\":\"avatars/la_2394586-57740536a16a4.jpg\",\"avatar_url/full\":\"avatars/full_2394586-57740536a16a4.jpg\",\"avatar_url/profile\":\"avatars/profile_2394586-57740536a16a4.jpg\",\"avatar_url/forum\":\"avatars/forum_2394586-57740536a16a4.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/6666fd4ac6235586bbde3d14189144f4.ics\",\"registered\":1456850258,\"last_active\":1528253879,\"timezone\":88,\"updated_at\":\"2017-05-10 5:06:13\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Supervisor\",\"status_name\":\"Activated\"},{\"snipeitId\":59,\"SnipeItUsername\":\"k.rush\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Kayla\",\"lastname\":\"Rush\",\"humanityUsername\":\"10112kaylarush\",\"email\":\"k.rush@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-780-7073\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/2ecef2160da22814d9601312b9176165.ics\",\"registered\":1514477769,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-18 13:27:55\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":60,\"SnipeItUsername\":\"l.ford\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Letesia\",\"lastname\":\"Ford\",\"humanityUsername\":\"10112letesiaford\",\"email\":\"l.ford@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-705-5094\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_2589317-57752a4a82183.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_2589317-57752a4a82183.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F2589317-57752a4a82183.jpg\",\"avatar_url/large\":\"avatars/2589317-57752a4a82183.jpg\",\"avatar_url/small\":\"avatars/sm_2589317-57752a4a82183.jpg\",\"avatar_url/bigger\":\"avatars/la_2589317-57752a4a82183.jpg\",\"avatar_url/full\":\"avatars/full_2589317-57752a4a82183.jpg\",\"avatar_url/profile\":\"avatars/profile_2589317-57752a4a82183.jpg\",\"avatar_url/forum\":\"avatars/forum_2589317-57752a4a82183.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/869193cb2390ba80dcfebcf58dab58fa.ics\",\"registered\":1464108122,\"last_active\":1528634452,\"timezone\":88,\"updated_at\":\"2018-03-18 13:28:06\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":61,\"SnipeItUsername\":\"m.schrader\",\"Department\":1,\"Manager\":\"ash\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Mark\",\"lastname\":\"Schrader\",\"humanityUsername\":\"10112markschrader\",\"email\":\"mark@andrewsflooring.com\",\"group\":2,\"status\":1,\"wage\":\"\",\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-372-0287\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1462809-55565507bd27b.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1462809-55565507bd27b.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1462809-55565507bd27b.jpg\",\"avatar_url/large\":\"avatars/1462809-55565507bd27b.jpg\",\"avatar_url/small\":\"avatars/sm_1462809-55565507bd27b.jpg\",\"avatar_url/bigger\":\"avatars/la_1462809-55565507bd27b.jpg\",\"avatar_url/full\":\"avatars/full_1462809-55565507bd27b.jpg\",\"avatar_url/profile\":\"avatars/profile_1462809-55565507bd27b.jpg\",\"avatar_url/forum\":\"avatars/forum_1462809-55565507bd27b.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/826430603816363026165a45f3ec1f8b.ics\",\"registered\":1423935218,\"last_active\":1528553166,\"timezone\":88,\"updated_at\":\"2017-05-10 5:06:13\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Manager\",\"status_name\":\"Activated\"},{\"snipeitId\":62,\"SnipeItUsername\":\"n.dungca\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Nathan\",\"lastname\":\"Dungca\",\"humanityUsername\":\"10112nathandungca\",\"email\":\"n8andcrystal@hotmail.com\",\"group\":3,\"status\":1,\"wage\":14,\"birth_day\":28,\"birth_month\":3,\"cell_phone\":\"903-504-3544\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1634058-556484f91546c.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1634058-556484f91546c.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1634058-556484f91546c.jpg\",\"avatar_url/large\":\"avatars/1634058-556484f91546c.jpg\",\"avatar_url/small\":\"avatars/sm_1634058-556484f91546c.jpg\",\"avatar_url/bigger\":\"avatars/la_1634058-556484f91546c.jpg\",\"avatar_url/full\":\"avatars/full_1634058-556484f91546c.jpg\",\"avatar_url/profile\":\"avatars/profile_1634058-556484f91546c.jpg\",\"avatar_url/forum\":\"avatars/forum_1634058-556484f91546c.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/2d45e467df96fcc8236858baa016756a.ics\",\"registered\":1431368052,\"last_active\":1527861803,\"timezone\":88,\"updated_at\":\"2018-03-18 13:28:21\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Supervisor\",\"status_name\":\"Activated\"},{\"snipeitId\":63,\"SnipeItUsername\":\"r.newton\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Randi\",\"lastname\":\"Newton\",\"humanityUsername\":\"10112randinewton\",\"email\":\"r.newton@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":12,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-617-3485\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1447706-54e21eeb60379.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1447706-54e21eeb60379.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1447706-54e21eeb60379.jpg\",\"avatar_url/large\":\"avatars/1447706-54e21eeb60379.jpg\",\"avatar_url/small\":\"avatars/sm_1447706-54e21eeb60379.jpg\",\"avatar_url/bigger\":\"avatars/la_1447706-54e21eeb60379.jpg\",\"avatar_url/full\":\"avatars/full_1447706-54e21eeb60379.jpg\",\"avatar_url/profile\":\"avatars/profile_1447706-54e21eeb60379.jpg\",\"avatar_url/forum\":\"avatars/forum_1447706-54e21eeb60379.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/d1e9c782eda88db1e2ee9cec5af5f124.ics\",\"registered\":1423245533,\"last_active\":1493055325,\"timezone\":88,\"updated_at\":\"2018-03-18 13:28:33\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":64,\"SnipeItUsername\":\"r.hughes\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Richard\",\"lastname\":\"Hughes\",\"humanityUsername\":\"10112richardhughes\",\"email\":\"\",\"group\":5,\"status\":1,\"wage\":\"\",\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-707-5717\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/45da2abdade72fd2221d558ba00bec4d.ics\",\"registered\":1522068012,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-26 7:43:33\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":65,\"SnipeItUsername\":\"s.weldon\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Shea\",\"lastname\":\"Weldon\",\"humanityUsername\":\"10112sheaweldon\",\"email\":\"\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-520-5577\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/5c2ef4b3ff41816e1cc94c38c2a351a1.ics\",\"registered\":1524496521,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-04-23 10:18:51\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":66,\"SnipeItUsername\":\"t.jackson\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Tawnya\",\"lastname\":\"Jackson\",\"humanityUsername\":\"10112tawnyajackson\",\"email\":\"tawnyajackson98@gmail.com\",\"group\":5,\"status\":1,\"wage\":11,\"birth_day\":17,\"birth_month\":10,\"cell_phone\":\"903-705-5467\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsmall_3054225-30542251512840535.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_3054225-30542251512840535.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Flarge_3054225-30542251512840535.jpg\",\"avatar_url/large\":\"avatars/large_3054225-30542251512840535.jpg\",\"avatar_url/small\":\"avatars/small_3054225-30542251512840535.jpg\",\"avatar_url/bigger\":\"avatars/bigger_3054225-30542251512840535.jpg\",\"avatar_url/full\":\"avatars/full_3054225-30542251512840535.jpg\",\"avatar_url/profile\":\"avatars/profile_3054225-30542251512840535.jpg\",\"avatar_url/forum\":\"avatars/forum_3054225-30542251512840535.jpg\",\"address\":\"11464 fm 2767\",\"city\":\"Tyler\",\"state\":\"Tx\",\"zip\":75708,\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/ddc710b7acdc16c7eef4007bab4221c4.ics\",\"registered\":1481322093,\"last_active\":1528542759,\"timezone\":88,\"updated_at\":\"2018-03-21 10:20:44\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":67,\"SnipeItUsername\":\"t.test\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":1,\"Consumables\":0,\"firstname\":\"test\",\"lastname\":\"test\",\"humanityUsername\":\"testgroupandrews.com\",\"email\":\"test@groupandrews.com\",\"group\":5,\"status\":1,\"wage\":\"\",\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-530-1197\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/057ce5af974862e0b1549bbeb2b2afa3.ics\",\"registered\":1525789458,\"last_active\":1527567683,\"timezone\":88,\"updated_at\":\"2018-05-12 8:29:27\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":68,\"SnipeItUsername\":\"v.rodriguez\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Virginia\",\"lastname\":\"Rodriguez\",\"humanityUsername\":\"10112virginiarodriguez\",\"email\":\"v.rodriguez@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-952-7065\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1447702-555a46736de30.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1447702-555a46736de30.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1447702-555a46736de30.jpg\",\"avatar_url/large\":\"avatars/1447702-555a46736de30.jpg\",\"avatar_url/small\":\"avatars/sm_1447702-555a46736de30.jpg\",\"avatar_url/bigger\":\"avatars/la_1447702-555a46736de30.jpg\",\"avatar_url/full\":\"avatars/full_1447702-555a46736de30.jpg\",\"avatar_url/profile\":\"avatars/profile_1447702-555a46736de30.jpg\",\"avatar_url/forum\":\"avatars/forum_1447702-555a46736de30.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/2fcc217a2af84d455d964db1175e5f54.ics\",\"registered\":1423245533,\"last_active\":1528522439,\"timezone\":88,\"updated_at\":\"2018-03-18 13:28:54\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"}]","payloadType":"json","repeat":"","crontab":"","once":false,"onceDelay":0.1,"x":130,"y":760,"wires":[["f30b1259.12482"]]},{"id":"f30b1259.12482","type":"Parallel Iterator","z":"b7b775e0.9589b8","name":"iterator","property":"payload","saveOutput":1,"recursive":0,"storeId":0,"x":310,"y":760,"wires":[["58e62f21.3b307"],[]]},{"id":"409494eb.01d1dc","type":"debug","z":"b7b775e0.9589b8","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":520,"y":760,"wires":[]},{"id":"13234b0f.fd6915","type":"cloudantplus out","z":"b7b775e0.9589b8","name":"insert test","cloudant":"93bc2ec2.739f7","database":"test","service":"_ext_","payonly":true,"operation":"insert","x":620,"y":860,"wires":[]},{"id":"58e62f21.3b307","type":"delay","z":"b7b775e0.9589b8","name":"","pauseType":"rate","timeout":"2","timeoutUnits":"seconds","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":false,"x":390,"y":860,"wires":[["409494eb.01d1dc","13234b0f.fd6915"]]},{"id":"5516cb2e.7d7924","type":"process-env","z":"b7b775e0.9589b8","name":"","into":"payload","x":340,"y":560,"wires":[["db74522d.f50a"]]},{"id":"c6b4cc7f.4e8c2","type":"inject","z":"b7b775e0.9589b8","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"onceDelay":0.1,"x":120,"y":580,"wires":[["5516cb2e.7d7924"]]},{"id":"db74522d.f50a","type":"debug","z":"b7b775e0.9589b8","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":580,"y":580,"wires":[]},{"id":"88d11214.5a787","type":"inject","z":"b7b775e0.9589b8","name":"Employees Startup","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":true,"onceDelay":0.1,"x":150,"y":40,"wires":[["9d3b1dae.3c384"]]},{"id":"9d3b1dae.3c384","type":"cloudantplus in","z":"b7b775e0.9589b8","name":"Retrieve profiles","cloudant":"93bc2ec2.739f7","database":"profiles","service":"_ext_","search":"_all_","design":"","index":"","x":360,"y":40,"wires":[["32ac679e.a954b8"]]},{"id":"32ac679e.a954b8","type":"function","z":"b7b775e0.9589b8","name":"","func":"global.set('profiles', msg.payload)\nnode.warn(global.get('profiles'))\nreturn msg;","outputs":1,"noerr":0,"x":510,"y":40,"wires":[["847ecaa3.639198"]]},{"id":"847ecaa3.639198","type":"debug","z":"b7b775e0.9589b8","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":680,"y":40,"wires":[]},{"id":"9371fc8c.80d3a","type":"match","z":"137a9152.2c26cf","name":"","rules":[{"property":"payload.SnipeItUsername","propertyType":"msg","type":"eq","value":"username","valueType":"msg"}],"x":1610,"y":160,"wires":[["db54fda9.d806e"],[]]},{"id":"f330e620.db28d8","type":"Parallel Iterator","z":"137a9152.2c26cf","name":"iterator","property":"profiles","saveOutput":1,"recursive":0,"storeId":0,"x":1450,"y":160,"wires":[["9371fc8c.80d3a"],[]]},{"id":"26faaf2f.ce21b","type":"debug","z":"137a9152.2c26cf","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","x":2070,"y":40,"wires":[]},{"id":"dff28145.8ee26","type":"inject","z":"137a9152.2c26cf","name":"","topic":"","payload":"{\"assetId\":\"1\"}","payloadType":"json","repeat":"","crontab":"","once":false,"onceDelay":0.1,"x":1290,"y":280,"wires":[["e9f14b02.7dba48"]]},{"id":"3fb3b4.edc23c4c","type":"debug","z":"137a9152.2c26cf","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":2760,"y":200,"wires":[]}]
+[
+    {
+        "id": "137a9152.2c26cf",
+        "type": "tab",
+        "label": "Hardware",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5c46ad63.1c5eb4",
+        "type": "tab",
+        "label": "Consumables",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "b7b775e0.9589b8",
+        "type": "tab",
+        "label": "Employees",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5d4e82a1.6b341c",
+        "type": "tab",
+        "label": "Liveview",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6b628289.79f0ac",
+        "type": "subflow",
+        "name": "humanity",
+        "info": "",
+        "in": [
+            {
+                "x": 72.00000381469727,
+                "y": 68.00000381469727,
+                "wires": [
+                    {
+                        "id": "a2287ef.3c7478"
+                    }
+                ]
+            }
+        ],
+        "out": []
+    },
+    {
+        "id": "8c5fc8f9.567368",
+        "type": "json-db-collection",
+        "z": "",
+        "name": "assets",
+        "collection": "assets",
+        "save": true
+    },
+    {
+        "id": "2d25d467.3a0ffc",
+        "type": "ibmiot",
+        "z": "",
+        "name": "iot-server",
+        "keepalive": "60",
+        "serverName": "8f83wm.messaging.internetofthings.ibmcloud.com",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "a56be3a0.bbc3e",
+        "type": "websocket-listener",
+        "path": "/ws/location",
+        "wholemsg": "false"
+    },
+    {
+        "id": "8ab126de.c9de68",
+        "type": "cloudant",
+        "z": "",
+        "host": "http://74.194.202.74:8085",
+        "name": "localhost"
+    },
+    {
+        "id": "a2287ef.3c7478",
+        "type": "function",
+        "z": "6b628289.79f0ac",
+        "name": "",
+        "func": "msg.headers = {}\nlet config = {\n   client_id: '1de720f9636d0f17d61540fbd9c030c30fae3f1f',\n   client_secret: '33c1bfc4f96d5ca7e68b859af8d58fde36867bbd',\n   grant_type: 'password',\n   username: 'ash@andrewscarpetcleaning.com',\n   password: 'sugarlips42'\n}\nmsg.headers[\"content-type\"] = 'application/x-www-form-urlencoded' //should be set to application/x-www-form-urlencoded.\nmsg.payload = config\nmsg.redirect = false\nconsole.log(msg)\nreturn msg;\n\n// url string\n// If not configured in the node, this optional property sets the url of the request.\n// method string\n// If not configured in the node, this optional property sets the HTTP method of the request. Must be one of GET, PUT, POST, PATCH or DELETE.\n// headers object\n// Sets the HTTP headers of the request.\n// cookies object\n// If set, can be used to send cookies with the request.\n// payload\n// Sent as the body of the request.\n// rejectUnauthorized\n// If set to false, allows requests to be made to https sites that use self signed certificates.\n// followRedirects",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 207.18058395385742,
+        "y": 66.65971374511719,
+        "wires": [
+            [
+                "e8bf1739.737218"
+            ]
+        ]
+    },
+    {
+        "id": "e8bf1739.737218",
+        "type": "http request",
+        "z": "6b628289.79f0ac",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://www.humanity.com/oauth2/token.php",
+        "tls": "",
+        "x": 372.1875915527344,
+        "y": 67.7152910232544,
+        "wires": [
+            [
+                "113e2666.ace95a",
+                "f7cd729f.4f457"
+            ]
+        ]
+    },
+    {
+        "id": "113e2666.ace95a",
+        "type": "function",
+        "z": "6b628289.79f0ac",
+        "name": "",
+        "func": "console.log(msg)\nconst _token = JSON.parse(msg.payload)\nconst humanity = {\n    token: _token['access_token']\n}\nglobal.set('humanity', humanity)\nmsg.token = humanity.token\nconsole.log(global.get('humanity').token)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 531.1805391311646,
+        "y": 67.55556869506836,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f7cd729f.4f457",
+        "type": "debug",
+        "z": "6b628289.79f0ac",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 534.1944732666016,
+        "y": 106.52083587646484,
+        "wires": []
+    },
+    {
+        "id": "6edfa716.7635e8",
+        "type": "http request",
+        "z": "6b628289.79f0ac",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "https://www.humanity.com/api/v2/companies/135324?access_token={{{token}}}",
+        "tls": "",
+        "x": 118.18056106567383,
+        "y": 157.7187442779541,
+        "wires": [
+            [
+                "cd23e99a.170058"
+            ]
+        ]
+    },
+    {
+        "id": "cd23e99a.170058",
+        "type": "function",
+        "z": "6b628289.79f0ac",
+        "name": "",
+        "func": "const staff = JSON.parse(msg.payload).staff\nglobal.set('humanity_staff', staff)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 286.1909942626953,
+        "y": 157.44098663330078,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eaa1acff.7e5f4",
+        "type": "http request",
+        "z": "b7b775e0.9589b8",
+        "name": "time clocks",
+        "method": "GET",
+        "ret": "obj",
+        "url": "https://www.humanity.com/api/v2/timeclocks?start_date={{{start_date}}}&employee={{{payload.humanityid}}}&access_token={{{token}}}",
+        "tls": "",
+        "x": 590,
+        "y": 540,
+        "wires": [
+            [
+                "3aeb169d.ac343a"
+            ]
+        ]
+    },
+    {
+        "id": "44532437.4d6efc",
+        "type": "http in",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "url": "/employees/timeclocks/",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 188.1944465637207,
+        "y": 539.784722328186,
+        "wires": [
+            [
+                "b20be952.a99428"
+            ]
+        ]
+    },
+    {
+        "id": "b20be952.a99428",
+        "type": "function",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "func": "\nvar start_date = msg.payload.start_date\nmsg.start_date = start_date\n\nmsg.headers = {}\nmsg.token = global.get('humanity').token\nmsg.headers[\"content-type\"] = 'application/x-www-form-urlencoded' //should be set to application/x-www-form-urlencoded.\nmsg.redirect = false\nmsg.payload = global.get(msg.payload.username)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 540,
+        "wires": [
+            [
+                "eaa1acff.7e5f4"
+            ]
+        ]
+    },
+    {
+        "id": "bcdc20a8.2cd35",
+        "type": "http response",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 930,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "3aeb169d.ac343a",
+        "type": "change",
+        "z": "b7b775e0.9589b8",
+        "name": "Set Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 770,
+        "y": 540,
+        "wires": [
+            [
+                "bcdc20a8.2cd35"
+            ]
+        ]
+    },
+    {
+        "id": "17a92fcc.3de4e",
+        "type": "http request",
+        "z": "b7b775e0.9589b8",
+        "name": "time clocks",
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://www.humanity.com/api/v2/timeclocks/status/{{{payload.humanityid}}}/0?access_token={{{token}}}",
+        "tls": "",
+        "x": 590,
+        "y": 580,
+        "wires": [
+            [
+                "14db9de7.dc1802"
+            ]
+        ]
+    },
+    {
+        "id": "274d8e69.700032",
+        "type": "http in",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "url": "/employees/clockstatus",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 185,
+        "y": 585.7673578262329,
+        "wires": [
+            [
+                "a5766f38.f6681"
+            ]
+        ]
+    },
+    {
+        "id": "a5766f38.f6681",
+        "type": "function",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "func": "msg.headers = {}\nmsg.token = global.get('humanity').token\nmsg.headers[\"content-type\"] = 'application/x-www-form-urlencoded' //should be set to application/x-www-form-urlencoded.\nmsg.redirect = false\nmsg.payload = global.get( msg.payload.username)\nvar username = msg.payload.username\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 580,
+        "wires": [
+            [
+                "17a92fcc.3de4e"
+            ]
+        ]
+    },
+    {
+        "id": "925f121a.70f56",
+        "type": "http response",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 930,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "14db9de7.dc1802",
+        "type": "change",
+        "z": "b7b775e0.9589b8",
+        "name": "Set Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 770,
+        "y": 580,
+        "wires": [
+            [
+                "925f121a.70f56"
+            ]
+        ]
+    },
+    {
+        "id": "b1dbbbe4.b30ab8",
+        "type": "http request",
+        "z": "b7b775e0.9589b8",
+        "name": "clock in",
+        "method": "POST",
+        "ret": "obj",
+        "url": "https://www.humanity.com/api/v2/employees/{{{id}}}/clockin?access_token={{{token}}}",
+        "tls": "",
+        "x": 880,
+        "y": 660,
+        "wires": [
+            [
+                "5f351aa5.5b7a14"
+            ]
+        ]
+    },
+    {
+        "id": "b469ec11.76db7",
+        "type": "http in",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "url": "/employees/clock",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 680,
+        "wires": [
+            [
+                "5abed814.929f78"
+            ]
+        ]
+    },
+    {
+        "id": "5f351aa5.5b7a14",
+        "type": "http response",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1050,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "6373b207.0376bc",
+        "type": "http in",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "url": "/employees/login",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 460,
+        "wires": [
+            [
+                "aa3b7054.595ec"
+            ]
+        ]
+    },
+    {
+        "id": "6d196626.5ed558",
+        "type": "http request",
+        "z": "b7b775e0.9589b8",
+        "name": "clock out",
+        "method": "PUT",
+        "ret": "obj",
+        "url": "https://www.humanity.com/api/v2/employees/4041624/clockout?access_token={{{token}}}",
+        "tls": "",
+        "x": 540,
+        "y": 760,
+        "wires": [
+            [
+                "4e2f68ad.97d648"
+            ]
+        ]
+    },
+    {
+        "id": "b808d774.42add8",
+        "type": "http in",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "url": "/employees/clockout",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 753.7569427490234,
+        "wires": [
+            [
+                "a12b026c.e148a"
+            ]
+        ]
+    },
+    {
+        "id": "a12b026c.e148a",
+        "type": "function",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "func": "// msg.headers = {}\nmsg.token = global.get('humanity').token\n// msg.headers[\"content-type\"] = 'application/x-www-form-urlencoded' //should be set to application/x-www-form-urlencoded.\nmsg.redirect = false\nmsg.payload = global.get( msg.payload.username)\nvar username = msg.payload.username\nreturn msg;\n\n// msg.headers = {}\n\n// msg.headers[\"content-type\"] = 'application/x-www-form-urlencoded' //should be set to application/x-www-form-urlencoded.\n// msg.redirect = false\n// msg.token =  global.get('humanity').token\n// // msg.id = msg.payload.id\n// console.log(msg.payload.id)\n// var username = msg.payload.username\n// console.log(username)\n// msg.payload = {\n//     key: \"userId\",\n//     reservedKey: \"username\",\n//     value: username,\n//     operator: \"=\"\n// }\n\n// return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 760,
+        "wires": [
+            [
+                "6d196626.5ed558"
+            ]
+        ]
+    },
+    {
+        "id": "4e2f68ad.97d648",
+        "type": "http response",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 720,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "b81106a2.c3cff8",
+        "type": "http request",
+        "z": "b7b775e0.9589b8",
+        "name": "time clocks",
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://www.humanity.com/api/v2/timeclocks/status/{{{payload.humanityid}}}/0?access_token={{{token}}}",
+        "tls": "",
+        "x": 530,
+        "y": 680,
+        "wires": [
+            [
+                "bf034636.95b0b8"
+            ]
+        ]
+    },
+    {
+        "id": "5abed814.929f78",
+        "type": "function",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "func": "msg.headers = {}\nmsg.token = global.get('humanity').token\nmsg.headers[\"content-type\"] = 'application/x-www-form-urlencoded' //should be set to application/x-www-form-urlencoded.\nmsg.redirect = false\nmsg.uname = msg.payload.username\nmsg.payload = global.get( msg.payload.username)\nmsg.id = global.get( msg.payload.username).humanityid\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 680,
+        "wires": [
+            [
+                "b81106a2.c3cff8"
+            ]
+        ]
+    },
+    {
+        "id": "bf034636.95b0b8",
+        "type": "switch",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "property": "payload.data",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "out",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "in",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 710,
+        "y": 680,
+        "wires": [
+            [
+                "b1dbbbe4.b30ab8"
+            ],
+            [
+                "14cbbb9.6ec3144"
+            ]
+        ]
+    },
+    {
+        "id": "14cbbb9.6ec3144",
+        "type": "http request",
+        "z": "b7b775e0.9589b8",
+        "name": "clock out",
+        "method": "PUT",
+        "ret": "obj",
+        "url": "https://www.humanity.com/api/v2/employees/{{{payload.humanityid}}}/clockout?access_token={{{token}}}",
+        "tls": "",
+        "x": 880,
+        "y": 700,
+        "wires": [
+            [
+                "68bfb194.51673"
+            ]
+        ]
+    },
+    {
+        "id": "68bfb194.51673",
+        "type": "http response",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1050,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "3803f0a5.464b5",
+        "type": "http in",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "url": "/api/putprofiles",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 320,
+        "wires": [
+            [
+                "1c692060.5bf0b",
+                "1f8e83fe.836b7c"
+            ]
+        ]
+    },
+    {
+        "id": "1c692060.5bf0b",
+        "type": "http response",
+        "z": "b7b775e0.9589b8",
+        "name": "profiles inserted",
+        "statusCode": "",
+        "headers": {},
+        "x": 620,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "889bd60c.2ed098",
+        "type": "http in",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "url": "/api/getprofiles",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 380,
+        "wires": [
+            [
+                "20273337.7d769c"
+            ]
+        ]
+    },
+    {
+        "id": "70ead7f9.ddaf18",
+        "type": "http response",
+        "z": "b7b775e0.9589b8",
+        "name": "return profiles",
+        "statusCode": "",
+        "headers": {},
+        "x": 620,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "974ce453.c26ad8",
+        "type": "http in",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "url": "/api/assets/checkouthardware",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 320,
+        "wires": [
+            [
+                "40fba81.fb2d758"
+            ]
+        ]
+    },
+    {
+        "id": "5bdc4573.fcb91c",
+        "type": "http in",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "url": "/api/assets/checkinhardware",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 380,
+        "wires": [
+            [
+                "e9f14b02.7dba48"
+            ]
+        ]
+    },
+    {
+        "id": "40fba81.fb2d758",
+        "type": "function",
+        "z": "137a9152.2c26cf",
+        "name": "checkouthardware",
+        "func": "msg.headers = {}\nvar msg2 = msg\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nmsg.assetId = msg.payload.assetId\nmsg.username = msg.payload.username\nmsg.username = msg.payload.username\nnode.warn(msg.username)\nmsg.snipeit_host = global.get('snipeit_host')\n//msg2 = msg.payload = global.get('profiles')\n// node.warn(global.get('profiles'))\nconsole.log(msg.username)\nmsg.profiles = global.get('profiles')\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "f330e620.db28d8"
+            ]
+        ]
+    },
+    {
+        "id": "52e314ae.168c9c",
+        "type": "http response",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1250,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "e9f14b02.7dba48",
+        "type": "function",
+        "z": "137a9152.2c26cf",
+        "name": "checkinhardware",
+        "func": "msg.headers = {}\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nconsole.log(msg.payload.assetId)\nmsg.id = msg.payload.assetId\nmsg.snipeit_host = global.get('snipeit_host')\n\n console.log(msg.id)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "5f1da674.47ae98"
+            ]
+        ]
+    },
+    {
+        "id": "e5fef8c7.784138",
+        "type": "http request",
+        "z": "137a9152.2c26cf",
+        "name": "get checkedout",
+        "method": "POST",
+        "ret": "obj",
+        "url": "{{{snipeit_host}}}/hardware/{{{assetId}}}/checkout?assigned_user={{{userId}}}&checkout_to_type=user",
+        "tls": "",
+        "x": 1080,
+        "y": 320,
+        "wires": [
+            [
+                "52e314ae.168c9c",
+                "50c5cb2d.052d04"
+            ]
+        ]
+    },
+    {
+        "id": "550e98d6.a000a8",
+        "type": "function",
+        "z": "137a9152.2c26cf",
+        "name": "ash",
+        "func": "msg.headers = {}\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nmsg.snipeit_host = global.get('snipeit_host')\nmsg.mock = false\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 120,
+        "wires": [
+            [
+                "e5b142d9.61aae"
+            ]
+        ]
+    },
+    {
+        "id": "e5b142d9.61aae",
+        "type": "http request",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "url": "{{{snipeit_host}}}/hardware",
+        "tls": "",
+        "x": 490,
+        "y": 120,
+        "wires": [
+            [
+                "49161f60.901c5"
+            ]
+        ]
+    },
+    {
+        "id": "37172944.559d96",
+        "type": "function",
+        "z": "137a9152.2c26cf",
+        "name": "set snipeit shit",
+        "func": "global.set('snipeit_token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjQ0ODQ5ZmVjYmQ3YTBiNWUxMjg4MzUzMjZkZjdkNDM0ZjA1YjVmNWVmZjM0MWQ3NTVjM2NmMGVhODIxODNjNjAyNWQ4NWE4OTE2ZWNiMjlmIn0.eyJhdWQiOiIxIiwianRpIjoiNDQ4NDlmZWNiZDdhMGI1ZTEyODgzNTMyNmRmN2Q0MzRmMDViNWY1ZWZmMzQxZDc1NWMzY2YwZWE4MjE4M2M2MDI1ZDg1YTg5MTZlY2IyOWYiLCJpYXQiOjE1MjgzMDkyMDgsIm5iZiI6MTUyODMwOTIwOCwiZXhwIjoxNTU5ODQ1MjA4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.yv1QL0Vbf4EupDdI-9U6somSbALryrk5UXX5cMV_iNILSye7rKqruoLurDghzt6-2PboAHffoiWnBGRp36vdJ5oUTNKWPSYl-PQqLkDVWjinpcQ0jHZM75lLausxkIknDi4bFlXPgWHtewotLUQKdDW-Nkij6EckVUZbn2lOFw2bi2HOGzENVl7H8VHaBXlQw_cBpT7w4K1FaHkYE2qECK-B2GZ0VlVw3sBDESbyT0sb-HRzt-6R1icItzMHUXz0sbJox3LyfGJ3X4Z3-_tKk3mxd9TXldWf7HTdk5d65r9YBCl770Ha1rAKhwyGGvMU6jBfQemGcklzooivRfVjzhRD5BlpJNqus7NquyEYacPdmm7A4Tp3bbzyxNeh_7jlVjqsf7CrWy78nFUdrrtE6gBavMwAz8AE7FScH6NzMjCekTU-pvEuUjEmTwj5p_NCUt8Yjwo9u66UzlgVf45wsG3qngL50D097rTzdA97-XGlt-csbZ_m7v2lJXNjR0yxM29aNFQBnui7RLd0_mAtoP41WtXMNlsLL9uaD3wK2tpcpoZViRWPYeg9gs81goMTzQ0ct370urdwkuNwNMvX5N1yljJIShgXnk75EP6YscOdmvR5FrlLm_5b07k7Ywwd9ZfbuaT9RI6YeUruSlH6-fGeH3Q37Gui1i4QSU5M5uc')\nglobal.set('snipeit_host', 'http://52.39.121.124:8080/api/v1')\n\n\nmsg.headers = {}\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nmsg.snipeit_host = global.get('snipeit_host')\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 40,
+        "wires": [
+            [
+                "a7b02b70.660408"
+            ]
+        ]
+    },
+    {
+        "id": "9d1c79ad.1372a8",
+        "type": "inject",
+        "z": "137a9152.2c26cf",
+        "name": "Hardware Startup",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 40,
+        "wires": [
+            [
+                "37172944.559d96"
+            ]
+        ]
+    },
+    {
+        "id": "49161f60.901c5",
+        "type": "http response",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "9acf09d0.5dccd8",
+        "type": "http in",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "url": "/api/assets/hardwarelist",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "550e98d6.a000a8"
+            ]
+        ]
+    },
+    {
+        "id": "5f1da674.47ae98",
+        "type": "http request",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "url": "{{{snipeit_host}}}/hardware/{{{id}}}/checkin",
+        "tls": "",
+        "x": 610,
+        "y": 380,
+        "wires": [
+            [
+                "edbaaba6.4d3618",
+                "50c5cb2d.052d04"
+            ]
+        ]
+    },
+    {
+        "id": "edbaaba6.4d3618",
+        "type": "http response",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "db54fda9.d806e",
+        "type": "function",
+        "z": "137a9152.2c26cf",
+        "name": "set userId",
+        "func": "// msg.assetId = msg.payload[0].assetId\n// msg.userId = msg.payload.userId\nmsg.userId = msg.payload.snipeitId\n// node.warn(msg.userId)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 880,
+        "y": 320,
+        "wires": [
+            [
+                "e5fef8c7.784138"
+            ]
+        ]
+    },
+    {
+        "id": "93932b5a.409cb8",
+        "type": "inject",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "topic": "",
+        "payload": "{\"assetId\":\"1\", \"username\":\"ash\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 390,
+        "y": 280,
+        "wires": [
+            [
+                "40fba81.fb2d758"
+            ]
+        ]
+    },
+    {
+        "id": "be0f2f96.c35dc",
+        "type": "DataIn",
+        "z": "137a9152.2c26cf",
+        "collection": "8c5fc8f9.567368",
+        "name": "/assets/checkedoutlist",
+        "update": false,
+        "path": "/assets/checkedoutlist",
+        "x": 860,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "d7044b7c.ff3998",
+        "type": "DataOut",
+        "z": "137a9152.2c26cf",
+        "collection": "8c5fc8f9.567368",
+        "name": "/assets/checkedoutlist",
+        "path": "/assets/checkedoutlist",
+        "error": false,
+        "x": 1480,
+        "y": 380,
+        "wires": [
+            [
+                "3fb3b4.edc23c4c"
+            ]
+        ]
+    },
+    {
+        "id": "50c5cb2d.052d04",
+        "type": "switch",
+        "z": "137a9152.2c26cf",
+        "name": "was checkout/in success?",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "success",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "success",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1010,
+        "y": 380,
+        "wires": [
+            [
+                "2e699900.408db8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2e699900.408db8",
+        "type": "http request",
+        "z": "137a9152.2c26cf",
+        "name": "?status=Deployed",
+        "method": "GET",
+        "ret": "obj",
+        "url": "{{{snipeit_host}}}/hardware",
+        "tls": "",
+        "x": 1250,
+        "y": 380,
+        "wires": [
+            [
+                "d7044b7c.ff3998"
+            ]
+        ]
+    },
+    {
+        "id": "a7b02b70.660408",
+        "type": "http request",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "url": "{{{snipeit_host}}}/hardware?status=Deployed",
+        "tls": "",
+        "x": 630,
+        "y": 40,
+        "wires": [
+            [
+                "be0f2f96.c35dc"
+            ]
+        ]
+    },
+    {
+        "id": "2695857d.54434a",
+        "type": "websocket out",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "server": "a56be3a0.bbc3e",
+        "x": 680,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "a0d11838.518478",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "func": "// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\ncontext.global.location = msg.payload;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 441,
+        "y": 214,
+        "wires": [
+            [
+                "2695857d.54434a"
+            ]
+        ]
+    },
+    {
+        "id": "eb331716.32f5c8",
+        "type": "websocket in",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "server": "a56be3a0.bbc3e",
+        "x": 270,
+        "y": 274,
+        "wires": [
+            [
+                "d76fc4eb.eafce8"
+            ]
+        ]
+    },
+    {
+        "id": "d76fc4eb.eafce8",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "func": "// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\n\nmsg.payload = context.global.location;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 443,
+        "y": 280,
+        "wires": [
+            [
+                "2695857d.54434a"
+            ]
+        ]
+    },
+    {
+        "id": "33ccc697.c4a3aa",
+        "type": "template",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Owntracks & Node-Red Live Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n \n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n \n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://192.168.0.5:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        lat: -12.043333,\n        lng: -77.028333\n      });\n      \n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[el.lat, el.lng]];\n\t\t\t});\n        \n        map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(17);\n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#131540',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script>\n</body>\n</html>",
+        "x": 473,
+        "y": 351,
+        "wires": [
+            [
+                "c2fa4a3b.5d1478"
+            ]
+        ]
+    },
+    {
+        "id": "c2fa4a3b.5d1478",
+        "type": "http response",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "x": 657,
+        "y": 351,
+        "wires": []
+    },
+    {
+        "id": "1ef4f2ea.da18cd",
+        "type": "http in",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "url": "/map",
+        "method": "get",
+        "x": 252,
+        "y": 356,
+        "wires": [
+            [
+                "33ccc697.c4a3aa"
+            ]
+        ]
+    },
+    {
+        "id": "9fa85e4f.7d432",
+        "type": "inject",
+        "z": "5d4e82a1.6b341c",
+        "name": "Array of Co-ords",
+        "topic": "",
+        "payload": "[{\"lat\":54.9619349,\"lng\":-1.6003813},{\"lat\":54.9656694,\"lng\":-1.5239833},{\"lat\":54.9696456,\"lng\":-1.5069755},{\"lat\":54.9378907,\"lng\":-1.5273729}]",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 223,
+        "y": 163,
+        "wires": [
+            [
+                "a0d11838.518478"
+            ]
+        ]
+    },
+    {
+        "id": "a2f654cc.f99958",
+        "type": "inject",
+        "z": "5d4e82a1.6b341c",
+        "name": "Single Co-ord",
+        "topic": "",
+        "payload": "[{\"lat\":54.9696456,\"lng\":-1.5069755}]",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 213,
+        "y": 209,
+        "wires": [
+            [
+                "a0d11838.518478"
+            ]
+        ]
+    },
+    {
+        "id": "9837dcf5.198a6",
+        "type": "inject",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "topic": "",
+        "payload": "[{\"snipeitId\":46,\"SnipeItUsername\":\"a.dunn\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Adreain\",\"lastname\":\"Dunn\",\"humanityUsername\":\"10112adreaindunn\",\"email\":\"a.dunn@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":11,\"birth_day\":18,\"birth_month\":9,\"cell_phone\":\"903-372-5013\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1447703-54e21cf441430.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1447703-54e21cf441430.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1447703-54e21cf441430.jpg\",\"avatar_url/large\":\"avatars/1447703-54e21cf441430.jpg\",\"avatar_url/small\":\"avatars/sm_1447703-54e21cf441430.jpg\",\"avatar_url/bigger\":\"avatars/la_1447703-54e21cf441430.jpg\",\"avatar_url/full\":\"avatars/full_1447703-54e21cf441430.jpg\",\"avatar_url/profile\":\"avatars/profile_1447703-54e21cf441430.jpg\",\"avatar_url/forum\":\"avatars/forum_1447703-54e21cf441430.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/a12833ba4f1010462836e6284b79f2a8.ics\",\"registered\":1423245533,\"last_active\":1528575746,\"timezone\":88,\"updated_at\":\"2018-03-18 13:24:20\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":1,\"SnipeItUsername\":\"ash\",\"Department\":1,\"Manager\":\"\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Ash\",\"lastname\":\"Downing\",\"humanityUsername\":\"andrewsgroup\",\"email\":\"ash@andrewscarpetcleaning.com\",\"group\":2,\"status\":1,\"wage\":100,\"birth_day\":3,\"birth_month\":1,\"cell_phone\":\"903-530-1197\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1444044-554396f814a94.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1444044-554396f814a94.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1444044-554396f814a94.jpg\",\"avatar_url/large\":\"avatars/1444044-554396f814a94.jpg\",\"avatar_url/small\":\"avatars/sm_1444044-554396f814a94.jpg\",\"avatar_url/bigger\":\"avatars/la_1444044-554396f814a94.jpg\",\"avatar_url/full\":\"avatars/full_1444044-554396f814a94.jpg\",\"avatar_url/profile\":\"avatars/profile_1444044-554396f814a94.jpg\",\"avatar_url/forum\":\"avatars/forum_1444044-554396f814a94.jpg\",\"address\":\"3917 Hanover pl\",\"city\":\"Tyler\",\"state\":\"TX\",\"zip\":75701,\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/f536188bb24232bee8ed75e928617170.ics\",\"registered\":1423094146,\"last_active\":1528634475,\"timezone\":88,\"updated_at\":\"2018-04-15 18:03:01\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Manager\",\"status_name\":\"Activated\"},{\"snipeitId\":47,\"SnipeItUsername\":\"c.rush\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Codey\",\"lastname\":\"Rush\",\"humanityUsername\":\"10112codeyrush\",\"email\":\"c.rush@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/c24a1a5fee0093b5ec42032824cf0fb1.ics\",\"registered\":1509368925,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-18 13:24:02\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":48,\"SnipeItUsername\":\"d.bustos\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Dairi\",\"lastname\":\"Bustos\",\"humanityUsername\":\"10112dairibustos\",\"email\":\"d.bustos@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/4e8ec3605a36237f1d05760eeaaec945.ics\",\"registered\":1508936274,\"last_active\":1527886374,\"timezone\":88,\"updated_at\":\"2018-03-18 13:24:58\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":49,\"SnipeItUsername\":\"d.ramirez\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Daniel\",\"lastname\":\"Ramirez\",\"humanityUsername\":\"10112danielramirez\",\"email\":\"\",\"group\":5,\"status\":1,\"wage\":10.5,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-343-0736\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1875320-573ea851c507b.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1875320-573ea851c507b.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1875320-573ea851c507b.jpg\",\"avatar_url/large\":\"avatars/1875320-573ea851c507b.jpg\",\"avatar_url/small\":\"avatars/sm_1875320-573ea851c507b.jpg\",\"avatar_url/bigger\":\"avatars/la_1875320-573ea851c507b.jpg\",\"avatar_url/full\":\"avatars/full_1875320-573ea851c507b.jpg\",\"avatar_url/profile\":\"avatars/profile_1875320-573ea851c507b.jpg\",\"avatar_url/forum\":\"avatars/forum_1875320-573ea851c507b.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/23157e3f26e09d6ede9d1890fc3f5d24.ics\",\"registered\":1440539561,\"last_active\":1528486378,\"timezone\":88,\"updated_at\":\"2017-08-21 14:20:05\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":50,\"SnipeItUsername\":\"d.dunn\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Darien\",\"lastname\":\"Dunn\",\"humanityUsername\":\"10112dariendunn\",\"email\":\"d.dunn@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9.5,\"birth_day\":8,\"birth_month\":6,\"cell_phone\":\"903-330-9874\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/3987fb111429d71e986ed32817113b69.ics\",\"registered\":1430858169,\"last_active\":1528521528,\"timezone\":88,\"updated_at\":\"2018-03-18 13:25:40\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":51,\"SnipeItUsername\":\"d.rosinski\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Derek\",\"lastname\":\"Rosinski\",\"humanityUsername\":\"10112derekrosinski\",\"email\":\"rosinski.derek@yahoo.com\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-316-2787\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/5231bd91e986273faa90ac052f4ffc38.ics\",\"registered\":1526302675,\"last_active\":1528478100,\"timezone\":88,\"updated_at\":\"2018-05-14 8:03:11\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":52,\"SnipeItUsername\":\"h.robles\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Hilaria\",\"lastname\":\"Robles\",\"humanityUsername\":\"10112hilariarobles\",\"email\":\"h.robles@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/f9b1edc099288591fa544256dfddd4d2.ics\",\"registered\":1423246002,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-18 13:25:52\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":53,\"SnipeItUsername\":\"j.mcgee\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Jerran\",\"lastname\":\"McGee\",\"humanityUsername\":\"10112jerranmcgee\",\"email\":\"jmcgee@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"402-598-8309\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/c1540219b2060ac6a9c61ddb9f21c220.ics\",\"registered\":1515253013,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-18 13:26:39\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":54,\"SnipeItUsername\":\"j.johnson\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Jessica\",\"lastname\":\"Johnson\",\"humanityUsername\":\"10112jessicajohnson\",\"email\":\"delanyanddaniela@gmail.com\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-603-0837\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1956050-5723bed3c0ff0.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1956050-5723bed3c0ff0.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1956050-5723bed3c0ff0.jpg\",\"avatar_url/large\":\"avatars/1956050-5723bed3c0ff0.jpg\",\"avatar_url/small\":\"avatars/sm_1956050-5723bed3c0ff0.jpg\",\"avatar_url/bigger\":\"avatars/la_1956050-5723bed3c0ff0.jpg\",\"avatar_url/full\":\"avatars/full_1956050-5723bed3c0ff0.jpg\",\"avatar_url/profile\":\"avatars/profile_1956050-5723bed3c0ff0.jpg\",\"avatar_url/forum\":\"avatars/forum_1956050-5723bed3c0ff0.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/1e2e34561b3b80f72b0193118fac1799.ics\",\"registered\":1443543965,\"last_active\":1528464545,\"timezone\":88,\"updated_at\":\"2018-04-17 10:01:43\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":55,\"SnipeItUsername\":\"j.chance\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"John\",\"lastname\":\"Chance\",\"humanityUsername\":\"10112johnchance\",\"email\":\"gramm@aol.com\",\"group\":5,\"status\":1,\"wage\":13.25,\"birth_day\":30,\"birth_month\":7,\"cell_phone\":\"903-571-9131\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1444086-55439cab25f68.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1444086-55439cab25f68.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1444086-55439cab25f68.jpg\",\"avatar_url/large\":\"avatars/1444086-55439cab25f68.jpg\",\"avatar_url/small\":\"avatars/sm_1444086-55439cab25f68.jpg\",\"avatar_url/bigger\":\"avatars/la_1444086-55439cab25f68.jpg\",\"avatar_url/full\":\"avatars/full_1444086-55439cab25f68.jpg\",\"avatar_url/profile\":\"avatars/profile_1444086-55439cab25f68.jpg\",\"avatar_url/forum\":\"avatars/forum_1444086-55439cab25f68.jpg\",\"address\":\"3037 new Copeland rd\",\"city\":\"Tyler\",\"state\":\"TX\",\"zip\":75701,\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/772b9e11722f9423d971fe397ba50fc7.ics\",\"registered\":1423094556,\"last_active\":1527287862,\"timezone\":88,\"updated_at\":\"2017-08-21 14:14:04\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":56,\"SnipeItUsername\":\"j.weldon\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"John\",\"lastname\":\"weldon\",\"humanityUsername\":\"10112johnweldon\",\"email\":\"john.w@andrewscarpetcleaning.com\",\"group\":5,\"status\":1,\"wage\":\"\",\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-780-3373\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/60752a6cf748ec9e49cab333e9238a63.ics\",\"registered\":1481605055,\"last_active\":1505521941,\"timezone\":88,\"updated_at\":\"2018-03-21 9:19:49\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":57,\"SnipeItUsername\":\"j.leon\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Juan\",\"lastname\":\"Leon\",\"humanityUsername\":\"10112juanleon\",\"email\":\"j.leon@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":13.25,\"birth_day\":11,\"birth_month\":1,\"cell_phone\":\"903-504-3804\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_2008018-573ea8859a0b8.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_2008018-573ea8859a0b8.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F2008018-573ea8859a0b8.jpg\",\"avatar_url/large\":\"avatars/2008018-573ea8859a0b8.jpg\",\"avatar_url/small\":\"avatars/sm_2008018-573ea8859a0b8.jpg\",\"avatar_url/bigger\":\"avatars/la_2008018-573ea8859a0b8.jpg\",\"avatar_url/full\":\"avatars/full_2008018-573ea8859a0b8.jpg\",\"avatar_url/profile\":\"avatars/profile_2008018-573ea8859a0b8.jpg\",\"avatar_url/forum\":\"avatars/forum_2008018-573ea8859a0b8.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/aa68ed5a014ea82bee4d0ebd34de710a.ics\",\"registered\":1445606080,\"last_active\":1508148521,\"timezone\":88,\"updated_at\":\"2018-03-18 13:27:38\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":58,\"SnipeItUsername\":\"k.loftis\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Kathy\",\"lastname\":\"Loftis\",\"humanityUsername\":\"10112kathyloftis\",\"email\":\"kathy@andrewscarpetcleaning.com\",\"group\":3,\"status\":1,\"wage\":15,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_2394586-57740536a16a4.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_2394586-57740536a16a4.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F2394586-57740536a16a4.jpg\",\"avatar_url/large\":\"avatars/2394586-57740536a16a4.jpg\",\"avatar_url/small\":\"avatars/sm_2394586-57740536a16a4.jpg\",\"avatar_url/bigger\":\"avatars/la_2394586-57740536a16a4.jpg\",\"avatar_url/full\":\"avatars/full_2394586-57740536a16a4.jpg\",\"avatar_url/profile\":\"avatars/profile_2394586-57740536a16a4.jpg\",\"avatar_url/forum\":\"avatars/forum_2394586-57740536a16a4.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/6666fd4ac6235586bbde3d14189144f4.ics\",\"registered\":1456850258,\"last_active\":1528253879,\"timezone\":88,\"updated_at\":\"2017-05-10 5:06:13\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Supervisor\",\"status_name\":\"Activated\"},{\"snipeitId\":59,\"SnipeItUsername\":\"k.rush\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Kayla\",\"lastname\":\"Rush\",\"humanityUsername\":\"10112kaylarush\",\"email\":\"k.rush@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-780-7073\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/2ecef2160da22814d9601312b9176165.ics\",\"registered\":1514477769,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-18 13:27:55\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":60,\"SnipeItUsername\":\"l.ford\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Letesia\",\"lastname\":\"Ford\",\"humanityUsername\":\"10112letesiaford\",\"email\":\"l.ford@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-705-5094\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_2589317-57752a4a82183.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_2589317-57752a4a82183.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F2589317-57752a4a82183.jpg\",\"avatar_url/large\":\"avatars/2589317-57752a4a82183.jpg\",\"avatar_url/small\":\"avatars/sm_2589317-57752a4a82183.jpg\",\"avatar_url/bigger\":\"avatars/la_2589317-57752a4a82183.jpg\",\"avatar_url/full\":\"avatars/full_2589317-57752a4a82183.jpg\",\"avatar_url/profile\":\"avatars/profile_2589317-57752a4a82183.jpg\",\"avatar_url/forum\":\"avatars/forum_2589317-57752a4a82183.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/869193cb2390ba80dcfebcf58dab58fa.ics\",\"registered\":1464108122,\"last_active\":1528634452,\"timezone\":88,\"updated_at\":\"2018-03-18 13:28:06\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":61,\"SnipeItUsername\":\"m.schrader\",\"Department\":1,\"Manager\":\"ash\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Mark\",\"lastname\":\"Schrader\",\"humanityUsername\":\"10112markschrader\",\"email\":\"mark@andrewsflooring.com\",\"group\":2,\"status\":1,\"wage\":\"\",\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-372-0287\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1462809-55565507bd27b.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1462809-55565507bd27b.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1462809-55565507bd27b.jpg\",\"avatar_url/large\":\"avatars/1462809-55565507bd27b.jpg\",\"avatar_url/small\":\"avatars/sm_1462809-55565507bd27b.jpg\",\"avatar_url/bigger\":\"avatars/la_1462809-55565507bd27b.jpg\",\"avatar_url/full\":\"avatars/full_1462809-55565507bd27b.jpg\",\"avatar_url/profile\":\"avatars/profile_1462809-55565507bd27b.jpg\",\"avatar_url/forum\":\"avatars/forum_1462809-55565507bd27b.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/826430603816363026165a45f3ec1f8b.ics\",\"registered\":1423935218,\"last_active\":1528553166,\"timezone\":88,\"updated_at\":\"2017-05-10 5:06:13\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Manager\",\"status_name\":\"Activated\"},{\"snipeitId\":62,\"SnipeItUsername\":\"n.dungca\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Nathan\",\"lastname\":\"Dungca\",\"humanityUsername\":\"10112nathandungca\",\"email\":\"n8andcrystal@hotmail.com\",\"group\":3,\"status\":1,\"wage\":14,\"birth_day\":28,\"birth_month\":3,\"cell_phone\":\"903-504-3544\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1634058-556484f91546c.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1634058-556484f91546c.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1634058-556484f91546c.jpg\",\"avatar_url/large\":\"avatars/1634058-556484f91546c.jpg\",\"avatar_url/small\":\"avatars/sm_1634058-556484f91546c.jpg\",\"avatar_url/bigger\":\"avatars/la_1634058-556484f91546c.jpg\",\"avatar_url/full\":\"avatars/full_1634058-556484f91546c.jpg\",\"avatar_url/profile\":\"avatars/profile_1634058-556484f91546c.jpg\",\"avatar_url/forum\":\"avatars/forum_1634058-556484f91546c.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/2d45e467df96fcc8236858baa016756a.ics\",\"registered\":1431368052,\"last_active\":1527861803,\"timezone\":88,\"updated_at\":\"2018-03-18 13:28:21\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Supervisor\",\"status_name\":\"Activated\"},{\"snipeitId\":63,\"SnipeItUsername\":\"r.newton\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Randi\",\"lastname\":\"Newton\",\"humanityUsername\":\"10112randinewton\",\"email\":\"r.newton@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":12,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-617-3485\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1447706-54e21eeb60379.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1447706-54e21eeb60379.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1447706-54e21eeb60379.jpg\",\"avatar_url/large\":\"avatars/1447706-54e21eeb60379.jpg\",\"avatar_url/small\":\"avatars/sm_1447706-54e21eeb60379.jpg\",\"avatar_url/bigger\":\"avatars/la_1447706-54e21eeb60379.jpg\",\"avatar_url/full\":\"avatars/full_1447706-54e21eeb60379.jpg\",\"avatar_url/profile\":\"avatars/profile_1447706-54e21eeb60379.jpg\",\"avatar_url/forum\":\"avatars/forum_1447706-54e21eeb60379.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/d1e9c782eda88db1e2ee9cec5af5f124.ics\",\"registered\":1423245533,\"last_active\":1493055325,\"timezone\":88,\"updated_at\":\"2018-03-18 13:28:33\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":64,\"SnipeItUsername\":\"r.hughes\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Richard\",\"lastname\":\"Hughes\",\"humanityUsername\":\"10112richardhughes\",\"email\":\"\",\"group\":5,\"status\":1,\"wage\":\"\",\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-707-5717\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/45da2abdade72fd2221d558ba00bec4d.ics\",\"registered\":1522068012,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-26 7:43:33\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":65,\"SnipeItUsername\":\"s.weldon\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Shea\",\"lastname\":\"Weldon\",\"humanityUsername\":\"10112sheaweldon\",\"email\":\"\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-520-5577\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/5c2ef4b3ff41816e1cc94c38c2a351a1.ics\",\"registered\":1524496521,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-04-23 10:18:51\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":66,\"SnipeItUsername\":\"t.jackson\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Tawnya\",\"lastname\":\"Jackson\",\"humanityUsername\":\"10112tawnyajackson\",\"email\":\"tawnyajackson98@gmail.com\",\"group\":5,\"status\":1,\"wage\":11,\"birth_day\":17,\"birth_month\":10,\"cell_phone\":\"903-705-5467\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsmall_3054225-30542251512840535.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_3054225-30542251512840535.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Flarge_3054225-30542251512840535.jpg\",\"avatar_url/large\":\"avatars/large_3054225-30542251512840535.jpg\",\"avatar_url/small\":\"avatars/small_3054225-30542251512840535.jpg\",\"avatar_url/bigger\":\"avatars/bigger_3054225-30542251512840535.jpg\",\"avatar_url/full\":\"avatars/full_3054225-30542251512840535.jpg\",\"avatar_url/profile\":\"avatars/profile_3054225-30542251512840535.jpg\",\"avatar_url/forum\":\"avatars/forum_3054225-30542251512840535.jpg\",\"address\":\"11464 fm 2767\",\"city\":\"Tyler\",\"state\":\"Tx\",\"zip\":75708,\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/ddc710b7acdc16c7eef4007bab4221c4.ics\",\"registered\":1481322093,\"last_active\":1528542759,\"timezone\":88,\"updated_at\":\"2018-03-21 10:20:44\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":67,\"SnipeItUsername\":\"t.test\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":1,\"Consumables\":0,\"firstname\":\"test\",\"lastname\":\"test\",\"humanityUsername\":\"testgroupandrews.com\",\"email\":\"test@groupandrews.com\",\"group\":5,\"status\":1,\"wage\":\"\",\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-530-1197\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/057ce5af974862e0b1549bbeb2b2afa3.ics\",\"registered\":1525789458,\"last_active\":1527567683,\"timezone\":88,\"updated_at\":\"2018-05-12 8:29:27\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":68,\"SnipeItUsername\":\"v.rodriguez\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Virginia\",\"lastname\":\"Rodriguez\",\"humanityUsername\":\"10112virginiarodriguez\",\"email\":\"v.rodriguez@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-952-7065\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1447702-555a46736de30.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1447702-555a46736de30.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1447702-555a46736de30.jpg\",\"avatar_url/large\":\"avatars/1447702-555a46736de30.jpg\",\"avatar_url/small\":\"avatars/sm_1447702-555a46736de30.jpg\",\"avatar_url/bigger\":\"avatars/la_1447702-555a46736de30.jpg\",\"avatar_url/full\":\"avatars/full_1447702-555a46736de30.jpg\",\"avatar_url/profile\":\"avatars/profile_1447702-555a46736de30.jpg\",\"avatar_url/forum\":\"avatars/forum_1447702-555a46736de30.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/2fcc217a2af84d455d964db1175e5f54.ics\",\"registered\":1423245533,\"last_active\":1528522439,\"timezone\":88,\"updated_at\":\"2018-03-18 13:28:54\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"}]",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 830,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "58e62f21.3b307",
+        "type": "delay",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1010,
+        "y": 240,
+        "wires": [
+            [
+                "793017a8.a454b8"
+            ]
+        ]
+    },
+    {
+        "id": "5516cb2e.7d7924",
+        "type": "process-env",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "into": "payload",
+        "x": 350,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "88d11214.5a787",
+        "type": "inject",
+        "z": "b7b775e0.9589b8",
+        "name": "Employees Startup",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 40,
+        "wires": [
+            [
+                "76e77067.64ced",
+                "5516cb2e.7d7924"
+            ]
+        ]
+    },
+    {
+        "id": "32ac679e.a954b8",
+        "type": "function",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "func": "global.set('profiles', msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 510,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9371fc8c.80d3a",
+        "type": "match",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "rules": [
+            {
+                "property": "payload.SnipeItUsername",
+                "propertyType": "msg",
+                "type": "eq",
+                "value": "username",
+                "valueType": "msg"
+            }
+        ],
+        "x": 730,
+        "y": 320,
+        "wires": [
+            [
+                "db54fda9.d806e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f330e620.db28d8",
+        "type": "Parallel Iterator",
+        "z": "137a9152.2c26cf",
+        "name": "iterator",
+        "property": "profiles",
+        "saveOutput": 1,
+        "recursive": 0,
+        "storeId": 0,
+        "x": 570,
+        "y": 320,
+        "wires": [
+            [
+                "9371fc8c.80d3a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "dff28145.8ee26",
+        "type": "inject",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "topic": "",
+        "payload": "{\"assetId\":\"1\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 390,
+        "y": 420,
+        "wires": [
+            [
+                "e9f14b02.7dba48"
+            ]
+        ]
+    },
+    {
+        "id": "3fb3b4.edc23c4c",
+        "type": "debug",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1690,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "aa3b7054.595ec",
+        "type": "http response",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 420,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "f3c8deff.995e6",
+        "type": "http in",
+        "z": "5c46ad63.1c5eb4",
+        "name": "",
+        "url": "/api/putconsumables",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "1382683f.a960a8",
+                "1840f107.00ae0f"
+            ]
+        ]
+    },
+    {
+        "id": "1382683f.a960a8",
+        "type": "http response",
+        "z": "5c46ad63.1c5eb4",
+        "name": "consumables inserted",
+        "statusCode": "",
+        "headers": {},
+        "x": 660,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "af812918.496f28",
+        "type": "http in",
+        "z": "5c46ad63.1c5eb4",
+        "name": "",
+        "url": "/api/getconsumables",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 180,
+        "wires": [
+            [
+                "a4098363.5310c"
+            ]
+        ]
+    },
+    {
+        "id": "adf34893.163aa8",
+        "type": "http response",
+        "z": "5c46ad63.1c5eb4",
+        "name": "return consumables",
+        "statusCode": "",
+        "headers": {},
+        "x": 640,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "51a05d1a.69ed94",
+        "type": "ibmiot in",
+        "z": "5d4e82a1.6b341c",
+        "authentication": "apiKey",
+        "apiKey": "2d25d467.3a0ffc",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "",
+        "applicationId": "",
+        "deviceType": "+Tablets",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": true,
+        "allLogicalInterfaces": "",
+        "allEvents": "",
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 50,
+        "y": 580,
+        "wires": [
+            [
+                "7775d5b1.7ddc6c"
+            ]
+        ]
+    },
+    {
+        "id": "74148642.9ebb98",
+        "type": "http in",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "url": "/api/getowntracks",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 500,
+        "wires": [
+            [
+                "813b771c.a90728"
+            ]
+        ]
+    },
+    {
+        "id": "985c2707.88e948",
+        "type": "http response",
+        "z": "5d4e82a1.6b341c",
+        "name": "return owntracks",
+        "statusCode": "",
+        "headers": {},
+        "x": 600,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "bdeec8a1.02ba28",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "ash2",
+        "func": "// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\nvar now = Date();\nvar message = \"\";\ndata = JSON.parse(msg.payload);\n\nif ( (data._type == \"location\") && (data.event != undefined ) ) {\n\t\n\t\tif ( data.event == \"enter\" ) {\t\t\t\n\t\t\tmessage = \"Entering Location: \";\n\t\t} else {\n\t\t\tmessage = \"Leaving Location: \";\n\t\t}\n\t\t\n\t\tif ( data.desc != undefined ) {\n\t\t\t// Shared waypoint, comes with a description:\n\t\t\t\tmessage += data.desc;\n \t\t} else {\n \t\t\t// No description is set, non shared \"private\" waypoint\n \t\t\t\tmessage += data.lat + \",\" + data.lon;\n \t\t}\n }\n\nmsg.payload = message;\n//console.log(msg.payload);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 331,
+        "y": 745,
+        "wires": [
+            [
+                "b6452882.0f56a8"
+            ]
+        ]
+    },
+    {
+        "id": "b6452882.0f56a8",
+        "type": "switch",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "property": "payload",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "Location"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 492,
+        "y": 745,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "115b5eaa.3cb121",
+        "type": "inject",
+        "z": "5d4e82a1.6b341c",
+        "name": "Test Shared Waypoint",
+        "topic": "",
+        "payload": "{\"_type\": \"location\", \"lat\": \"xxxx\", \"lon\": \"yyyy\", \"tst\": \"1391715492\", \"acc\": \"500.0\", \"batt\": \"48\", \"desc\": \"Shared Test Waypoint\", \"event\": \"enter\"}",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 136,
+        "y": 745,
+        "wires": [
+            [
+                "bdeec8a1.02ba28"
+            ]
+        ]
+    },
+    {
+        "id": "a3e18473.5e4b78",
+        "type": "inject",
+        "z": "5d4e82a1.6b341c",
+        "name": "Test Private Waypoint",
+        "topic": "",
+        "payload": "{\"_type\": \"location\", \"lat\": \"xxxx\", \"lon\": \"yyyy\", \"tst\": \"1391715492\", \"acc\": \"500.0\", \"batt\": \"48\", \"event\": \"enter\"}",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 135,
+        "y": 810,
+        "wires": [
+            [
+                "bdeec8a1.02ba28"
+            ]
+        ]
+    },
+    {
+        "id": "7775d5b1.7ddc6c",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "convert owntracks to usable",
+        "func": "msg.locationdata = msg.payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 580,
+        "wires": [
+            [
+                "5ed41002.fcfc3"
+            ]
+        ]
+    },
+    {
+        "id": "d677a9fe.eca248",
+        "type": "filter",
+        "z": "5d4e82a1.6b341c",
+        "name": "filter for right",
+        "property": "payload.rows",
+        "propertyType": "msg",
+        "asArray": true,
+        "itemProperty": "custom_fields",
+        "itemPropertyType": "item",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "locationdata.tid",
+                "vt": "msg",
+                "output": 1
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 930,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5ed41002.fcfc3",
+        "type": "DataOut",
+        "z": "5d4e82a1.6b341c",
+        "collection": "8c5fc8f9.567368",
+        "name": "/assets/checkedoutlist",
+        "path": "/assets/checkedoutlist",
+        "error": false,
+        "x": 520,
+        "y": 580,
+        "wires": [
+            [
+                "78e70830.d585d8"
+            ]
+        ]
+    },
+    {
+        "id": "aebc4c6a.72dc",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "func": "\n                        // var msg = JSON.parse(message.toString())\n    node.warn(msg.locationdata)\n    if (msg.locationdata._type === \"location\") {\n        var event = {};\n        event.loc = {};\n        event.loc.type = \"Point\";\n        event.loc.coordinates = [parseFloat(msg.locationdata.lon), parseFloat(msg.locationdata.lat)];\n        event.alt = parseFloat(msg.locationdata.alt || 0);\n        if (msg.locationdata.acc !== undefined) {\n            event.acc = parseFloat(msg.locationdata.acc);\n        }\n        event.batt = parseFloat(msg.locationdata.batt || 100);\n        if (msg.locationdata.cog !== undefined) {\n            event.cog = parseFloat(msg.locationdata.cog);\n        }\n             if (msg.locationdata.conn !== undefined) {\n            event.conn = parseFloat(msg.locationdata.conn);\n        }\n        if (msg.locationdata.desc !== undefined) {\n            event.desc = msg.locationdata.desc;\n        }\n        if (msg.locationdata.rad !== undefined) {\n            event.rad = parseFloat(msg.locationdata.rad);\n        }\n        if (msg.locationdata.t !== undefined) {\n            event.t = msg.locationdata.t;\n        }\n        if (msg.locationdata.tid !== undefined) {\n            event.tid = msg.locationdata.tid;\n        }\n        event.ts = new Date(parseInt(msg.locationdata.tst, 10) * 1000);\n        if (msg.locationdata.vacc !== undefined) {\n            event.vacc = parseFloat(msg.locationdata.vacc);\n        }\n        if (msg.locationdata.vel !== undefined) {\n            event.vel = parseFloat(msg.locationdata.vel);\n        }\n    //    collection.update({topic: topic}, {$addToSet: {events: event}}, {upsert: true, w:0});\n    event.assigned_to = msg.locationdata.assigned_to \n    node.warn(event)\n    msg.payload = event\n    \nreturn msg;\n    \n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1030,
+        "y": 580,
+        "wires": [
+            [
+                "6e1b5343.d1c43c"
+            ]
+        ]
+    },
+    {
+        "id": "76e77067.64ced",
+        "type": "cloudant in",
+        "z": "b7b775e0.9589b8",
+        "name": "get all profiles",
+        "cloudant": "8ab126de.c9de68",
+        "database": "profiles",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 360,
+        "y": 40,
+        "wires": [
+            [
+                "32ac679e.a954b8"
+            ]
+        ]
+    },
+    {
+        "id": "1f8e83fe.836b7c",
+        "type": "cloudant out",
+        "z": "b7b775e0.9589b8",
+        "name": "insert profile",
+        "cloudant": "8ab126de.c9de68",
+        "database": "profiles",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "successOutput": false,
+        "x": 390,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "20273337.7d769c",
+        "type": "cloudant in",
+        "z": "b7b775e0.9589b8",
+        "name": "get all profiles",
+        "cloudant": "8ab126de.c9de68",
+        "database": "profiles",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 380,
+        "y": 380,
+        "wires": [
+            [
+                "70ead7f9.ddaf18"
+            ]
+        ]
+    },
+    {
+        "id": "793017a8.a454b8",
+        "type": "cloudant out",
+        "z": "b7b775e0.9589b8",
+        "name": "insert profile",
+        "cloudant": "8ab126de.c9de68",
+        "database": "profiles",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "successOutput": false,
+        "x": 1230,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "a4098363.5310c",
+        "type": "cloudant in",
+        "z": "5c46ad63.1c5eb4",
+        "name": "get all consumables",
+        "cloudant": "8ab126de.c9de68",
+        "database": "consumables",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "adf34893.163aa8"
+            ]
+        ]
+    },
+    {
+        "id": "1840f107.00ae0f",
+        "type": "cloudant out",
+        "z": "5c46ad63.1c5eb4",
+        "name": "insert consumables",
+        "cloudant": "8ab126de.c9de68",
+        "database": "consumables",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "successOutput": false,
+        "x": 410,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "6e1b5343.d1c43c",
+        "type": "cloudant out",
+        "z": "5d4e82a1.6b341c",
+        "name": "insert owntracks",
+        "cloudant": "8ab126de.c9de68",
+        "database": "owntracks",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "successOutput": false,
+        "x": 1240,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "78e70830.d585d8",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "match checkoutlist to owntracks",
+        "func": "var assetList = msg.payload.rows\nfor (var asset of msg.payload.rows) {\n    node.warn(asset.custom_fields.tid.value)\n    node.warn(msg.locationdata)\n    if (msg.locationdata.tid == asset.custom_fields.tid.value) {\n        msg.locationdata.assigned_to = {}\n        msg.locationdata.assigned_to.id = asset.assigned_to.id\n        msg.locationdata.assigned_to.username = asset.assigned_to.username\n        msg.payload = msg.locationdata\n        return [null, msg]\n    }\n}\nmsg.payload.status = 'error'\nmsg.payload.value = 404\nreturn [msg, null]",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 790,
+        "y": 580,
+        "wires": [
+            [
+                "69e8cad7.2c3b24"
+            ],
+            [
+                "aebc4c6a.72dc"
+            ]
+        ],
+        "outputLabels": [
+            "not_found",
+            "found"
+        ]
+    },
+    {
+        "id": "813b771c.a90728",
+        "type": "cloudant in",
+        "z": "5d4e82a1.6b341c",
+        "name": "get all owntracks",
+        "cloudant": "8ab126de.c9de68",
+        "database": "owntracks",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 350,
+        "y": 500,
+        "wires": [
+            [
+                "985c2707.88e948"
+            ]
+        ]
+    },
+    {
+        "id": "69e8cad7.2c3b24",
+        "type": "debug",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1030,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "5576fb8a.eacbb4",
+        "type": "inject",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "topic": "",
+        "payload": "{\"_type\":\"location\",\"tid\":\"04\",\"acc\":21,\"batt\":100,\"conn\":\"w\",\"lat\":32.31732,\"lon\":-95.2474271,\"t\":\"u\",\"tst\":1528658302}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 230,
+        "y": 640,
+        "wires": [
+            [
+                "7775d5b1.7ddc6c"
+            ]
+        ]
+    }
+]
