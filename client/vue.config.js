@@ -15,7 +15,7 @@ module.exports = {
         },
         "/api": {
           target: "http://192.168.1.6:1880/",
-          pathRewrite: {"^/api" : ""},
+          // pathRewrite: {"^/api" : ""},
           secure: false
         },
         "/iss": {

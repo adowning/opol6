@@ -18,7 +18,9 @@ var path = require("path");
 var when = require("when");
 var util = require("util");
 var fs = require("fs");
-
+require('dotenv').load()
+console.log(process.env.NODE_ENV)
+//console.log(process.env.NODE_ENV)
 var cfenv = require("cfenv");
 var appEnv = cfenv.getAppEnv();
 

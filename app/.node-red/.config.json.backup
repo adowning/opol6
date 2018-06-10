@@ -379,7 +379,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-async",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-async/async.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-async/async.js"
     }
    }
   },
@@ -398,7 +398,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-cloudantplus",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-cloudantplus/cloudantplus.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-cloudantplus/cloudantplus.js"
     }
    }
   },
@@ -415,7 +415,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-parallel-iterator",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-parallel-iterator/91-02-pr-iterator.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-parallel-iterator/91-02-pr-iterator.js"
     }
    }
   },
@@ -434,7 +434,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-actionflows",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-actionflows/actionflows/actionflows.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-actionflows/actionflows/actionflows.js"
     }
    }
   },
@@ -451,7 +451,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-match",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-match/match.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-match/match.js"
     }
    }
   },
@@ -468,7 +468,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-jsonfilter",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-jsonfilter/filter.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-jsonfilter/filter.js"
     }
    }
   },
@@ -485,7 +485,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-filter",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-filter/18-filter.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-filter/18-filter.js"
     }
    }
   },
@@ -502,7 +502,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-git-nodes",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-git-nodes/git-nodes.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-git-nodes/git-nodes.js"
     },
     "git-nodes-config": {
      "name": "git-nodes-config",
@@ -512,7 +512,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-git-nodes",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-git-nodes/git-nodes-config.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-git-nodes/git-nodes-config.js"
     }
    }
   },
@@ -529,7 +529,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-git-ui",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-git-ui/git/git.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-git-ui/git/git.js"
     }
    }
   },
@@ -548,7 +548,7 @@
      "enabled": true,
      "local": true,
      "module": "json-db-node-red",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/json-db-node-red/json-db.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/json-db-node-red/json-db.js"
     }
    }
   },
@@ -567,7 +567,147 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-scx-ibmiotapp",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-scx-ibmiotapp/application/97-iotnewapp-cf.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-scx-ibmiotapp/application/97-iotnewapp-cf.js"
+    }
+   }
+  },
+  "node-red-contrib-contextbrowser": {
+   "name": "node-red-contrib-contextbrowser",
+   "version": "0.0.4",
+   "local": true,
+   "nodes": {
+    "contextbrowser": {
+     "name": "contextbrowser",
+     "types": [
+      "contextbrowser",
+      "contextbrowser-sidebar"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-contextbrowser",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-contextbrowser/contextbrowser.js"
+    }
+   }
+  },
+  "node-red-node-google": {
+   "name": "node-red-node-google",
+   "version": "0.1.4",
+   "local": true,
+   "nodes": {
+    "google plus": {
+     "name": "google plus",
+     "types": [
+      "google plus"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/plus.js"
+    },
+    "google places": {
+     "name": "google places",
+     "types": [
+      "google places"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/places.js"
+    },
+    "google-api-config": {
+     "name": "google-api-config",
+     "types": [
+      "google-credentials",
+      "google-api-config"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/google.js"
+    },
+    "google geocoding": {
+     "name": "google geocoding",
+     "types": [
+      "google geocoding"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/geocoding.js"
+    },
+    "google directions": {
+     "name": "google directions",
+     "types": [
+      "google directions"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/directions.js"
+    },
+    "google calendar": {
+     "name": "google calendar",
+     "types": [
+      "google calendar in",
+      "google calendar",
+      "google calendar out"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/calendar.js"
+    }
+   }
+  },
+  "node-red-contrib-viseo-google-spreadsheet": {
+   "name": "node-red-contrib-viseo-google-spreadsheet",
+   "version": "0.2.11",
+   "local": true,
+   "nodes": {
+    "google-spreadsheet": {
+     "name": "google-spreadsheet",
+     "types": [
+      "google-spreadsheet"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-viseo-google-spreadsheet",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-viseo-google-spreadsheet/google-spreadsheet.js"
+    }
+   }
+  },
+  "node-red-contrib-google": {
+   "name": "node-red-contrib-google",
+   "version": "0.2.0",
+   "local": true,
+   "nodes": {
+    "google": {
+     "name": "google",
+     "types": [
+      "google-conn",
+      "google"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-google/google.js"
+    }
+   }
+  },
+  "node-red-contrib-process-env": {
+   "name": "node-red-contrib-process-env",
+   "version": "0.1.5",
+   "local": true,
+   "nodes": {
+    "process.env": {
+     "name": "process.env",
+     "types": [
+      "process-env"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-process-env",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-process-env/process-env.js"
     }
    }
   }

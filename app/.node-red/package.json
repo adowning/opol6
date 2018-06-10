@@ -7,12 +7,17 @@
         "node-red-contrib-actionflows": "~2.0.0",
         "node-red-contrib-async": "0.0.4",
         "node-red-contrib-cloudantplus": "~0.1.0",
+        "node-red-contrib-contextbrowser": "0.0.4",
         "node-red-contrib-filter": "~0.1.3",
         "node-red-contrib-git-nodes": "~0.2.2",
         "node-red-contrib-git-ui": "~0.1.10",
+        "node-red-contrib-google": "~0.2.0",
         "node-red-contrib-jsonfilter": "~0.1.0",
         "node-red-contrib-match": "~1.0.2",
         "node-red-contrib-parallel-iterator": "~0.1.3",
-        "node-red-contrib-scx-ibmiotapp": "0.0.49"
+        "node-red-contrib-process-env": "~0.1.5",
+        "node-red-contrib-scx-ibmiotapp": "0.0.49",
+        "node-red-contrib-viseo-google-spreadsheet": "~0.2.11",
+        "node-red-node-google": "~0.1.4"
     }
 }
