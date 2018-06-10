@@ -635,101 +635,6 @@
         "wires": []
     },
     {
-        "id": "974ce453.c26ad8",
-        "type": "http in",
-        "z": "137a9152.2c26cf",
-        "name": "",
-        "url": "/api/assets/checkouthardware",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 140,
-        "y": 320,
-        "wires": [
-            [
-                "40fba81.fb2d758"
-            ]
-        ]
-    },
-    {
-        "id": "5bdc4573.fcb91c",
-        "type": "http in",
-        "z": "137a9152.2c26cf",
-        "name": "",
-        "url": "/api/assets/checkinhardware",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 130,
-        "y": 380,
-        "wires": [
-            [
-                "e9f14b02.7dba48"
-            ]
-        ]
-    },
-    {
-        "id": "40fba81.fb2d758",
-        "type": "function",
-        "z": "137a9152.2c26cf",
-        "name": "checkouthardware",
-        "func": "msg.headers = {}\nvar msg2 = msg\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nmsg.assetId = msg.payload.assetId\nmsg.username = msg.payload.username\nmsg.username = msg.payload.username\nnode.warn(msg.username)\nmsg.snipeit_host = global.get('snipeit_host')\n//msg2 = msg.payload = global.get('profiles')\n// node.warn(global.get('profiles'))\nconsole.log(msg.username)\nmsg.profiles = global.get('profiles')\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 390,
-        "y": 320,
-        "wires": [
-            [
-                "f330e620.db28d8"
-            ]
-        ]
-    },
-    {
-        "id": "52e314ae.168c9c",
-        "type": "http response",
-        "z": "137a9152.2c26cf",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 1250,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "e9f14b02.7dba48",
-        "type": "function",
-        "z": "137a9152.2c26cf",
-        "name": "checkinhardware",
-        "func": "msg.headers = {}\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nconsole.log(msg.payload.assetId)\nmsg.id = msg.payload.assetId\nmsg.snipeit_host = global.get('snipeit_host')\n\n console.log(msg.id)\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 390,
-        "y": 380,
-        "wires": [
-            [
-                "5f1da674.47ae98"
-            ]
-        ]
-    },
-    {
-        "id": "e5fef8c7.784138",
-        "type": "http request",
-        "z": "137a9152.2c26cf",
-        "name": "get checkedout",
-        "method": "POST",
-        "ret": "obj",
-        "url": "{{{snipeit_host}}}/hardware/{{{assetId}}}/checkout?assigned_user={{{userId}}}&checkout_to_type=user",
-        "tls": "",
-        "x": 1080,
-        "y": 320,
-        "wires": [
-            [
-                "52e314ae.168c9c",
-                "50c5cb2d.052d04"
-            ]
-        ]
-    },
-    {
         "id": "550e98d6.a000a8",
         "type": "function",
         "z": "137a9152.2c26cf",
@@ -827,71 +732,6 @@
         ]
     },
     {
-        "id": "5f1da674.47ae98",
-        "type": "http request",
-        "z": "137a9152.2c26cf",
-        "name": "",
-        "method": "POST",
-        "ret": "obj",
-        "url": "{{{snipeit_host}}}/hardware/{{{id}}}/checkin",
-        "tls": "",
-        "x": 610,
-        "y": 380,
-        "wires": [
-            [
-                "edbaaba6.4d3618",
-                "50c5cb2d.052d04"
-            ]
-        ]
-    },
-    {
-        "id": "edbaaba6.4d3618",
-        "type": "http response",
-        "z": "137a9152.2c26cf",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 650,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "db54fda9.d806e",
-        "type": "function",
-        "z": "137a9152.2c26cf",
-        "name": "set userId",
-        "func": "// msg.assetId = msg.payload[0].assetId\n// msg.userId = msg.payload.userId\nmsg.userId = msg.payload.snipeitId\n// node.warn(msg.userId)\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 880,
-        "y": 320,
-        "wires": [
-            [
-                "e5fef8c7.784138"
-            ]
-        ]
-    },
-    {
-        "id": "93932b5a.409cb8",
-        "type": "inject",
-        "z": "137a9152.2c26cf",
-        "name": "",
-        "topic": "",
-        "payload": "{\"assetId\":\"1\", \"username\":\"ash\"}",
-        "payloadType": "json",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 390,
-        "y": 280,
-        "wires": [
-            [
-                "40fba81.fb2d758"
-            ]
-        ]
-    },
-    {
         "id": "be0f2f96.c35dc",
         "type": "DataIn",
         "z": "137a9152.2c26cf",
@@ -902,70 +742,6 @@
         "x": 860,
         "y": 40,
         "wires": []
-    },
-    {
-        "id": "d7044b7c.ff3998",
-        "type": "DataOut",
-        "z": "137a9152.2c26cf",
-        "collection": "8c5fc8f9.567368",
-        "name": "/assets/checkedoutlist",
-        "path": "/assets/checkedoutlist",
-        "error": false,
-        "x": 1480,
-        "y": 380,
-        "wires": [
-            [
-                "3fb3b4.edc23c4c"
-            ]
-        ]
-    },
-    {
-        "id": "50c5cb2d.052d04",
-        "type": "switch",
-        "z": "137a9152.2c26cf",
-        "name": "was checkout/in success?",
-        "property": "payload.status",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "success",
-                "vt": "str"
-            },
-            {
-                "t": "neq",
-                "v": "success",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 1010,
-        "y": 380,
-        "wires": [
-            [
-                "2e699900.408db8"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "2e699900.408db8",
-        "type": "http request",
-        "z": "137a9152.2c26cf",
-        "name": "?status=Deployed",
-        "method": "GET",
-        "ret": "obj",
-        "url": "{{{snipeit_host}}}/hardware",
-        "tls": "",
-        "x": 1250,
-        "y": 380,
-        "wires": [
-            [
-                "d7044b7c.ff3998"
-            ]
-        ]
     },
     {
         "id": "a7b02b70.660408",
@@ -1120,24 +896,6 @@
         ]
     },
     {
-        "id": "9837dcf5.198a6",
-        "type": "inject",
-        "z": "b7b775e0.9589b8",
-        "name": "",
-        "topic": "",
-        "payload": "[{\"snipeitId\":46,\"SnipeItUsername\":\"a.dunn\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Adreain\",\"lastname\":\"Dunn\",\"humanityUsername\":\"10112adreaindunn\",\"email\":\"a.dunn@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":11,\"birth_day\":18,\"birth_month\":9,\"cell_phone\":\"903-372-5013\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1447703-54e21cf441430.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1447703-54e21cf441430.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1447703-54e21cf441430.jpg\",\"avatar_url/large\":\"avatars/1447703-54e21cf441430.jpg\",\"avatar_url/small\":\"avatars/sm_1447703-54e21cf441430.jpg\",\"avatar_url/bigger\":\"avatars/la_1447703-54e21cf441430.jpg\",\"avatar_url/full\":\"avatars/full_1447703-54e21cf441430.jpg\",\"avatar_url/profile\":\"avatars/profile_1447703-54e21cf441430.jpg\",\"avatar_url/forum\":\"avatars/forum_1447703-54e21cf441430.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/a12833ba4f1010462836e6284b79f2a8.ics\",\"registered\":1423245533,\"last_active\":1528575746,\"timezone\":88,\"updated_at\":\"2018-03-18 13:24:20\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":1,\"SnipeItUsername\":\"ash\",\"Department\":1,\"Manager\":\"\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Ash\",\"lastname\":\"Downing\",\"humanityUsername\":\"andrewsgroup\",\"email\":\"ash@andrewscarpetcleaning.com\",\"group\":2,\"status\":1,\"wage\":100,\"birth_day\":3,\"birth_month\":1,\"cell_phone\":\"903-530-1197\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1444044-554396f814a94.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1444044-554396f814a94.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1444044-554396f814a94.jpg\",\"avatar_url/large\":\"avatars/1444044-554396f814a94.jpg\",\"avatar_url/small\":\"avatars/sm_1444044-554396f814a94.jpg\",\"avatar_url/bigger\":\"avatars/la_1444044-554396f814a94.jpg\",\"avatar_url/full\":\"avatars/full_1444044-554396f814a94.jpg\",\"avatar_url/profile\":\"avatars/profile_1444044-554396f814a94.jpg\",\"avatar_url/forum\":\"avatars/forum_1444044-554396f814a94.jpg\",\"address\":\"3917 Hanover pl\",\"city\":\"Tyler\",\"state\":\"TX\",\"zip\":75701,\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/f536188bb24232bee8ed75e928617170.ics\",\"registered\":1423094146,\"last_active\":1528634475,\"timezone\":88,\"updated_at\":\"2018-04-15 18:03:01\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Manager\",\"status_name\":\"Activated\"},{\"snipeitId\":47,\"SnipeItUsername\":\"c.rush\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Codey\",\"lastname\":\"Rush\",\"humanityUsername\":\"10112codeyrush\",\"email\":\"c.rush@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/c24a1a5fee0093b5ec42032824cf0fb1.ics\",\"registered\":1509368925,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-18 13:24:02\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":48,\"SnipeItUsername\":\"d.bustos\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Dairi\",\"lastname\":\"Bustos\",\"humanityUsername\":\"10112dairibustos\",\"email\":\"d.bustos@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/4e8ec3605a36237f1d05760eeaaec945.ics\",\"registered\":1508936274,\"last_active\":1527886374,\"timezone\":88,\"updated_at\":\"2018-03-18 13:24:58\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":49,\"SnipeItUsername\":\"d.ramirez\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Daniel\",\"lastname\":\"Ramirez\",\"humanityUsername\":\"10112danielramirez\",\"email\":\"\",\"group\":5,\"status\":1,\"wage\":10.5,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-343-0736\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1875320-573ea851c507b.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1875320-573ea851c507b.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1875320-573ea851c507b.jpg\",\"avatar_url/large\":\"avatars/1875320-573ea851c507b.jpg\",\"avatar_url/small\":\"avatars/sm_1875320-573ea851c507b.jpg\",\"avatar_url/bigger\":\"avatars/la_1875320-573ea851c507b.jpg\",\"avatar_url/full\":\"avatars/full_1875320-573ea851c507b.jpg\",\"avatar_url/profile\":\"avatars/profile_1875320-573ea851c507b.jpg\",\"avatar_url/forum\":\"avatars/forum_1875320-573ea851c507b.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/23157e3f26e09d6ede9d1890fc3f5d24.ics\",\"registered\":1440539561,\"last_active\":1528486378,\"timezone\":88,\"updated_at\":\"2017-08-21 14:20:05\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":50,\"SnipeItUsername\":\"d.dunn\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Darien\",\"lastname\":\"Dunn\",\"humanityUsername\":\"10112dariendunn\",\"email\":\"d.dunn@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9.5,\"birth_day\":8,\"birth_month\":6,\"cell_phone\":\"903-330-9874\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/3987fb111429d71e986ed32817113b69.ics\",\"registered\":1430858169,\"last_active\":1528521528,\"timezone\":88,\"updated_at\":\"2018-03-18 13:25:40\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":51,\"SnipeItUsername\":\"d.rosinski\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Derek\",\"lastname\":\"Rosinski\",\"humanityUsername\":\"10112derekrosinski\",\"email\":\"rosinski.derek@yahoo.com\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-316-2787\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/5231bd91e986273faa90ac052f4ffc38.ics\",\"registered\":1526302675,\"last_active\":1528478100,\"timezone\":88,\"updated_at\":\"2018-05-14 8:03:11\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":52,\"SnipeItUsername\":\"h.robles\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Hilaria\",\"lastname\":\"Robles\",\"humanityUsername\":\"10112hilariarobles\",\"email\":\"h.robles@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/f9b1edc099288591fa544256dfddd4d2.ics\",\"registered\":1423246002,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-18 13:25:52\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":53,\"SnipeItUsername\":\"j.mcgee\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Jerran\",\"lastname\":\"McGee\",\"humanityUsername\":\"10112jerranmcgee\",\"email\":\"jmcgee@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"402-598-8309\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/c1540219b2060ac6a9c61ddb9f21c220.ics\",\"registered\":1515253013,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-18 13:26:39\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":54,\"SnipeItUsername\":\"j.johnson\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Jessica\",\"lastname\":\"Johnson\",\"humanityUsername\":\"10112jessicajohnson\",\"email\":\"delanyanddaniela@gmail.com\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-603-0837\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1956050-5723bed3c0ff0.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1956050-5723bed3c0ff0.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1956050-5723bed3c0ff0.jpg\",\"avatar_url/large\":\"avatars/1956050-5723bed3c0ff0.jpg\",\"avatar_url/small\":\"avatars/sm_1956050-5723bed3c0ff0.jpg\",\"avatar_url/bigger\":\"avatars/la_1956050-5723bed3c0ff0.jpg\",\"avatar_url/full\":\"avatars/full_1956050-5723bed3c0ff0.jpg\",\"avatar_url/profile\":\"avatars/profile_1956050-5723bed3c0ff0.jpg\",\"avatar_url/forum\":\"avatars/forum_1956050-5723bed3c0ff0.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/1e2e34561b3b80f72b0193118fac1799.ics\",\"registered\":1443543965,\"last_active\":1528464545,\"timezone\":88,\"updated_at\":\"2018-04-17 10:01:43\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":55,\"SnipeItUsername\":\"j.chance\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"John\",\"lastname\":\"Chance\",\"humanityUsername\":\"10112johnchance\",\"email\":\"gramm@aol.com\",\"group\":5,\"status\":1,\"wage\":13.25,\"birth_day\":30,\"birth_month\":7,\"cell_phone\":\"903-571-9131\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1444086-55439cab25f68.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1444086-55439cab25f68.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1444086-55439cab25f68.jpg\",\"avatar_url/large\":\"avatars/1444086-55439cab25f68.jpg\",\"avatar_url/small\":\"avatars/sm_1444086-55439cab25f68.jpg\",\"avatar_url/bigger\":\"avatars/la_1444086-55439cab25f68.jpg\",\"avatar_url/full\":\"avatars/full_1444086-55439cab25f68.jpg\",\"avatar_url/profile\":\"avatars/profile_1444086-55439cab25f68.jpg\",\"avatar_url/forum\":\"avatars/forum_1444086-55439cab25f68.jpg\",\"address\":\"3037 new Copeland rd\",\"city\":\"Tyler\",\"state\":\"TX\",\"zip\":75701,\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/772b9e11722f9423d971fe397ba50fc7.ics\",\"registered\":1423094556,\"last_active\":1527287862,\"timezone\":88,\"updated_at\":\"2017-08-21 14:14:04\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":56,\"SnipeItUsername\":\"j.weldon\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"John\",\"lastname\":\"weldon\",\"humanityUsername\":\"10112johnweldon\",\"email\":\"john.w@andrewscarpetcleaning.com\",\"group\":5,\"status\":1,\"wage\":\"\",\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-780-3373\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/60752a6cf748ec9e49cab333e9238a63.ics\",\"registered\":1481605055,\"last_active\":1505521941,\"timezone\":88,\"updated_at\":\"2018-03-21 9:19:49\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":57,\"SnipeItUsername\":\"j.leon\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Juan\",\"lastname\":\"Leon\",\"humanityUsername\":\"10112juanleon\",\"email\":\"j.leon@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":13.25,\"birth_day\":11,\"birth_month\":1,\"cell_phone\":\"903-504-3804\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_2008018-573ea8859a0b8.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_2008018-573ea8859a0b8.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F2008018-573ea8859a0b8.jpg\",\"avatar_url/large\":\"avatars/2008018-573ea8859a0b8.jpg\",\"avatar_url/small\":\"avatars/sm_2008018-573ea8859a0b8.jpg\",\"avatar_url/bigger\":\"avatars/la_2008018-573ea8859a0b8.jpg\",\"avatar_url/full\":\"avatars/full_2008018-573ea8859a0b8.jpg\",\"avatar_url/profile\":\"avatars/profile_2008018-573ea8859a0b8.jpg\",\"avatar_url/forum\":\"avatars/forum_2008018-573ea8859a0b8.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/aa68ed5a014ea82bee4d0ebd34de710a.ics\",\"registered\":1445606080,\"last_active\":1508148521,\"timezone\":88,\"updated_at\":\"2018-03-18 13:27:38\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":58,\"SnipeItUsername\":\"k.loftis\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Kathy\",\"lastname\":\"Loftis\",\"humanityUsername\":\"10112kathyloftis\",\"email\":\"kathy@andrewscarpetcleaning.com\",\"group\":3,\"status\":1,\"wage\":15,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_2394586-57740536a16a4.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_2394586-57740536a16a4.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F2394586-57740536a16a4.jpg\",\"avatar_url/large\":\"avatars/2394586-57740536a16a4.jpg\",\"avatar_url/small\":\"avatars/sm_2394586-57740536a16a4.jpg\",\"avatar_url/bigger\":\"avatars/la_2394586-57740536a16a4.jpg\",\"avatar_url/full\":\"avatars/full_2394586-57740536a16a4.jpg\",\"avatar_url/profile\":\"avatars/profile_2394586-57740536a16a4.jpg\",\"avatar_url/forum\":\"avatars/forum_2394586-57740536a16a4.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/6666fd4ac6235586bbde3d14189144f4.ics\",\"registered\":1456850258,\"last_active\":1528253879,\"timezone\":88,\"updated_at\":\"2017-05-10 5:06:13\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Supervisor\",\"status_name\":\"Activated\"},{\"snipeitId\":59,\"SnipeItUsername\":\"k.rush\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Kayla\",\"lastname\":\"Rush\",\"humanityUsername\":\"10112kaylarush\",\"email\":\"k.rush@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-780-7073\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/2ecef2160da22814d9601312b9176165.ics\",\"registered\":1514477769,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-18 13:27:55\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":60,\"SnipeItUsername\":\"l.ford\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Letesia\",\"lastname\":\"Ford\",\"humanityUsername\":\"10112letesiaford\",\"email\":\"l.ford@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-705-5094\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_2589317-57752a4a82183.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_2589317-57752a4a82183.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F2589317-57752a4a82183.jpg\",\"avatar_url/large\":\"avatars/2589317-57752a4a82183.jpg\",\"avatar_url/small\":\"avatars/sm_2589317-57752a4a82183.jpg\",\"avatar_url/bigger\":\"avatars/la_2589317-57752a4a82183.jpg\",\"avatar_url/full\":\"avatars/full_2589317-57752a4a82183.jpg\",\"avatar_url/profile\":\"avatars/profile_2589317-57752a4a82183.jpg\",\"avatar_url/forum\":\"avatars/forum_2589317-57752a4a82183.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/869193cb2390ba80dcfebcf58dab58fa.ics\",\"registered\":1464108122,\"last_active\":1528634452,\"timezone\":88,\"updated_at\":\"2018-03-18 13:28:06\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":61,\"SnipeItUsername\":\"m.schrader\",\"Department\":1,\"Manager\":\"ash\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Mark\",\"lastname\":\"Schrader\",\"humanityUsername\":\"10112markschrader\",\"email\":\"mark@andrewsflooring.com\",\"group\":2,\"status\":1,\"wage\":\"\",\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-372-0287\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1462809-55565507bd27b.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1462809-55565507bd27b.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1462809-55565507bd27b.jpg\",\"avatar_url/large\":\"avatars/1462809-55565507bd27b.jpg\",\"avatar_url/small\":\"avatars/sm_1462809-55565507bd27b.jpg\",\"avatar_url/bigger\":\"avatars/la_1462809-55565507bd27b.jpg\",\"avatar_url/full\":\"avatars/full_1462809-55565507bd27b.jpg\",\"avatar_url/profile\":\"avatars/profile_1462809-55565507bd27b.jpg\",\"avatar_url/forum\":\"avatars/forum_1462809-55565507bd27b.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/826430603816363026165a45f3ec1f8b.ics\",\"registered\":1423935218,\"last_active\":1528553166,\"timezone\":88,\"updated_at\":\"2017-05-10 5:06:13\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Manager\",\"status_name\":\"Activated\"},{\"snipeitId\":62,\"SnipeItUsername\":\"n.dungca\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Nathan\",\"lastname\":\"Dungca\",\"humanityUsername\":\"10112nathandungca\",\"email\":\"n8andcrystal@hotmail.com\",\"group\":3,\"status\":1,\"wage\":14,\"birth_day\":28,\"birth_month\":3,\"cell_phone\":\"903-504-3544\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1634058-556484f91546c.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1634058-556484f91546c.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1634058-556484f91546c.jpg\",\"avatar_url/large\":\"avatars/1634058-556484f91546c.jpg\",\"avatar_url/small\":\"avatars/sm_1634058-556484f91546c.jpg\",\"avatar_url/bigger\":\"avatars/la_1634058-556484f91546c.jpg\",\"avatar_url/full\":\"avatars/full_1634058-556484f91546c.jpg\",\"avatar_url/profile\":\"avatars/profile_1634058-556484f91546c.jpg\",\"avatar_url/forum\":\"avatars/forum_1634058-556484f91546c.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/2d45e467df96fcc8236858baa016756a.ics\",\"registered\":1431368052,\"last_active\":1527861803,\"timezone\":88,\"updated_at\":\"2018-03-18 13:28:21\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Supervisor\",\"status_name\":\"Activated\"},{\"snipeitId\":63,\"SnipeItUsername\":\"r.newton\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Randi\",\"lastname\":\"Newton\",\"humanityUsername\":\"10112randinewton\",\"email\":\"r.newton@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":12,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-617-3485\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1447706-54e21eeb60379.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1447706-54e21eeb60379.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1447706-54e21eeb60379.jpg\",\"avatar_url/large\":\"avatars/1447706-54e21eeb60379.jpg\",\"avatar_url/small\":\"avatars/sm_1447706-54e21eeb60379.jpg\",\"avatar_url/bigger\":\"avatars/la_1447706-54e21eeb60379.jpg\",\"avatar_url/full\":\"avatars/full_1447706-54e21eeb60379.jpg\",\"avatar_url/profile\":\"avatars/profile_1447706-54e21eeb60379.jpg\",\"avatar_url/forum\":\"avatars/forum_1447706-54e21eeb60379.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/d1e9c782eda88db1e2ee9cec5af5f124.ics\",\"registered\":1423245533,\"last_active\":1493055325,\"timezone\":88,\"updated_at\":\"2018-03-18 13:28:33\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":64,\"SnipeItUsername\":\"r.hughes\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Richard\",\"lastname\":\"Hughes\",\"humanityUsername\":\"10112richardhughes\",\"email\":\"\",\"group\":5,\"status\":1,\"wage\":\"\",\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-707-5717\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/45da2abdade72fd2221d558ba00bec4d.ics\",\"registered\":1522068012,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-03-26 7:43:33\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":65,\"SnipeItUsername\":\"s.weldon\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Shea\",\"lastname\":\"Weldon\",\"humanityUsername\":\"10112sheaweldon\",\"email\":\"\",\"group\":5,\"status\":1,\"wage\":10,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-520-5577\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/5c2ef4b3ff41816e1cc94c38c2a351a1.ics\",\"registered\":1524496521,\"last_active\":0,\"timezone\":88,\"updated_at\":\"2018-04-23 10:18:51\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":66,\"SnipeItUsername\":\"t.jackson\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Tawnya\",\"lastname\":\"Jackson\",\"humanityUsername\":\"10112tawnyajackson\",\"email\":\"tawnyajackson98@gmail.com\",\"group\":5,\"status\":1,\"wage\":11,\"birth_day\":17,\"birth_month\":10,\"cell_phone\":\"903-705-5467\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsmall_3054225-30542251512840535.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_3054225-30542251512840535.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Flarge_3054225-30542251512840535.jpg\",\"avatar_url/large\":\"avatars/large_3054225-30542251512840535.jpg\",\"avatar_url/small\":\"avatars/small_3054225-30542251512840535.jpg\",\"avatar_url/bigger\":\"avatars/bigger_3054225-30542251512840535.jpg\",\"avatar_url/full\":\"avatars/full_3054225-30542251512840535.jpg\",\"avatar_url/profile\":\"avatars/profile_3054225-30542251512840535.jpg\",\"avatar_url/forum\":\"avatars/forum_3054225-30542251512840535.jpg\",\"address\":\"11464 fm 2767\",\"city\":\"Tyler\",\"state\":\"Tx\",\"zip\":75708,\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/ddc710b7acdc16c7eef4007bab4221c4.ics\",\"registered\":1481322093,\"last_active\":1528542759,\"timezone\":88,\"updated_at\":\"2018-03-21 10:20:44\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":67,\"SnipeItUsername\":\"t.test\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":1,\"Consumables\":0,\"firstname\":\"test\",\"lastname\":\"test\",\"humanityUsername\":\"testgroupandrews.com\",\"email\":\"test@groupandrews.com\",\"group\":5,\"status\":1,\"wage\":\"\",\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-530-1197\",\"avatar/small\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/medium\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar/large\":\"https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png\",\"avatar_url/large\":\"\",\"avatar_url/small\":\"\",\"avatar_url/bigger\":\"\",\"avatar_url/full\":\"\",\"avatar_url/profile\":\"\",\"avatar_url/forum\":\"\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/057ce5af974862e0b1549bbeb2b2afa3.ics\",\"registered\":1525789458,\"last_active\":1527567683,\"timezone\":88,\"updated_at\":\"2018-05-12 8:29:27\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"},{\"snipeitId\":68,\"SnipeItUsername\":\"v.rodriguez\",\"Department\":1,\"Manager\":\"m.schrader\",\"Assets\":0,\"Consumables\":0,\"firstname\":\"Virginia\",\"lastname\":\"Rodriguez\",\"humanityUsername\":\"10112virginiarodriguez\",\"email\":\"v.rodriguez@mail.ashdevtools.com\",\"group\":5,\"status\":1,\"wage\":9,\"birth_day\":0,\"birth_month\":0,\"cell_phone\":\"903-952-7065\",\"avatar/small\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fsm_1447702-555a46736de30.jpg\",\"avatar/medium\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2Fprofile_1447702-555a46736de30.jpg\",\"avatar/large\":\"https://s3.amazonaws.com/uf.shiftplanning.com/avatars%2F1447702-555a46736de30.jpg\",\"avatar_url/large\":\"avatars/1447702-555a46736de30.jpg\",\"avatar_url/small\":\"avatars/sm_1447702-555a46736de30.jpg\",\"avatar_url/bigger\":\"avatars/la_1447702-555a46736de30.jpg\",\"avatar_url/full\":\"avatars/full_1447702-555a46736de30.jpg\",\"avatar_url/profile\":\"avatars/profile_1447702-555a46736de30.jpg\",\"avatar_url/forum\":\"avatars/forum_1447702-555a46736de30.jpg\",\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"notes\":\"\",\"ical\":\"https://www.humanity.com/ical/2fcc217a2af84d455d964db1175e5f54.ics\",\"registered\":1423245533,\"last_active\":1528522439,\"timezone\":88,\"updated_at\":\"2018-03-18 13:28:54\",\"timezone_name\":\"America/Chicago\",\"group_name\":\"Employee\",\"status_name\":\"Activated\"}]",
-        "payloadType": "json",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 830,
-        "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "58e62f21.3b307",
         "type": "delay",
         "z": "b7b775e0.9589b8",
@@ -1152,135 +910,13 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 1010,
-        "y": 240,
+        "x": 1110,
+        "y": 60,
         "wires": [
             [
                 "793017a8.a454b8"
             ]
         ]
-    },
-    {
-        "id": "5516cb2e.7d7924",
-        "type": "process-env",
-        "z": "b7b775e0.9589b8",
-        "name": "",
-        "into": "payload",
-        "x": 350,
-        "y": 100,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "88d11214.5a787",
-        "type": "inject",
-        "z": "b7b775e0.9589b8",
-        "name": "Employees Startup",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "x": 150,
-        "y": 40,
-        "wires": [
-            [
-                "76e77067.64ced",
-                "5516cb2e.7d7924"
-            ]
-        ]
-    },
-    {
-        "id": "32ac679e.a954b8",
-        "type": "function",
-        "z": "b7b775e0.9589b8",
-        "name": "",
-        "func": "global.set('profiles', msg.payload)\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 510,
-        "y": 40,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9371fc8c.80d3a",
-        "type": "match",
-        "z": "137a9152.2c26cf",
-        "name": "",
-        "rules": [
-            {
-                "property": "payload.SnipeItUsername",
-                "propertyType": "msg",
-                "type": "eq",
-                "value": "username",
-                "valueType": "msg"
-            }
-        ],
-        "x": 730,
-        "y": 320,
-        "wires": [
-            [
-                "db54fda9.d806e"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "f330e620.db28d8",
-        "type": "Parallel Iterator",
-        "z": "137a9152.2c26cf",
-        "name": "iterator",
-        "property": "profiles",
-        "saveOutput": 1,
-        "recursive": 0,
-        "storeId": 0,
-        "x": 570,
-        "y": 320,
-        "wires": [
-            [
-                "9371fc8c.80d3a"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "dff28145.8ee26",
-        "type": "inject",
-        "z": "137a9152.2c26cf",
-        "name": "",
-        "topic": "",
-        "payload": "{\"assetId\":\"1\"}",
-        "payloadType": "json",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 390,
-        "y": 420,
-        "wires": [
-            [
-                "e9f14b02.7dba48"
-            ]
-        ]
-    },
-    {
-        "id": "3fb3b4.edc23c4c",
-        "type": "debug",
-        "z": "137a9152.2c26cf",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 1690,
-        "y": 380,
-        "wires": []
     },
     {
         "id": "aa3b7054.595ec",
@@ -1560,25 +1196,6 @@
         ]
     },
     {
-        "id": "76e77067.64ced",
-        "type": "cloudant in",
-        "z": "b7b775e0.9589b8",
-        "name": "get all profiles",
-        "cloudant": "8ab126de.c9de68",
-        "database": "profiles",
-        "service": "_ext_",
-        "search": "_all_",
-        "design": "",
-        "index": "",
-        "x": 360,
-        "y": 40,
-        "wires": [
-            [
-                "32ac679e.a954b8"
-            ]
-        ]
-    },
-    {
         "id": "1f8e83fe.836b7c",
         "type": "cloudant out",
         "z": "b7b775e0.9589b8",
@@ -1623,8 +1240,8 @@
         "payonly": true,
         "operation": "insert",
         "successOutput": false,
-        "x": 1230,
-        "y": 240,
+        "x": 1330,
+        "y": 60,
         "wires": []
     },
     {
@@ -1669,7 +1286,7 @@
         "cloudant": "8ab126de.c9de68",
         "database": "owntracks",
         "service": "_ext_",
-        "payonly": true,
+        "payonly": false,
         "operation": "insert",
         "successOutput": false,
         "x": 1240,
@@ -1751,5 +1368,346 @@
                 "7775d5b1.7ddc6c"
             ]
         ]
+    },
+    {
+        "id": "739820ae.40e28",
+        "type": "process-env",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "into": "payload",
+        "x": 310,
+        "y": 120,
+        "wires": [
+            [
+                "8f06bf17.ad0f"
+            ]
+        ]
+    },
+    {
+        "id": "94b1e803.ed0f28",
+        "type": "inject",
+        "z": "b7b775e0.9589b8",
+        "name": "Employees Startup",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "26a83d32.c7f4e2",
+                "739820ae.40e28"
+            ]
+        ]
+    },
+    {
+        "id": "454015d0.f92bfc",
+        "type": "function",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "func": "global.set('profiles', msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26a83d32.c7f4e2",
+        "type": "cloudant in",
+        "z": "b7b775e0.9589b8",
+        "name": "get all profiles",
+        "cloudant": "8ab126de.c9de68",
+        "database": "profiles",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 320,
+        "y": 60,
+        "wires": [
+            [
+                "454015d0.f92bfc"
+            ]
+        ]
+    },
+    {
+        "id": "8f06bf17.ad0f",
+        "type": "function",
+        "z": "b7b775e0.9589b8",
+        "name": "",
+        "func": "global.set('env', msg.payload)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69118488.68271c",
+        "type": "http in",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "url": "/api/assets/checkouthardware",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 280,
+        "wires": [
+            [
+                "180c1461.f0fddc"
+            ]
+        ]
+    },
+    {
+        "id": "d2258d3c.47e7d",
+        "type": "http in",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "url": "/api/assets/checkinhardware",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 340,
+        "wires": [
+            [
+                "737e30c.0ff23d"
+            ]
+        ]
+    },
+    {
+        "id": "180c1461.f0fddc",
+        "type": "function",
+        "z": "137a9152.2c26cf",
+        "name": "checkouthardware",
+        "func": "msg.headers = {}\nvar msg2 = msg\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nmsg.assetId = msg.payload.assetId\nmsg.username = msg.payload.username\nmsg.username = msg.payload.username\nnode.warn(msg.username)\nmsg.snipeit_host = global.get('snipeit_host')\n// msg.profiles = global.get('profiles')\n\nfor(var profile of global.get('profiles')){\n    if(msg.username == profile.SnipeItUsername){\n        node.warn('gotcha')\n        msg.userId = profile.snipeitId\n        return [null, msg]\n    }\n}\nmsg.status = 404\nreturn [msg, null]",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 430,
+        "y": 280,
+        "wires": [
+            [
+                "98477825.2ccc98"
+            ],
+            [
+                "b17e315f.29223"
+            ]
+        ]
+    },
+    {
+        "id": "a4b822e9.c48eb",
+        "type": "http response",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 850,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "737e30c.0ff23d",
+        "type": "function",
+        "z": "137a9152.2c26cf",
+        "name": "checkinhardware",
+        "func": "msg.headers = {}\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nconsole.log(msg.payload.assetId)\nmsg.id = msg.payload.assetId\nmsg.snipeit_host = global.get('snipeit_host')\n\n console.log(msg.id)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 340,
+        "wires": [
+            [
+                "4e434438.3472fc"
+            ]
+        ]
+    },
+    {
+        "id": "b17e315f.29223",
+        "type": "http request",
+        "z": "137a9152.2c26cf",
+        "name": "get checkedout",
+        "method": "POST",
+        "ret": "obj",
+        "url": "{{{snipeit_host}}}/hardware/{{{assetId}}}/checkout?assigned_user={{{userId}}}&checkout_to_type=user",
+        "tls": "",
+        "x": 660,
+        "y": 280,
+        "wires": [
+            [
+                "a4b822e9.c48eb",
+                "c6a74072.06cb7"
+            ]
+        ]
+    },
+    {
+        "id": "4e434438.3472fc",
+        "type": "http request",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "url": "{{{snipeit_host}}}/hardware/{{{id}}}/checkin",
+        "tls": "",
+        "x": 650,
+        "y": 340,
+        "wires": [
+            [
+                "e01fc672.86d078",
+                "c6a74072.06cb7"
+            ]
+        ]
+    },
+    {
+        "id": "e01fc672.86d078",
+        "type": "http response",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "d7c29966.528858",
+        "type": "inject",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "topic": "",
+        "payload": "{\"assetId\":\"1\", \"username\":\"ash\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 430,
+        "y": 240,
+        "wires": [
+            [
+                "180c1461.f0fddc"
+            ]
+        ]
+    },
+    {
+        "id": "c80a029e.adfec",
+        "type": "DataOut",
+        "z": "137a9152.2c26cf",
+        "collection": "8c5fc8f9.567368",
+        "name": "/assets/checkedoutlist",
+        "path": "/assets/checkedoutlist",
+        "error": false,
+        "x": 1340,
+        "y": 340,
+        "wires": [
+            [
+                "1e3c6833.3907c8"
+            ]
+        ]
+    },
+    {
+        "id": "c6a74072.06cb7",
+        "type": "switch",
+        "z": "137a9152.2c26cf",
+        "name": "checkout/in success?",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "success",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "success",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 880,
+        "y": 340,
+        "wires": [
+            [
+                "4e6c5d5e.4fc9f4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4e6c5d5e.4fc9f4",
+        "type": "http request",
+        "z": "137a9152.2c26cf",
+        "name": "?status=Deployed",
+        "method": "GET",
+        "ret": "obj",
+        "url": "{{{snipeit_host}}}/hardware",
+        "tls": "",
+        "x": 1130,
+        "y": 340,
+        "wires": [
+            [
+                "c80a029e.adfec"
+            ]
+        ]
+    },
+    {
+        "id": "77c0bcdc.211284",
+        "type": "inject",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "topic": "",
+        "payload": "{\"assetId\":\"1\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 430,
+        "y": 380,
+        "wires": [
+            [
+                "737e30c.0ff23d"
+            ]
+        ]
+    },
+    {
+        "id": "1e3c6833.3907c8",
+        "type": "debug",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1330,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "98477825.2ccc98",
+        "type": "debug",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 630,
+        "y": 240,
+        "wires": []
     }
 ]
