@@ -489,23 +489,6 @@
     }
    }
   },
-  "node-red-node-ddb": {
-   "name": "node-red-node-ddb",
-   "version": "0.1.0",
-   "local": true,
-   "nodes": {
-    "ddb": {
-     "name": "ddb",
-     "types": [
-      "ddb out"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-node-ddb",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-node-ddb/69-ddbout.js"
-    }
-   }
-  },
   "node-red-contrib-git-nodes": {
    "name": "node-red-contrib-git-nodes",
    "version": "0.2.2",

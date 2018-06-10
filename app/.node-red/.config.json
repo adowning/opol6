@@ -379,7 +379,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-async",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-async/async.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-async/async.js"
     }
    }
   },
@@ -398,7 +398,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-cloudantplus",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-cloudantplus/cloudantplus.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-cloudantplus/cloudantplus.js"
     }
    }
   },
@@ -415,7 +415,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-parallel-iterator",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-parallel-iterator/91-02-pr-iterator.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-parallel-iterator/91-02-pr-iterator.js"
     }
    }
   },
@@ -434,7 +434,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-actionflows",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-actionflows/actionflows/actionflows.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-actionflows/actionflows/actionflows.js"
     }
    }
   },
@@ -451,7 +451,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-match",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-match/match.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-match/match.js"
     }
    }
   },
@@ -468,7 +468,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-jsonfilter",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-jsonfilter/filter.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-jsonfilter/filter.js"
     }
    }
   },
@@ -485,7 +485,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-filter",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-filter/18-filter.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-filter/18-filter.js"
     }
    }
   },
@@ -502,7 +502,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-git-nodes",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-git-nodes/git-nodes.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-git-nodes/git-nodes.js"
     },
     "git-nodes-config": {
      "name": "git-nodes-config",
@@ -512,7 +512,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-git-nodes",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-git-nodes/git-nodes-config.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-git-nodes/git-nodes-config.js"
     }
    }
   },
@@ -529,7 +529,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-git-ui",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-git-ui/git/git.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-git-ui/git/git.js"
     }
    }
   },
@@ -548,7 +548,7 @@
      "enabled": true,
      "local": true,
      "module": "json-db-node-red",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/json-db-node-red/json-db.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/json-db-node-red/json-db.js"
     }
    }
   },
@@ -567,7 +567,7 @@
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-scx-ibmiotapp",
-     "file": "/home/ash/opol6/public/app/.node-red/node_modules/node-red-contrib-scx-ibmiotapp/application/97-iotnewapp-cf.js"
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-scx-ibmiotapp/application/97-iotnewapp-cf.js"
     }
    }
   }

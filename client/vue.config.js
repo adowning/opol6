@@ -14,7 +14,7 @@ module.exports = {
           secure: false
         },
         "/api": {
-          target: "https://opol-fred.mybluemix.net/",
+          target: "http://192.168.1.6:1880/",
           pathRewrite: {"^/api" : ""},
           secure: false
         },

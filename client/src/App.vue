@@ -44,7 +44,7 @@
       <v-btn
         fab
         dark
-        
+        @click.native="logOutUser()"
         color="red"
       >
         <v-icon>delete</v-icon>
@@ -58,8 +58,8 @@
 <script>
 import UserLayout from "./layouts/UserLayout";
 import GuestLayout from "./layouts/GuestLayout";
-// import Fab from 'vue-fab'
-// import axios from 'axios'
+import {Auth} from 'aws-amplify'
+
 export default {
   name: "App",
   components: {
@@ -83,13 +83,28 @@ export default {
     }
   },
    methods: {
-       cache(){
-          console.log('Cache Cleared');
-      },
+      async logOutUser(){
+             
+      try {
+        const data = await Auth.signOut()
+    console.log(data)
+        this.$store.dispatch("auth/end", null);
+        // this.$store.dispatch("auth/setUser", null);
+        // this.$store.dispatch("auth/setUserId", null);
+        // this.$store.dispatch("profile/setProfile", null)
+        // this.$store.dispatch('timeclocks/setClocks', null)
+        this.$router.replace("/auth/signIn");
+      } catch (err) {
+        console.log(err);
+        console.log(err);
+        // this.fireAuthNotify(this.error);
+      }
+    },
+      
       alert(){
           alert('Clicked on alert icon');
-      }
-    }
+      },
+   }
 };
 </script>
 <style lang="scss" scoped>
