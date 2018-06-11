@@ -133,9 +133,7 @@ const router = new Router({
       path: "/newpassword",
       name: "NewPass",
       component: NewPass,
-      meta: {
-        loadUser: true
-      }
+ 
     },
     {
       path: "*",

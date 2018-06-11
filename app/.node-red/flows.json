@@ -192,11 +192,11 @@
         "type": "http in",
         "z": "b7b775e0.9589b8",
         "name": "",
-        "url": "/employees/timeclocks/",
+        "url": "/api/employees/timeclocks/",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 188.1944465637207,
+        "x": 198.1944465637207,
         "y": 539.784722328186,
         "wires": [
             [
@@ -287,11 +287,11 @@
         "type": "http in",
         "z": "b7b775e0.9589b8",
         "name": "",
-        "url": "/employees/clockstatus",
+        "url": "/api/employees/clockstatus",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 185,
+        "x": 195,
         "y": 585.7673578262329,
         "wires": [
             [
@@ -382,11 +382,11 @@
         "type": "http in",
         "z": "b7b775e0.9589b8",
         "name": "",
-        "url": "/employees/clock",
+        "url": "/api/employees/clock",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 140,
+        "x": 150,
         "y": 680,
         "wires": [
             [
@@ -410,11 +410,11 @@
         "type": "http in",
         "z": "b7b775e0.9589b8",
         "name": "",
-        "url": "/employees/login",
+        "url": "/api/employees/login",
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 160,
+        "x": 170,
         "y": 460,
         "wires": [
             [
@@ -444,11 +444,11 @@
         "type": "http in",
         "z": "b7b775e0.9589b8",
         "name": "",
-        "url": "/employees/clockout",
+        "url": "/api/employees/clockout",
         "method": "put",
         "upload": false,
         "swaggerDoc": "",
-        "x": 140,
+        "x": 150,
         "y": 753.7569427490234,
         "wires": [
             [
@@ -1474,10 +1474,10 @@
         "z": "137a9152.2c26cf",
         "name": "",
         "url": "/api/assets/checkinhardware",
-        "method": "get",
-        "upload": false,
+        "method": "post",
+        "upload": true,
         "swaggerDoc": "",
-        "x": 170,
+        "x": 180,
         "y": 340,
         "wires": [
             [
@@ -1535,7 +1535,7 @@
         "id": "b17e315f.29223",
         "type": "http request",
         "z": "137a9152.2c26cf",
-        "name": "get checkedout",
+        "name": "post checkedout",
         "method": "POST",
         "ret": "obj",
         "url": "{{{snipeit_host}}}/hardware/{{{assetId}}}/checkout?assigned_user={{{userId}}}&checkout_to_type=user",
@@ -1553,7 +1553,7 @@
         "id": "4e434438.3472fc",
         "type": "http request",
         "z": "137a9152.2c26cf",
-        "name": "",
+        "name": "post checkin",
         "method": "POST",
         "ret": "obj",
         "url": "{{{snipeit_host}}}/hardware/{{{id}}}/checkin",
@@ -1640,7 +1640,8 @@
         "y": 340,
         "wires": [
             [
-                "4e6c5d5e.4fc9f4"
+                "4e6c5d5e.4fc9f4",
+                "1e3c6833.3907c8"
             ],
             []
         ]
@@ -1692,8 +1693,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 1330,
-        "y": 300,
+        "x": 1190,
+        "y": 280,
         "wires": []
     },
     {
@@ -1708,6 +1709,56 @@
         "complete": "false",
         "x": 630,
         "y": 240,
+        "wires": []
+    },
+    {
+        "id": "910bb8d4.fc5f88",
+        "type": "DataOut",
+        "z": "137a9152.2c26cf",
+        "collection": "8c5fc8f9.567368",
+        "name": "/assets/checkedoutlist",
+        "path": "/assets/checkedoutlist",
+        "error": false,
+        "x": 880,
+        "y": 580,
+        "wires": [
+            [
+                "f1c7ca52.93f698"
+            ]
+        ]
+    },
+    {
+        "id": "d46caf23.b2533",
+        "type": "inject",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 660,
+        "y": 600,
+        "wires": [
+            [
+                "910bb8d4.fc5f88"
+            ]
+        ]
+    },
+    {
+        "id": "f1c7ca52.93f698",
+        "type": "debug",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1100,
+        "y": 600,
         "wires": []
     }
 ]

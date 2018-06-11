@@ -33,13 +33,13 @@ export default {
       this.confirmRegistration({username: this.usernameC, code: this.code}).then(() => {
         this.$router.push({path: '/auth/signin', query: {username: this.usernameC}})
       }, () => {
-        alert('there was an error')
+        // alert('there was an error')
       })
     },
     triggerResendConfirmation() {
       this.resendConfirmationCode(this.usernameC).then(() => {
       }, () => {
-        alert('there was an error')
+        // alert('there was an error')
       })
     },
     ...mapActions('cognito', {

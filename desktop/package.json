@@ -15,6 +15,7 @@
   },
   "scripts": {
     "electron": "electron .",
+    "killelectron": "ps -ef | grep 'electron' | grep -v grep | awk '{print $2}' | xargs -r kill -9",
     "start": "./node_modules/.bin/electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",

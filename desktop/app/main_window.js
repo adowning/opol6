@@ -13,7 +13,10 @@ class MainWindow extends BrowserWindow {
       title: c.settings.appName,
       icon: iconPath,
       titleBarStyle: c.settings.titleBarStyle,
-      frame: c.settings.frame,
+       frame: c.settings.frame,
+      // transparent: true,
+      // frame: false,
+      // toolbar: false,
       show: (show === false ? false : true),
       webPreferences: {
         nodeIntegration: c.settings.nodeIntegrationEnabled,
@@ -37,6 +40,9 @@ class MainWindow extends BrowserWindow {
 
     // Load provided url
     this.loadHome();
+    if (Helper.isLinux()) {
+    this.openDevTools()
+    }
   }
 
   // add custom user agent postifx (e.g. for google analytics)
@@ -46,6 +52,7 @@ class MainWindow extends BrowserWindow {
       userAgentPostfix = c.settings.userAgentPostfixWindows;
     } else if (Helper.isLinux()) {
       userAgentPostfix = c.settings.userAgentPostfixLinux;
+      
     }
 
     this.loadURL(url, {
@@ -61,6 +68,7 @@ class MainWindow extends BrowserWindow {
   loadHome() {
     this.loadRelativeUrl('');
   }
+  
 }
 
 module.exports = MainWindow;

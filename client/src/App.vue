@@ -87,7 +87,7 @@ export default {
              
       try {
         const data = await Auth.signOut()
-    console.log(data)
+        console.log(data)
         this.$store.dispatch("auth/end", null);
         // this.$store.dispatch("auth/setUser", null);
         // this.$store.dispatch("auth/setUserId", null);
@@ -102,7 +102,7 @@ export default {
     },
       
       alert(){
-          alert('Clicked on alert icon');
+          // alert('Clicked on alert icon');
       },
    }
 };

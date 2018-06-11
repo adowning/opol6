@@ -143,8 +143,8 @@ export default {
   },
   data() {
     return {
-      username: "ash",
-      password: "asdfasdf",
+      username: "",
+      password: "Andrews1",
       // showerr: false,
       hidepw: true,
       newpass: null,
@@ -162,12 +162,16 @@ export default {
   methods: {
 
        triggerSignIn() {
-        this.signIn({username: this.username, pass: "asdfasdf"}).then(() => {
+         console.log(this.username)
+         console.log(this.password)
+         const vm = this
+        this.signIn({username: this.username, pass: this.password}).then(() => {
           console.log('going to home now')
           this.$router.push({name: 'Home'})
-        }, () => {
+        }, (err) => {
           console.log('there was an error')
-          alert('there was an error')
+          // alert('there was an error')
+          vm.fireAuthNotify(err);
         })
       },
       

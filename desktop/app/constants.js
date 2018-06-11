@@ -1,3 +1,4 @@
+console.log(process.env)
 const Constants = {
   settings: {
     appName: 'Andrews Admin',
@@ -14,8 +15,8 @@ const Constants = {
     frame: true, // set to false for Frameless windows
     useTouchBar: false, // edit in app/touch_bar.js
     usePhotonKitShell: false, // macOS: loads src/shellMacOS.html with PhotonKit instead of the appUrl.
-    useWindowsShell: false,   // Win: use custom shell from src/shellWIndows.html
-    useLinuxShell: false,     // all 3 require 'nodeIntegrationEnabled: true'.
+    useWindowsShell: false, // Win: use custom shell from src/shellWIndows.html
+    useLinuxShell: false, // all 3 require 'nodeIntegrationEnabled: true'.
   },
   mainWindow: {
     width: 1600,
@@ -35,43 +36,44 @@ const Constants = {
       unhide: 'Unhide',
     },
     file: {
-      label: 'Datei',
+      label: 'Date',
     },
+
     edit: {
-      label: 'Bearbeiten',
-      undo: 'Rückgänging',
-      redo: 'Wiederholen',
-      cut: 'Ausschneiden',
-      copy: 'Kopieren',
-      paste: 'Einfügen',
-      selectall: 'Alles auswählen'
+      label: 'Edit',
+      undo: 'Returning',
+      redo: 'repeat',
+      cut: 'cut',
+      copy: 'Copy',
+      paste: 'Paste',
+      selectall: 'Select all'
     },
     view: {
-      label: 'Ansicht',
-      fullscreen: 'Vollbild de-/aktivieren'
+      label: 'View',
+      fullscreen: 'Enable / disable full screen'
     },
     window: {
-      label: 'Fenster',
-      minimize: 'Minimieren',
-      close: 'Schließen',
-      front: 'Alle in den Vordergrund',
+      label: 'Window',
+      minimize: 'Minimize',
+      close: 'Close',
+      front: 'all in the foreground',
     },
     help: {
-      label: 'Hilfe',
-      contact: 'Kontakt'
+      label: 'Help',
+      contact: 'contact'
     },
     leasing: {
-      label: 'Berechnen',
-      car: 'Kfz Leasing berechnen',
-      movables: 'Mobilien Leasing berechnen',
-      inquiry: 'Leasing Angebot anfordern',
+      label: 'Calculate',
+      car: 'Calculate car lease',
+      movables: 'Mobilien Leasing Calculate',
+      inquiry: 'Request Leasing Request',
     },
   },
   touchBar: {
     label: 'Leasing',
-    car: 'Kfz Rechner',
+    car: 'car computer',
     movables: 'Mobilien Rechner',
-    inquiry: 'Angebot anfordern',
+    inquiry: 'Request a quote',
   }
 };
 

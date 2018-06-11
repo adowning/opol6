@@ -210,7 +210,7 @@ export default {
       {
         icon: "local_shipping",
         title: "Live View",
-        // link: "/liveview/liveview"
+         link: "/liveview/liveview"
       },
       {
         icon: "book",

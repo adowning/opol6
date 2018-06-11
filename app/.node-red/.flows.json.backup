@@ -1286,7 +1286,7 @@
         "cloudant": "8ab126de.c9de68",
         "database": "owntracks",
         "service": "_ext_",
-        "payonly": true,
+        "payonly": false,
         "operation": "insert",
         "successOutput": false,
         "x": 1240,
@@ -1474,10 +1474,10 @@
         "z": "137a9152.2c26cf",
         "name": "",
         "url": "/api/assets/checkinhardware",
-        "method": "get",
-        "upload": false,
+        "method": "post",
+        "upload": true,
         "swaggerDoc": "",
-        "x": 170,
+        "x": 180,
         "y": 340,
         "wires": [
             [
@@ -1535,7 +1535,7 @@
         "id": "b17e315f.29223",
         "type": "http request",
         "z": "137a9152.2c26cf",
-        "name": "get checkedout",
+        "name": "post checkedout",
         "method": "POST",
         "ret": "obj",
         "url": "{{{snipeit_host}}}/hardware/{{{assetId}}}/checkout?assigned_user={{{userId}}}&checkout_to_type=user",
@@ -1553,7 +1553,7 @@
         "id": "4e434438.3472fc",
         "type": "http request",
         "z": "137a9152.2c26cf",
-        "name": "",
+        "name": "post checkin",
         "method": "POST",
         "ret": "obj",
         "url": "{{{snipeit_host}}}/hardware/{{{id}}}/checkin",
@@ -1640,7 +1640,8 @@
         "y": 340,
         "wires": [
             [
-                "4e6c5d5e.4fc9f4"
+                "4e6c5d5e.4fc9f4",
+                "1e3c6833.3907c8"
             ],
             []
         ]
@@ -1692,8 +1693,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 1330,
-        "y": 300,
+        "x": 1190,
+        "y": 280,
         "wires": []
     },
     {
@@ -1708,6 +1709,56 @@
         "complete": "false",
         "x": 630,
         "y": 240,
+        "wires": []
+    },
+    {
+        "id": "910bb8d4.fc5f88",
+        "type": "DataOut",
+        "z": "137a9152.2c26cf",
+        "collection": "8c5fc8f9.567368",
+        "name": "/assets/checkedoutlist",
+        "path": "/assets/checkedoutlist",
+        "error": false,
+        "x": 880,
+        "y": 580,
+        "wires": [
+            [
+                "f1c7ca52.93f698"
+            ]
+        ]
+    },
+    {
+        "id": "d46caf23.b2533",
+        "type": "inject",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 660,
+        "y": 600,
+        "wires": [
+            [
+                "910bb8d4.fc5f88"
+            ]
+        ]
+    },
+    {
+        "id": "f1c7ca52.93f698",
+        "type": "debug",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1100,
+        "y": 600,
         "wires": []
     }
 ]

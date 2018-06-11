@@ -1,13 +1,10 @@
 <template>
-  <main>
+  <div color="black" background-color="green">
     <h1>AWS Chat</h1>
     <form class="container padded" @submit.prevent="triggerSignUp">
-      <input type="text" placeholder="username" v-model="username">
-      <input type="text" placeholder="humanityname" v-model="humanityname">
-      <input type="text" placeholder="humanityid" v-model="humanityid">
-      <input type="text" placeholder="humanitypass" v-model="humanitypass">
-      <input type="email" placeholder="email" v-model="email">
-      <input type="password" placeholder="password" v-model="pass">
+      <input type="text" placeholder="xx.name" v-model="username"><br>
+      <input type="text" placeholder="email" v-model="email"><br>
+      <input type="password" placeholder="asdfasdf" v-model="pass"><br>
       <button type="submit" class="block">Sign Up</button>
     </form>
     <nav class="simple">
@@ -15,7 +12,7 @@
       <router-link to="/signin">Sign In</router-link>
       <br><router-link to="/confirm">Confirm</router-link>
     </nav>
-  </main>
+  </div>
 </template>
 <script>
   import { mapActions } from 'vuex'
@@ -23,20 +20,18 @@
     data() {
       return {
         username: '',
-        humanityname: '',
-        humanitypass: '',
-        humanityid: '',
-        email: '',
-        pass: '',
+        email: 'ashdowning+ff.name@gmail.com',
+               pass: 'Andrews1',
       }
     },
     methods: {
       triggerSignUp() {
-        this.signUp({username: this.username, email: this.email, pass: this.pass, humanityname: this.humanityname, humanitypass: this.humanitypass, humanityid: this.humanityid}).then(() => {
+        // this.signUp({username: this.username, email: this.email, pass: this.pass, humanityname: this.humanityname, humanitypass: this.humanitypass, humanityid: this.humanityid}).then(() => {
+        this.signUp({username: this.username, pass: this.pass, email: this.email }).then(() => {
           console.log('successfully signed up!')
           this.$router.push({path: '/confirm', query: {username: this.username}})
         }, () => {
-          alert('there was an error')
+          // alert('there was an error')
         })
       },
       ...mapActions('cognito', {
@@ -46,7 +41,11 @@
   }
 </script>
 <style lang="scss" scoped>
-  main {
-    background: #9847ff;
+  div {
+    color: black;
+    background-color: green;
   }
-</style>
+  input {
+    background-color: white;
+  }
+  </style>

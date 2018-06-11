@@ -47,8 +47,8 @@ export default {
     protectedUI: false,
     username: '',
     code: '',
-    newPassword: '',
-    newPasswordConfirmation: '',
+    newPassword: 'Andrews1',
+    newPasswordConfirmation: 'Andrews1',
   }),
   methods: {
     handleSubmit() {
