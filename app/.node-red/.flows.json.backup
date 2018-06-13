@@ -28,6 +28,13 @@
         "info": ""
     },
     {
+        "id": "46ce32e3.d88f6c",
+        "type": "tab",
+        "label": "tests",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "6b628289.79f0ac",
         "type": "subflow",
         "name": "humanity",
@@ -76,6 +83,34 @@
         "z": "",
         "host": "http://74.194.202.74:8085",
         "name": "localhost"
+    },
+    {
+        "id": "52044aa3.079234",
+        "type": "cloudant",
+        "z": "",
+        "host": "myaccountname.cloudant.com",
+        "name": "My Cloudant account"
+    },
+    {
+        "id": "c545c9b6.ee9428",
+        "type": "cloudant",
+        "z": "",
+        "host": "myaccountname.cloudant.com",
+        "name": "My Cloudant account"
+    },
+    {
+        "id": "f5f1dd66.ee0dc",
+        "type": "JsonWebToken_config",
+        "z": "",
+        "name": "asdf",
+        "secret": "adsfasdf"
+    },
+    {
+        "id": "41513fe4.33f45",
+        "type": "JsonWebToken_config",
+        "z": "",
+        "name": "asdf1",
+        "secret": "xI9Wuwbd+IJGRWaj1fysU/hV4wTw+UR3KFPeZ1ysh5s="
     },
     {
         "id": "a2287ef.3c7478",
@@ -192,11 +227,11 @@
         "type": "http in",
         "z": "b7b775e0.9589b8",
         "name": "",
-        "url": "/employees/timeclocks/",
+        "url": "/api/employees/timeclocks/",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 188.1944465637207,
+        "x": 198.1944465637207,
         "y": 539.784722328186,
         "wires": [
             [
@@ -287,11 +322,11 @@
         "type": "http in",
         "z": "b7b775e0.9589b8",
         "name": "",
-        "url": "/employees/clockstatus",
+        "url": "/api/employees/clockstatus",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 185,
+        "x": 195,
         "y": 585.7673578262329,
         "wires": [
             [
@@ -382,11 +417,11 @@
         "type": "http in",
         "z": "b7b775e0.9589b8",
         "name": "",
-        "url": "/employees/clock",
+        "url": "/api/employees/clock",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 140,
+        "x": 150,
         "y": 680,
         "wires": [
             [
@@ -410,11 +445,11 @@
         "type": "http in",
         "z": "b7b775e0.9589b8",
         "name": "",
-        "url": "/employees/login",
+        "url": "/api/employees/login",
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 160,
+        "x": 170,
         "y": 460,
         "wires": [
             [
@@ -444,11 +479,11 @@
         "type": "http in",
         "z": "b7b775e0.9589b8",
         "name": "",
-        "url": "/employees/clockout",
+        "url": "/api/employees/clockout",
         "method": "put",
         "upload": false,
         "swaggerDoc": "",
-        "x": 140,
+        "x": 150,
         "y": 753.7569427490234,
         "wires": [
             [
@@ -672,7 +707,7 @@
         "type": "function",
         "z": "137a9152.2c26cf",
         "name": "set snipeit shit",
-        "func": "global.set('snipeit_token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjQ0ODQ5ZmVjYmQ3YTBiNWUxMjg4MzUzMjZkZjdkNDM0ZjA1YjVmNWVmZjM0MWQ3NTVjM2NmMGVhODIxODNjNjAyNWQ4NWE4OTE2ZWNiMjlmIn0.eyJhdWQiOiIxIiwianRpIjoiNDQ4NDlmZWNiZDdhMGI1ZTEyODgzNTMyNmRmN2Q0MzRmMDViNWY1ZWZmMzQxZDc1NWMzY2YwZWE4MjE4M2M2MDI1ZDg1YTg5MTZlY2IyOWYiLCJpYXQiOjE1MjgzMDkyMDgsIm5iZiI6MTUyODMwOTIwOCwiZXhwIjoxNTU5ODQ1MjA4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.yv1QL0Vbf4EupDdI-9U6somSbALryrk5UXX5cMV_iNILSye7rKqruoLurDghzt6-2PboAHffoiWnBGRp36vdJ5oUTNKWPSYl-PQqLkDVWjinpcQ0jHZM75lLausxkIknDi4bFlXPgWHtewotLUQKdDW-Nkij6EckVUZbn2lOFw2bi2HOGzENVl7H8VHaBXlQw_cBpT7w4K1FaHkYE2qECK-B2GZ0VlVw3sBDESbyT0sb-HRzt-6R1icItzMHUXz0sbJox3LyfGJ3X4Z3-_tKk3mxd9TXldWf7HTdk5d65r9YBCl770Ha1rAKhwyGGvMU6jBfQemGcklzooivRfVjzhRD5BlpJNqus7NquyEYacPdmm7A4Tp3bbzyxNeh_7jlVjqsf7CrWy78nFUdrrtE6gBavMwAz8AE7FScH6NzMjCekTU-pvEuUjEmTwj5p_NCUt8Yjwo9u66UzlgVf45wsG3qngL50D097rTzdA97-XGlt-csbZ_m7v2lJXNjR0yxM29aNFQBnui7RLd0_mAtoP41WtXMNlsLL9uaD3wK2tpcpoZViRWPYeg9gs81goMTzQ0ct370urdwkuNwNMvX5N1yljJIShgXnk75EP6YscOdmvR5FrlLm_5b07k7Ywwd9ZfbuaT9RI6YeUruSlH6-fGeH3Q37Gui1i4QSU5M5uc')\nglobal.set('snipeit_host', 'http://52.39.121.124:8080/api/v1')\n\n\nmsg.headers = {}\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nmsg.snipeit_host = global.get('snipeit_host')\n\nreturn msg;\n",
+        "func": "global.set('snipeit_token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjQ0ODQ5ZmVjYmQ3YTBiNWUxMjg4MzUzMjZkZjdkNDM0ZjA1YjVmNWVmZjM0MWQ3NTVjM2NmMGVhODIxODNjNjAyNWQ4NWE4OTE2ZWNiMjlmIn0.eyJhdWQiOiIxIiwianRpIjoiNDQ4NDlmZWNiZDdhMGI1ZTEyODgzNTMyNmRmN2Q0MzRmMDViNWY1ZWZmMzQxZDc1NWMzY2YwZWE4MjE4M2M2MDI1ZDg1YTg5MTZlY2IyOWYiLCJpYXQiOjE1MjgzMDkyMDgsIm5iZiI6MTUyODMwOTIwOCwiZXhwIjoxNTU5ODQ1MjA4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.yv1QL0Vbf4EupDdI-9U6somSbALryrk5UXX5cMV_iNILSye7rKqruoLurDghzt6-2PboAHffoiWnBGRp36vdJ5oUTNKWPSYl-PQqLkDVWjinpcQ0jHZM75lLausxkIknDi4bFlXPgWHtewotLUQKdDW-Nkij6EckVUZbn2lOFw2bi2HOGzENVl7H8VHaBXlQw_cBpT7w4K1FaHkYE2qECK-B2GZ0VlVw3sBDESbyT0sb-HRzt-6R1icItzMHUXz0sbJox3LyfGJ3X4Z3-_tKk3mxd9TXldWf7HTdk5d65r9YBCl770Ha1rAKhwyGGvMU6jBfQemGcklzooivRfVjzhRD5BlpJNqus7NquyEYacPdmm7A4Tp3bbzyxNeh_7jlVjqsf7CrWy78nFUdrrtE6gBavMwAz8AE7FScH6NzMjCekTU-pvEuUjEmTwj5p_NCUt8Yjwo9u66UzlgVf45wsG3qngL50D097rTzdA97-XGlt-csbZ_m7v2lJXNjR0yxM29aNFQBnui7RLd0_mAtoP41WtXMNlsLL9uaD3wK2tpcpoZViRWPYeg9gs81goMTzQ0ct370urdwkuNwNMvX5N1yljJIShgXnk75EP6YscOdmvR5FrlLm_5b07k7Ywwd9ZfbuaT9RI6YeUruSlH6-fGeH3Q37Gui1i4QSU5M5uc')\nglobal.set('snipeit_host', 'http://52.39.121.124:8080/api/v1')\n\n\nmsg.headers = {}\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\n\nmsg.redirect = false\nmsg.snipeit_host = global.get('snipeit_host')\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "x": 380,
@@ -739,7 +774,7 @@
         "name": "/assets/checkedoutlist",
         "update": false,
         "path": "/assets/checkedoutlist",
-        "x": 860,
+        "x": 1120,
         "y": 40,
         "wires": []
     },
@@ -756,7 +791,8 @@
         "y": 40,
         "wires": [
             [
-                "be0f2f96.c35dc"
+                "fa2e059e.a6c3a8",
+                "bb000a72.811348"
             ]
         ]
     },
@@ -766,6 +802,7 @@
         "z": "5d4e82a1.6b341c",
         "name": "",
         "server": "a56be3a0.bbc3e",
+        "client": "",
         "x": 680,
         "y": 240,
         "wires": []
@@ -775,7 +812,7 @@
         "type": "function",
         "z": "5d4e82a1.6b341c",
         "name": "",
-        "func": "// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\ncontext.global.location = msg.payload;\n\nreturn msg;",
+        "func": "// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\nnode.warn(msg.payload)\ncontext.global.location = msg.payload;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 441,
@@ -792,6 +829,7 @@
         "z": "5d4e82a1.6b341c",
         "name": "",
         "server": "a56be3a0.bbc3e",
+        "client": "",
         "x": 270,
         "y": 274,
         "wires": [
@@ -824,7 +862,7 @@
         "field": "payload",
         "fieldType": "msg",
         "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Owntracks & Node-Red Live Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n \n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n \n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://192.168.0.5:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        lat: -12.043333,\n        lng: -77.028333\n      });\n      \n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[el.lat, el.lng]];\n\t\t\t});\n        \n        map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(17);\n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#131540',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script>\n</body>\n</html>",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Owntracks & Node-Red Live Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n \n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n \n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://192.168.1.6:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        lat: -12.043333,\n        lng: -77.028333\n      });\n      \n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[el.lat, el.lng]];\n\t\t\t});\n        \n        map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(17);\n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#131540',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script>\n</body>\n</html>",
         "x": 473,
         "y": 351,
         "wires": [
@@ -1012,11 +1050,9 @@
         "allFormats": "",
         "qos": 0,
         "x": 50,
-        "y": 580,
+        "y": 560,
         "wires": [
-            [
-                "7775d5b1.7ddc6c"
-            ]
+            []
         ]
     },
     {
@@ -1191,7 +1227,8 @@
         "y": 580,
         "wires": [
             [
-                "6e1b5343.d1c43c"
+                "6e1b5343.d1c43c",
+                "405ef74f.ee2858"
             ]
         ]
     },
@@ -1286,9 +1323,9 @@
         "cloudant": "8ab126de.c9de68",
         "database": "owntracks",
         "service": "_ext_",
-        "payonly": false,
+        "payonly": true,
         "operation": "insert",
-        "successOutput": false,
+        "successOutput": true,
         "x": 1240,
         "y": 580,
         "wires": []
@@ -1298,17 +1335,20 @@
         "type": "function",
         "z": "5d4e82a1.6b341c",
         "name": "match checkoutlist to owntracks",
-        "func": "var assetList = msg.payload.rows\nfor (var asset of msg.payload.rows) {\n    node.warn(asset.custom_fields.tid.value)\n    node.warn(msg.locationdata)\n    if (msg.locationdata.tid == asset.custom_fields.tid.value) {\n        msg.locationdata.assigned_to = {}\n        msg.locationdata.assigned_to.id = asset.assigned_to.id\n        msg.locationdata.assigned_to.username = asset.assigned_to.username\n        msg.payload = msg.locationdata\n        return [null, msg]\n    }\n}\nmsg.payload.status = 'error'\nmsg.payload.value = 404\nreturn [msg, null]",
+        "func": "var assetList = msg.payload.rows\nfor (var asset of msg.payload.rows) {\n    node.warn(asset.custom_fields.tid.value)\n    node.warn(msg.locationdata)\n    if (msg.locationdata.tid == asset.custom_fields.tid.value) {\n        msg.locationdata.assigned_to = {}\n        msg.locationdata.assigned_to.id = asset.assigned_to.id\n        msg.locationdata.assigned_to.username = asset.assigned_to.username\n        msg.payload = msg.locationdata\n        return [null, msg]\n    }\n}\nmsg.payload = msg.locationdata\nmsg.payload.status = 'error'\nmsg.payload.value = 404\nreturn [msg, null]",
         "outputs": 2,
         "noerr": 0,
         "x": 790,
         "y": 580,
         "wires": [
             [
-                "69e8cad7.2c3b24"
+                "69e8cad7.2c3b24",
+                "a0d11838.518478",
+                "896aaf87.1e5ba"
             ],
             [
-                "aebc4c6a.72dc"
+                "aebc4c6a.72dc",
+                "a0d11838.518478"
             ]
         ],
         "outputLabels": [
@@ -1344,7 +1384,7 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
         "x": 1030,
         "y": 540,
         "wires": []
@@ -1500,7 +1540,8 @@
                 "98477825.2ccc98"
             ],
             [
-                "b17e315f.29223"
+                "b17e315f.29223",
+                "621d1b82.cb9a34"
             ]
         ]
     },
@@ -1520,14 +1561,15 @@
         "type": "function",
         "z": "137a9152.2c26cf",
         "name": "checkinhardware",
-        "func": "msg.headers = {}\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nconsole.log(msg.payload.assetId)\nmsg.id = msg.payload.assetId\nmsg.snipeit_host = global.get('snipeit_host')\n\n console.log(msg.id)\nreturn msg;",
+        "func": "msg.headers = {}\nconst token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nmsg.token = token\nconsole.log(msg.payload.assetId)\nmsg.id = msg.payload.assetId\nmsg.snipeit_host = global.get('snipeit_host')\n\n console.log(msg.id)\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 430,
         "y": 340,
         "wires": [
             [
-                "4e434438.3472fc"
+                "4e434438.3472fc",
+                "621d1b82.cb9a34"
             ]
         ]
     },
@@ -1545,7 +1587,8 @@
         "wires": [
             [
                 "a4b822e9.c48eb",
-                "c6a74072.06cb7"
+                "47a8c0ac.79d9a",
+                "bc000a01.4a2248"
             ]
         ]
     },
@@ -1563,7 +1606,8 @@
         "wires": [
             [
                 "e01fc672.86d078",
-                "c6a74072.06cb7"
+                "47a8c0ac.79d9a",
+                "bc000a01.4a2248"
             ]
         ]
     },
@@ -1605,45 +1649,13 @@
         "collection": "8c5fc8f9.567368",
         "name": "/assets/checkedoutlist",
         "path": "/assets/checkedoutlist",
-        "error": false,
-        "x": 1340,
-        "y": 340,
+        "error": true,
+        "x": 1400,
+        "y": 380,
         "wires": [
             [
-                "1e3c6833.3907c8"
+                "1251cb64.dc7bb5"
             ]
-        ]
-    },
-    {
-        "id": "c6a74072.06cb7",
-        "type": "switch",
-        "z": "137a9152.2c26cf",
-        "name": "checkout/in success?",
-        "property": "payload.status",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "success",
-                "vt": "str"
-            },
-            {
-                "t": "neq",
-                "v": "success",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 880,
-        "y": 340,
-        "wires": [
-            [
-                "4e6c5d5e.4fc9f4",
-                "1e3c6833.3907c8"
-            ],
-            []
         ]
     },
     {
@@ -1653,13 +1665,14 @@
         "name": "?status=Deployed",
         "method": "GET",
         "ret": "obj",
-        "url": "{{{snipeit_host}}}/hardware",
+        "url": "{{{snipeit_host}}}/hardware?status=Deployed",
         "tls": "",
-        "x": 1130,
+        "x": 1030,
         "y": 340,
         "wires": [
             [
-                "c80a029e.adfec"
+                "1e3c6833.3907c8",
+                "c90e700f.cbdd9"
             ]
         ]
     },
@@ -1692,8 +1705,8 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
-        "x": 1190,
+        "complete": "true",
+        "x": 1270,
         "y": 280,
         "wires": []
     },
@@ -1702,7 +1715,7 @@
         "type": "debug",
         "z": "137a9152.2c26cf",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1719,8 +1732,8 @@
         "name": "/assets/checkedoutlist",
         "path": "/assets/checkedoutlist",
         "error": false,
-        "x": 880,
-        "y": 580,
+        "x": 1060,
+        "y": 120,
         "wires": [
             [
                 "f1c7ca52.93f698"
@@ -1739,8 +1752,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 660,
-        "y": 600,
+        "x": 840,
+        "y": 140,
         "wires": [
             [
                 "910bb8d4.fc5f88"
@@ -1757,8 +1770,1960 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 1100,
-        "y": 600,
+        "x": 1280,
+        "y": 140,
         "wires": []
+    },
+    {
+        "id": "896aaf87.1e5ba",
+        "type": "cloudant out",
+        "z": "5d4e82a1.6b341c",
+        "name": "insert errorlogs",
+        "cloudant": "8ab126de.c9de68",
+        "database": "erorlogs",
+        "service": "_ext_",
+        "payonly": false,
+        "operation": "insert",
+        "successOutput": false,
+        "x": 1260,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "f2153e44.9f19",
+        "type": "inject",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "topic": "",
+        "payload": "{\"_type\":\"location\",\"tid\":\"04\",\"acc\":21,\"batt\":100,\"conn\":\"w\",\"lat\":32.3183153,\"lon\":-95.2464281,\"t\":\"u\",\"tst\":1528809613,\"_cp\":true,\"assigned_to\":{\"id\":2,\"username\":\"john.c\"}}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 490,
+        "y": 60,
+        "wires": [
+            [
+                "a0d11838.518478"
+            ]
+        ]
+    },
+    {
+        "id": "405ef74f.ee2858",
+        "type": "debug",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1300,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "e0313110.aeab7",
+        "type": "cloudant out",
+        "z": "46ce32e3.d88f6c",
+        "name": "store reg",
+        "cloudant": "8ab126de.c9de68",
+        "database": "iottest",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "successOutput": false,
+        "x": 1100,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "9d4546ec.c64cc8",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1050,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "169b4ad1.a27e25",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "update register",
+        "func": "msg.dataset._rev = msg.cloudant._rev;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 709,
+        "y": 586,
+        "wires": [
+            [
+                "6bf39ad5.f32464"
+            ]
+        ]
+    },
+    {
+        "id": "eecae4ae.4aabf8",
+        "type": "cloudant in",
+        "z": "46ce32e3.d88f6c",
+        "name": "reg check",
+        "cloudant": "8ab126de.c9de68",
+        "database": "iottest",
+        "service": "_ext_",
+        "search": "_id_",
+        "design": "",
+        "index": "",
+        "x": 900,
+        "y": 474,
+        "wires": [
+            [
+                "85fb6300.8d63a",
+                "6b8ededa.33a9a"
+            ]
+        ]
+    },
+    {
+        "id": "f5f60f3b.ffa16",
+        "type": "switch",
+        "z": "46ce32e3.d88f6c",
+        "name": "check _rev",
+        "property": "cloudant._rev",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 481,
+        "y": 579,
+        "wires": [
+            [
+                "478e8560.3aef6c"
+            ],
+            [
+                "70fbc2f5.e4c72c",
+                "169b4ad1.a27e25"
+            ]
+        ]
+    },
+    {
+        "id": "85fb6300.8d63a",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 1090,
+        "y": 474,
+        "wires": []
+    },
+    {
+        "id": "94cd4a12.6243d8",
+        "type": "change",
+        "z": "46ce32e3.d88f6c",
+        "name": "set search id",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "_id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 705,
+        "y": 474,
+        "wires": [
+            [
+                "eecae4ae.4aabf8"
+            ]
+        ]
+    },
+    {
+        "id": "7ffdcce1.59a194",
+        "type": "change",
+        "z": "46ce32e3.d88f6c",
+        "name": "save payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "dataset",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 474,
+        "wires": [
+            [
+                "4d875d1d.a7c6f4"
+            ]
+        ]
+    },
+    {
+        "id": "70fbc2f5.e4c72c",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "& save history",
+        "func": "var seqnum = msg.cloudant._rev.split(\"-\")[0];\nmsg.dataset._id += \"-\" + seqnum;\nmsg.dataset.seqnum = seqnum;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 707,
+        "y": 632,
+        "wires": [
+            [
+                "6bf39ad5.f32464"
+            ]
+        ]
+    },
+    {
+        "id": "6b8ededa.33a9a",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "func": "if(!msg.hasOwnProperty(\"cloudant\")) {\n    msg.cloudant = '';\n    msg.cloudant._rev = '';\n}\n//delete msg.dataset.d;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 580,
+        "wires": [
+            [
+                "f5f60f3b.ffa16"
+            ]
+        ]
+    },
+    {
+        "id": "478e8560.3aef6c",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "add register",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 699,
+        "y": 543,
+        "wires": [
+            [
+                "6bf39ad5.f32464"
+            ]
+        ]
+    },
+    {
+        "id": "6bf39ad5.f32464",
+        "type": "change",
+        "z": "46ce32e3.d88f6c",
+        "name": "restore payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "dataset",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 580,
+        "wires": [
+            [
+                "e0313110.aeab7",
+                "bc5ea157.03a8"
+            ]
+        ]
+    },
+    {
+        "id": "45d29a3d.16f2e4",
+        "type": "comment",
+        "z": "46ce32e3.d88f6c",
+        "name": "check for existing register value",
+        "info": "if the register has already been created,\nretrieve the *_rev* value needed to allow\nthe register to be updated",
+        "x": 870,
+        "y": 437,
+        "wires": []
+    },
+    {
+        "id": "1a250484.dfe61b",
+        "type": "comment",
+        "z": "46ce32e3.d88f6c",
+        "name": "create/update register value",
+        "info": "if there is no *_rev* value present, the \nregister will be created/initialized",
+        "x": 960,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "d8bcc7ce.73c778",
+        "type": "comment",
+        "z": "46ce32e3.d88f6c",
+        "name": "save history",
+        "info": "update the existing register value, and create\na corresponding history record",
+        "x": 910,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "14a4c4b3.5ba27b",
+        "type": "http in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "url": "/api/register/:reg",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 280,
+        "y": 860,
+        "wires": [
+            [
+                "1ca331cb.f6710e",
+                "c0c9ddf0.eaa98"
+            ]
+        ]
+    },
+    {
+        "id": "49787a58.2ddf54",
+        "type": "cloudant in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "cloudant": "8ab126de.c9de68",
+        "database": "iottest",
+        "service": "_ext_",
+        "search": "_idx_",
+        "design": "history",
+        "index": "history",
+        "x": 690,
+        "y": 855,
+        "wires": [
+            [
+                "d50bbdf9.b1774",
+                "ac60dac6.8cbd48"
+            ]
+        ]
+    },
+    {
+        "id": "1ca331cb.f6710e",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "x most recent",
+        "func": "var recent = global.get(\"recent\");\nmsg.payload = { query:\"name:\" + msg.req.params.reg + \"*\",\n    \"limit\": recent,\n    \"sort\": \"-seqnum\"\n };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 510,
+        "y": 855,
+        "wires": [
+            [
+                "49787a58.2ddf54"
+            ]
+        ]
+    },
+    {
+        "id": "2b933ea2.73e0d2",
+        "type": "template",
+        "z": "46ce32e3.d88f6c",
+        "name": "chart",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js\"></script>\n<h2>{{req.params.reg}} values:</h2>\n<table>\n<tr>\n    <td>\n        <table>\n            <tr><th>record-id</th><th>reading</th></tr>\n            {{#payload}}\n            <tr> <td><a href=/api/register/{{_id}}/detail>{{_id}}</a></td><td>{{value}}</td></tr>\n            {{/payload}}\n        </table>\n    </td>\n    <td style=\"vertical-align:top\">\n        <canvas id=\"plot\"></canvas>\n    </td>\n</tr>\n</table>\n<script>\n    var ctx = document.getElementById('plot').getContext('2d');\n    var chart = new Chart(ctx, {\n    type: 'scatter',\n    data: {\n//        labels: [\n//            {{#payload}}\n//            \"{{order}}\",\n//            {{/payload}}\n//           ],\n        datasets: [{\n            label: \"{{req.params.reg}}\",\n            backgroundColor: 'rgb(40,170,40)',\n            borderColor: 'rgb(255, 0, 130)',\n            fill: false,\n            data: [\n                {{#payload}}\n                { x:{{order}}, y:{{value}} },\n                {{/payload}}\n                ],\n        }]\n    },\n\n    // Configuration options go here\n    options: {}\n});\n</script>\n",
+        "output": "str",
+        "x": 971,
+        "y": 855,
+        "wires": [
+            [
+                "fc1831c1.e597b"
+            ]
+        ]
+    },
+    {
+        "id": "fc1831c1.e597b",
+        "type": "http response",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1090,
+        "y": 855,
+        "wires": []
+    },
+    {
+        "id": "d50bbdf9.b1774",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 810,
+        "y": 915,
+        "wires": []
+    },
+    {
+        "id": "c0c9ddf0.eaa98",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 450,
+        "y": 915,
+        "wires": []
+    },
+    {
+        "id": "99093fb1.442e6",
+        "type": "comment",
+        "z": "46ce32e3.d88f6c",
+        "name": "Create current value registers and historical IOT data",
+        "info": "There is a frequent need store IOT data streams into\nCloudant database, and then interrogate the stored data.\n\nA common use-case is to retrieve the \n\"current value\" of each attribute of interest - \nthese values may not necessarily be present \nin the most recent data logged from the device.\n\nThis example shows how to store the most recent\nattribute value in a document of its own, \nand generate a histoy trail for trending analysis, etc\n\n",
+        "x": 410,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "4d875d1d.a7c6f4",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "registers",
+        "func": "var reg = global.get(\"registers\");\nvar sensreg = [];\nvar now = Date.now();\nvar dev = msg.topic.split('/')[4];\n\nfor (var r of reg){\n    if (msg.dataset.hasOwnProperty(r)){\n        var did = r + \"\\@\" + dev;\n        sensreg.push(\n            { _id: did, \n                dataset: \n                { _id: did,\n                  value: msg.dataset[r],\n                  d: msg.dataset,\n                  ts: now\n                }\n            }\n        );\n    }\n}\nreturn [ sensreg ];\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 500,
+        "y": 474,
+        "wires": [
+            [
+                "94cd4a12.6243d8"
+            ]
+        ]
+    },
+    {
+        "id": "f0262781.70e3b8",
+        "type": "comment",
+        "z": "46ce32e3.d88f6c",
+        "name": "select register values",
+        "info": "often, devices will send subsets of sensor \ndata at different frequencies - this stage\nchecks and captures particular values, if\navailable, in the incoming event",
+        "x": 580,
+        "y": 437,
+        "wires": []
+    },
+    {
+        "id": "bf5989d9.d0ffb8",
+        "type": "http in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "url": "/api/register/:reg/detail",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 350,
+        "y": 975,
+        "wires": [
+            [
+                "26566d9e.4f38f2",
+                "35b59e01.5d5f02"
+            ]
+        ]
+    },
+    {
+        "id": "371b432f.d5390c",
+        "type": "cloudant in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "cloudant": "8ab126de.c9de68",
+        "database": "iottest",
+        "service": "_ext_",
+        "search": "_id_",
+        "design": "history",
+        "index": "history",
+        "x": 690,
+        "y": 975,
+        "wires": [
+            [
+                "303eb365.c4b24c",
+                "e87ae53d.b93a28"
+            ]
+        ]
+    },
+    {
+        "id": "26566d9e.4f38f2",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "func": "msg.payload = msg.req.params.reg;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 975,
+        "wires": [
+            [
+                "371b432f.d5390c"
+            ]
+        ]
+    },
+    {
+        "id": "7f45131b.9d0c4c",
+        "type": "template",
+        "z": "46ce32e3.d88f6c",
+        "name": "display",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<h2>{{req.params.reg}} details: </h2>\n<br>\nValue: {{payload.value}}\n<br>\nSequence: {{payload.seqnum}}\n<br>\nTimestamp: {{payload.ts}}\n<p>\n{{#display}}\n<table>\n<tr><th>Key</th><th>Value</th></tr>\n{{#d}}\n    <tr><td>{{key}}</td><td>{{value}}</td></tr>\n{{/d}}\n</table>\n{{/display}}\n",
+        "output": "str",
+        "x": 960,
+        "y": 975,
+        "wires": [
+            [
+                "f7e650b0.89c89"
+            ]
+        ]
+    },
+    {
+        "id": "f7e650b0.89c89",
+        "type": "http response",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1090,
+        "y": 975,
+        "wires": []
+    },
+    {
+        "id": "303eb365.c4b24c",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 811,
+        "y": 1031,
+        "wires": []
+    },
+    {
+        "id": "35b59e01.5d5f02",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 450,
+        "y": 1035,
+        "wires": []
+    },
+    {
+        "id": "e87ae53d.b93a28",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "details",
+        "func": "var display={ 'd' : [] };\n\n// build list of properties as \n// k/v pairs for easy mustache display\nvar o = msg.payload.d;\nfor (var prop in o){\n  if (o.hasOwnProperty(prop)){\n    display['d'].push({\n      'key' : prop,\n      'value' : o[prop]\n     });\n  }\n}\nmsg.display = display;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 975,
+        "wires": [
+            [
+                "7f45131b.9d0c4c"
+            ]
+        ]
+    },
+    {
+        "id": "ce36a7b3.bfa768",
+        "type": "comment",
+        "z": "46ce32e3.d88f6c",
+        "name": "Register API",
+        "info": "|URL| result |\n|--|--|\n|**/registers**|retrieve current values for all monitored sensor values |\n|**/register/:reg**| retrieve 20 most recent values for specific register|\n|**/register/:reg/detail**| display detail of original sensor event|",
+        "x": 310,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "2e82aea6.88f342",
+        "type": "inject",
+        "z": "46ce32e3.d88f6c",
+        "name": "Sensor values",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "c55ba642.431b68"
+            ]
+        ]
+    },
+    {
+        "id": "677631b1.f7321",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 1010,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "33e01c0d.02f664",
+        "type": "http in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "url": "/api/registers",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 740,
+        "wires": [
+            [
+                "b9c45990.424cd8",
+                "e8ef1661.562278"
+            ]
+        ]
+    },
+    {
+        "id": "953d5ce7.a9791",
+        "type": "http response",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1090,
+        "y": 735,
+        "wires": []
+    },
+    {
+        "id": "af24e86c.03bba8",
+        "type": "cloudant in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "cloudant": "8ab126de.c9de68",
+        "database": "iottest",
+        "service": "_ext_",
+        "search": "_id_",
+        "design": "",
+        "index": "",
+        "x": 690,
+        "y": 735,
+        "wires": [
+            [
+                "5a565b24.4d3d14",
+                "90b97df7.dc96"
+            ]
+        ]
+    },
+    {
+        "id": "1adbf804.7c8e08",
+        "type": "template",
+        "z": "46ce32e3.d88f6c",
+        "name": "display",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<h2>Current registers:</h2> \n<br>\n    <table>\n    {{#payload}}\n    <tr><td><a href=/api/register/{{_id}}>{{_id}}</a></td><td>{{value}}</td></tr>\n    {{/payload}}\n    </table>",
+        "output": "str",
+        "x": 960,
+        "y": 735,
+        "wires": [
+            [
+                "953d5ce7.a9791"
+            ]
+        ]
+    },
+    {
+        "id": "b9c45990.424cd8",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "list",
+        "func": "//get list of currently registered values\nvar regs = global.get(\"registers\");\nvar devs = global.get(\"devices\");\nvar chk = [];\nfor( var r of regs){\n   for ( var d of devs) {\n        chk.push(r + \"@\" + d);\n   }\n}\nnode.warn(devs);\nmsg.payload = chk;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 735,
+        "wires": [
+            [
+                "e3ecce80.15222"
+            ]
+        ]
+    },
+    {
+        "id": "e3ecce80.15222",
+        "type": "split",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 570,
+        "y": 735,
+        "wires": [
+            [
+                "af24e86c.03bba8"
+            ]
+        ]
+    },
+    {
+        "id": "5a565b24.4d3d14",
+        "type": "join",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "x": 815,
+        "y": 735,
+        "wires": [
+            [
+                "1adbf804.7c8e08"
+            ]
+        ]
+    },
+    {
+        "id": "90b97df7.dc96",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 810,
+        "y": 795,
+        "wires": []
+    },
+    {
+        "id": "e8ef1661.562278",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 450,
+        "y": 795,
+        "wires": []
+    },
+    {
+        "id": "3af87eaa.c91602",
+        "type": "comment",
+        "z": "46ce32e3.d88f6c",
+        "name": "Names of WIOT sensor values to monitor",
+        "info": "",
+        "x": 294.5,
+        "y": 55.399993896484375,
+        "wires": []
+    },
+    {
+        "id": "1c7efafc.eec9e5",
+        "type": "change",
+        "z": "46ce32e3.d88f6c",
+        "name": "create index",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"_id\":\"_design/history\",\"views\":{},\"language\":\"javascript\",\"indexes\":{\"history\":{\"analyzer\":\"keyword\",\"index\":\"function (doc) {\\n  index(\\\"name\\\", doc._id);\\n    index(\\\"seqnum\\\", doc.seqnum);\\n}\"}}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 790,
+        "y": 97,
+        "wires": [
+            [
+                "677631b1.f7321",
+                "fa91de51.4d325"
+            ]
+        ]
+    },
+    {
+        "id": "fa91de51.4d325",
+        "type": "cloudant out",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "cloudant": "8ab126de.c9de68",
+        "database": "iottest",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "successOutput": false,
+        "x": 990,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "459eb126.d0b88",
+        "type": "delay",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "30",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 580,
+        "y": 380,
+        "wires": [
+            [
+                "7ffdcce1.59a194",
+                "d8684abc.182c78"
+            ]
+        ]
+    },
+    {
+        "id": "ac60dac6.8cbd48",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "chart order",
+        "func": "var order = global.get(\"recent\");\nfor(var o of msg.payload){\n    o.order = order--;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 832,
+        "y": 855,
+        "wires": [
+            [
+                "2b933ea2.73e0d2"
+            ]
+        ]
+    },
+    {
+        "id": "c55ba642.431b68",
+        "type": "change",
+        "z": "46ce32e3.d88f6c",
+        "name": "global.registers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "registers",
+                "pt": "global",
+                "to": "[\"locationupdate\"]",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "devices",
+                "pt": "global",
+                "to": "[]",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 97,
+        "wires": [
+            [
+                "10a14dfc.a26772"
+            ]
+        ]
+    },
+    {
+        "id": "10a14dfc.a26772",
+        "type": "change",
+        "z": "46ce32e3.d88f6c",
+        "name": "global.recent",
+        "rules": [
+            {
+                "t": "set",
+                "p": "recent",
+                "pt": "global",
+                "to": "20",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 100,
+        "wires": [
+            [
+                "1c7efafc.eec9e5"
+            ]
+        ]
+    },
+    {
+        "id": "c5ba3cff.46a5b",
+        "type": "http in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "url": "/api/set/recent/:limit",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 350,
+        "y": 1077,
+        "wires": [
+            [
+                "f992ce72.1ec2"
+            ]
+        ]
+    },
+    {
+        "id": "f992ce72.1ec2",
+        "type": "change",
+        "z": "46ce32e3.d88f6c",
+        "name": "update global.recent",
+        "rules": [
+            {
+                "t": "set",
+                "p": "recent",
+                "pt": "global",
+                "to": "req.params.limit",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 1077,
+        "wires": [
+            [
+                "32cf95fa.31113a"
+            ]
+        ]
+    },
+    {
+        "id": "32cf95fa.31113a",
+        "type": "http response",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1090,
+        "y": 1077,
+        "wires": []
+    },
+    {
+        "id": "d8684abc.182c78",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "Devices",
+        "func": "// keep track of reporting devices\nvar devs = global.get(\"devices\") || [];\nvar dev = msg.topic.split('/')[4];\nvar newdev = true;\n\nfor (var d of devs){\n    if (d === dev){\n        newdev = false;\n    } \n}\nif (newdev){\n    devs.push(dev);\n    global.set(\"devices\",devs);\n}\nmsg.devs=devs;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 800,
+        "y": 380,
+        "wires": [
+            [
+                "9d4546ec.c64cc8"
+            ]
+        ]
+    },
+    {
+        "id": "8a5834db.55b188",
+        "type": "ibmiot in",
+        "z": "46ce32e3.d88f6c",
+        "authentication": "apiKey",
+        "apiKey": "2d25d467.3a0ffc",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "",
+        "applicationId": "",
+        "deviceType": "+Tablet",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT Tab04",
+        "service": "registered",
+        "allDevices": true,
+        "allApplications": "",
+        "allDeviceTypes": true,
+        "allLogicalInterfaces": false,
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 200,
+        "y": 380,
+        "wires": [
+            [
+                "d79cd0e6.d2cdb"
+            ]
+        ]
+    },
+    {
+        "id": "bc5ea157.03a8",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1140,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "80868010.b3b8c",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "func": "// var _payload = msg.payload\n// var point = {\n//     lat: _payload.lat,\n//     lgn: _payload.lon\n// }\n// _payload.latlng = point\n// msg.payload = _payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 380,
+        "wires": [
+            [
+                "459eb126.d0b88"
+            ]
+        ]
+    },
+    {
+        "id": "9c076d21.742fc",
+        "type": "DataOut",
+        "z": "46ce32e3.d88f6c",
+        "collection": "8c5fc8f9.567368",
+        "name": "/assets/checkedoutlist",
+        "path": "/assets/checkedoutlist",
+        "error": false,
+        "x": 420,
+        "y": 280,
+        "wires": [
+            [
+                "6a33f011.600ef"
+            ]
+        ]
+    },
+    {
+        "id": "ef02ac5a.ce30f",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "func": "\n                        // var msg = JSON.parse(message.toString())\n    if (msg.locationdata._type === \"location\") {\n        var event = {};\n        event.latlng = [parseFloat(msg.locationdata.lon), parseFloat(msg.locationdata.lat)];\n        event.locationupdate = [msg.locationdata.assigned_to.username , parseFloat(msg.locationdata.lon), parseFloat(msg.locationdata.lat)];\n\n        event.loc = {};\n        event.loc.type = \"Point\";\n        event.loc.coordinates = [parseFloat(msg.locationdata.lon), parseFloat(msg.locationdata.lat)];\n        event.alt = parseFloat(msg.locationdata.alt || 0);\n        if (msg.locationdata.acc !== undefined) {\n            event.acc = parseFloat(msg.locationdata.acc);\n        }\n        event.batt = parseFloat(msg.locationdata.batt || 100);\n        if (msg.locationdata.cog !== undefined) {\n            event.cog = parseFloat(msg.locationdata.cog);\n        }\n             if (msg.locationdata.conn !== undefined) {\n            event.conn = parseFloat(msg.locationdata.conn);\n        }\n        if (msg.locationdata.desc !== undefined) {\n            event.desc = msg.locationdata.desc;\n        }\n        if (msg.locationdata.rad !== undefined) {\n            event.rad = parseFloat(msg.locationdata.rad);\n        }\n        if (msg.locationdata.t !== undefined) {\n            event.t = msg.locationdata.t;\n        }\n        if (msg.locationdata.tid !== undefined) {\n            event.tid = msg.locationdata.tid;\n        }\n        event.ts = new Date(parseInt(msg.locationdata.tst, 10) * 1000);\n        if (msg.locationdata.vacc !== undefined) {\n            event.vacc = parseFloat(msg.locationdata.vacc);\n        }\n        if (msg.locationdata.vel !== undefined) {\n            event.vel = parseFloat(msg.locationdata.vel);\n        }\n        event.lat = msg.locationdata.lat\n        event.lng = msg.locationdata.lon\n    //    collection.update({topic: topic}, {$addToSet: {events: event}}, {upsert: true, w:0});\n    event.assigned_to = msg.locationdata.assigned_to \n    msg.payload = event\n    \nreturn msg;\n    \n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 970,
+        "y": 280,
+        "wires": [
+            [
+                "80868010.b3b8c"
+            ]
+        ]
+    },
+    {
+        "id": "6a33f011.600ef",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "match checkoutlist to owntracks",
+        "func": "var assetList = global.get('checkedoutlist').rows\nnode.warn(assetList)\nfor (var asset of msg.payload.rows) {\n    if (msg.locationdata.tid == asset.custom_fields.tid.value) {\n        msg.locationdata.assigned_to = {}\n        msg.locationdata.assigned_to.id = asset.assigned_to.id\n        msg.locationdata.assigned_to.username = asset.assigned_to.username\n        msg.payload = msg.locationdata\n        return [null, msg]\n    }\n}\nmsg.payload = msg.locationdata\nmsg.payload.status = 'error'\nmsg.payload.value = 404\nreturn [msg, null]",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 710,
+        "y": 280,
+        "wires": [
+            [
+                "8517e098.d4621",
+                "86f17e54.21bb6"
+            ],
+            [
+                "ef02ac5a.ce30f",
+                "a63789aa.e5aa18"
+            ]
+        ],
+        "outputLabels": [
+            "not_found",
+            "found"
+        ]
+    },
+    {
+        "id": "d79cd0e6.d2cdb",
+        "type": "change",
+        "z": "46ce32e3.d88f6c",
+        "name": "save payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "locationdata",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 190,
+        "y": 280,
+        "wires": [
+            [
+                "9c076d21.742fc"
+            ]
+        ]
+    },
+    {
+        "id": "8517e098.d4621",
+        "type": "cloudant out",
+        "z": "46ce32e3.d88f6c",
+        "name": "insert errorlogs",
+        "cloudant": "8ab126de.c9de68",
+        "database": "erorlogs",
+        "service": "_ext_",
+        "payonly": false,
+        "operation": "insert",
+        "successOutput": false,
+        "x": 1120,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "86f17e54.21bb6",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 890,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "5f7ab573.2bc05c",
+        "type": "inject",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "topic": "",
+        "payload": "lon",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 210,
+        "y": 1600,
+        "wires": [
+            [
+                "a72c1086.96ad5"
+            ]
+        ]
+    },
+    {
+        "id": "b6f8c29f.9bb28",
+        "type": "cloudant in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "cloudant": "8ab126de.c9de68",
+        "database": "iottest",
+        "service": "_ext_",
+        "search": "_id_",
+        "design": "",
+        "index": "",
+        "x": 570,
+        "y": 1600,
+        "wires": [
+            [
+                "71c62ac5.4a2904"
+            ]
+        ]
+    },
+    {
+        "id": "71c62ac5.4a2904",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 990,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "2f4cfaef.7dccb6",
+        "type": "inject",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "topic": "",
+        "payload": "objectTemp",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 230,
+        "y": 1640,
+        "wires": [
+            [
+                "a72c1086.96ad5"
+            ]
+        ]
+    },
+    {
+        "id": "8c522327.a5ad6",
+        "type": "inject",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "topic": "",
+        "payload": "temp",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 210,
+        "y": 1680,
+        "wires": [
+            [
+                "a72c1086.96ad5"
+            ]
+        ]
+    },
+    {
+        "id": "7305cb32.0ee5c4",
+        "type": "cloudant in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "cloudant": "8ab126de.c9de68",
+        "database": "iottest",
+        "service": "_ext_",
+        "search": "_idx_",
+        "design": "history",
+        "index": "history",
+        "x": 790,
+        "y": 1700,
+        "wires": [
+            [
+                "8a0076e6.f62dd8"
+            ]
+        ]
+    },
+    {
+        "id": "a72c1086.96ad5",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 1640,
+        "wires": [
+            [
+                "b6f8c29f.9bb28",
+                "87db0ed1.8c916"
+            ]
+        ]
+    },
+    {
+        "id": "8a0076e6.f62dd8",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 970,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "87db0ed1.8c916",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "20 most recent",
+        "func": "msg.payload = { query:\"name:\" + msg.payload + \"*\",\n    \"limit\": \"20\",\n    \"sort\": \"-seqnum\"\n };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 1700,
+        "wires": [
+            [
+                "7305cb32.0ee5c4"
+            ]
+        ]
+    },
+    {
+        "id": "ddd53043.46a93",
+        "type": "comment",
+        "z": "46ce32e3.d88f6c",
+        "name": "test queries",
+        "info": "",
+        "x": 210,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "b02f83cd.bf845",
+        "type": "comment",
+        "z": "46ce32e3.d88f6c",
+        "name": "current register",
+        "info": "",
+        "x": 720,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "25db4cfe.254dc4",
+        "type": "comment",
+        "z": "46ce32e3.d88f6c",
+        "name": "history array",
+        "info": "array of most recent register values,\nin descending order",
+        "x": 710,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "a7b343af.2c4b8",
+        "type": "http in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "url": "/api/registersjson",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 280,
+        "y": 1180,
+        "wires": [
+            [
+                "20b5f736.bfd098",
+                "e78a3df4.b4412"
+            ]
+        ]
+    },
+    {
+        "id": "e56b30bf.edfbc",
+        "type": "http response",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1090,
+        "y": 1175,
+        "wires": []
+    },
+    {
+        "id": "6cf63128.3ce4",
+        "type": "cloudant in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "cloudant": "8ab126de.c9de68",
+        "database": "iottest",
+        "service": "_ext_",
+        "search": "_id_",
+        "design": "",
+        "index": "",
+        "x": 690,
+        "y": 1175,
+        "wires": [
+            [
+                "abf83f9a.2c91",
+                "6f7baf3a.00c18"
+            ]
+        ]
+    },
+    {
+        "id": "68a7f7bc.fa2348",
+        "type": "template",
+        "z": "46ce32e3.d88f6c",
+        "name": "display",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "\n    {{#payload}}\n    {{value}}\n    {{/payload}}\n",
+        "output": "str",
+        "x": 940,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "20b5f736.bfd098",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "list",
+        "func": "//get list of currently registered values\nvar regs = global.get(\"registers\");\nvar devs = global.get(\"devices\");\nvar chk = [];\nfor( var r of regs){\n   for ( var d of devs) {\n        chk.push(r + \"@\" + d);\n   }\n}\nnode.warn(devs);\nmsg.payload = chk;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 1175,
+        "wires": [
+            [
+                "ed5f9411.0d48a8"
+            ]
+        ]
+    },
+    {
+        "id": "ed5f9411.0d48a8",
+        "type": "split",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 570,
+        "y": 1175,
+        "wires": [
+            [
+                "6cf63128.3ce4"
+            ]
+        ]
+    },
+    {
+        "id": "ca178c00.40c36",
+        "type": "join",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 810,
+        "y": 1140,
+        "wires": [
+            [
+                "68a7f7bc.fa2348"
+            ]
+        ]
+    },
+    {
+        "id": "abf83f9a.2c91",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 810,
+        "y": 1235,
+        "wires": []
+    },
+    {
+        "id": "e78a3df4.b4412",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 450,
+        "y": 1235,
+        "wires": []
+    },
+    {
+        "id": "6f7baf3a.00c18",
+        "type": "join",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 870,
+        "y": 1180,
+        "wires": [
+            [
+                "e56b30bf.edfbc"
+            ]
+        ]
+    },
+    {
+        "id": "ba721189.de76a",
+        "type": "websocket out",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "server": "a56be3a0.bbc3e",
+        "client": "",
+        "x": 1800,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "a63789aa.e5aa18",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "func": "// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\nnode.warn(msg.payload)\ncontext.global.location = msg.payload;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1561,
+        "y": 174,
+        "wires": [
+            [
+                "ba721189.de76a"
+            ]
+        ]
+    },
+    {
+        "id": "553a3306.364adc",
+        "type": "websocket in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "server": "a56be3a0.bbc3e",
+        "client": "",
+        "x": 1390,
+        "y": 234,
+        "wires": [
+            [
+                "3e16390.e070ac8"
+            ]
+        ]
+    },
+    {
+        "id": "3e16390.e070ac8",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "func": "// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\n\nmsg.payload = context.global.location;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1563,
+        "y": 240,
+        "wires": [
+            [
+                "ba721189.de76a"
+            ]
+        ]
+    },
+    {
+        "id": "6400b5c.16c044c",
+        "type": "template",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Owntracks & Node-Red Live Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n \n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n \n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://192.168.1.6:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        lat: -12.043333,\n        lng: -77.028333\n      });\n      \n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[el.lat, el.lng]];\n\t\t\t});\n        \n        map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(17);\n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#131540',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script>\n</body>\n</html>",
+        "x": 1593,
+        "y": 311,
+        "wires": [
+            [
+                "ef613815.cf6638"
+            ]
+        ]
+    },
+    {
+        "id": "ef613815.cf6638",
+        "type": "http response",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "x": 1777,
+        "y": 311,
+        "wires": []
+    },
+    {
+        "id": "2404fdcb.932ea2",
+        "type": "http in",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "url": "/map",
+        "method": "get",
+        "x": 1372,
+        "y": 316,
+        "wires": [
+            [
+                "6400b5c.16c044c"
+            ]
+        ]
+    },
+    {
+        "id": "29feda0c.f21d76",
+        "type": "inject",
+        "z": "46ce32e3.d88f6c",
+        "name": "Array of Co-ords",
+        "topic": "",
+        "payload": "[{\"lat\":54.9619349,\"lng\":-1.6003813},{\"lat\":54.9656694,\"lng\":-1.5239833},{\"lat\":54.9696456,\"lng\":-1.5069755},{\"lat\":54.9378907,\"lng\":-1.5273729}]",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 1343,
+        "y": 123,
+        "wires": [
+            [
+                "a63789aa.e5aa18"
+            ]
+        ]
+    },
+    {
+        "id": "49a6237d.cd60bc",
+        "type": "inject",
+        "z": "46ce32e3.d88f6c",
+        "name": "Single Co-ord",
+        "topic": "",
+        "payload": "[{\"lat\":54.9696456,\"lng\":-1.5069755}]",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 1333,
+        "y": 169,
+        "wires": [
+            [
+                "a63789aa.e5aa18"
+            ]
+        ]
+    },
+    {
+        "id": "652f5a7f.8b49f4",
+        "type": "filter",
+        "z": "46ce32e3.d88f6c",
+        "name": "filter for right",
+        "property": "payload.rows",
+        "propertyType": "msg",
+        "asArray": true,
+        "itemProperty": "custom_fields",
+        "itemPropertyType": "item",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "locationdata.tid",
+                "vt": "msg",
+                "output": 1
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 2050,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1564d718.892b59",
+        "type": "DataOut",
+        "z": "46ce32e3.d88f6c",
+        "collection": "8c5fc8f9.567368",
+        "name": "/assets/checkedoutlist",
+        "path": "/assets/checkedoutlist",
+        "error": false,
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "d4de7816.ac2db8"
+            ]
+        ]
+    },
+    {
+        "id": "34929fd9.2a484",
+        "type": "inject",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 200,
+        "wires": [
+            [
+                "1564d718.892b59"
+            ]
+        ]
+    },
+    {
+        "id": "d4de7816.ac2db8",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 670,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "fa2e059e.a6c3a8",
+        "type": "debug",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 890,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1251cb64.dc7bb5",
+        "type": "debug",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1330,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "47a8c0ac.79d9a",
+        "type": "debug",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 880,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "621d1b82.cb9a34",
+        "type": "debug",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 700,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "b28d4591.6538b8",
+        "type": "debug",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1130,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "2f293588.1cec6a",
+        "type": "switch",
+        "z": "137a9152.2c26cf",
+        "name": "checkout/in success?",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "success",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "success",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 880,
+        "y": 620,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "15f3cb86.f4e174",
+        "type": "http request",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://52.39.121.124:8080/api/v1/hardware?status=Deployed",
+        "tls": "",
+        "x": 1020,
+        "y": 200,
+        "wires": [
+            [
+                "f1c7ca52.93f698"
+            ]
+        ]
+    },
+    {
+        "id": "4795551d.b0e7cc",
+        "type": "inject",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 700,
+        "y": 200,
+        "wires": [
+            [
+                "30d77d0a.a87712"
+            ]
+        ]
+    },
+    {
+        "id": "bc000a01.4a2248",
+        "type": "function",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "func": "msg = {}\nmsg.headers = {}\nmsg.snipeit_host = global.get('snipeit_host')\nvar token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 340,
+        "wires": [
+            [
+                "4e6c5d5e.4fc9f4"
+            ]
+        ]
+    },
+    {
+        "id": "30d77d0a.a87712",
+        "type": "function",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "func": "msg = {}\nmsg.headers = {}\nmsg.snipeit_host = global.get('snipeit_host')\nvar token = global.get('snipeit_token')\nmsg.headers['Accept'] = 'application/json'\nmsg.headers[\"Authorization\"] = 'Bearer '+ token\nmsg.redirect = false\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 850,
+        "y": 200,
+        "wires": [
+            [
+                "15f3cb86.f4e174"
+            ]
+        ]
+    },
+    {
+        "id": "c90e700f.cbdd9",
+        "type": "function",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "func": "node.warn(msg.payload)\nglobal.set('checkedoutlist', msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1230,
+        "y": 340,
+        "wires": [
+            [
+                "c80a029e.adfec"
+            ]
+        ]
+    },
+    {
+        "id": "bb000a72.811348",
+        "type": "function",
+        "z": "137a9152.2c26cf",
+        "name": "",
+        "func": "global.set('checkedoutlist', msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 850,
+        "y": 40,
+        "wires": [
+            [
+                "be0f2f96.c35dc"
+            ]
+        ]
     }
 ]

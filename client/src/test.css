@@ -173,6 +173,9 @@ body {
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-app-region: drag;
+  -ms-overflow-style: hidden;
+  overflow: hidden;
   color: #34495e;
   background-color: #fff;
   margin: 0;
@@ -205,6 +208,7 @@ pre {
   font-family: "Roboto Mono", Monaco, courier, monospace;
   font-size: 0.8em;
   background-color: #f8f8f8;
+  -webkit-app-region: drag;  
   -webkit-font-smoothing: initial;
   -moz-osx-font-smoothing: initial;
 }

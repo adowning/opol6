@@ -175,22 +175,27 @@ const actions = {
       if (!rootState.auth.user) {
         //console.log('getting token...')
         dispatch('cognito/getIdToken', null, {root: true}).then((token) => {
-          //console.log('got token')
-          dispatch('updateUserActivity')
-          commit('setUpdateUserActivity', setInterval(() => {dispatch('updateUserActivity')}, 60000))
-          UserService.methods.getUser(token).then((res) => {
-            //console.log(res)
-            res.invitesReceived = res.invitesReceived || []
-            res.invitesSent = res.invitesSent || []
-            commit('setUser', res)
-            if (res.invitesSent.length) {
-              commit('setInvitesSent', res.invitesSent)
-            }
-            resolve()
-          }).catch((err) => {
-            //console.log('error')
-            reject()
+          console.log('got token')
+          commit('setUser', token)
+          dispatch('cognito/setUsername', null, {root: true}).then((token) => {
+          resolve()
           })
+          //dispatch('updateUserActivity')
+         // commit('setUpdateUserActivity', setInterval(() => {dispatch('updateUserActivity')}, 60000))
+ 
+          // UserService.methods.getUser(token).then((res) => {
+          //   //console.log(res)
+          //   res.invitesReceived = res.invitesReceived || []
+          //   res.invitesSent = res.invitesSent || []
+          //   commit('setUser', res)
+          //   if (res.invitesSent.length) {
+          //     commit('setInvitesSent', res.invitesSent)
+          //   }
+          //   resolve()
+          // }).catch((err) => {
+          //   //console.log('error')
+          //   reject()
+          // })
         }).catch((err) => {
           //console.log(err)
           reject()

@@ -4,11 +4,12 @@
 </template>
     
 <script>
-import Mapbox from './Mapbox'
+// import Mapbox from './Mapbox'
+import GoogleMap from './GoogleMap'
 export default {
   name: "LiveView",
   components: {
-    Mapbox
+   GoogleMap
   },
   data: () => ({
  

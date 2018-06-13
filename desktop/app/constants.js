@@ -36,7 +36,7 @@ const Constants = {
       unhide: 'Unhide',
     },
     file: {
-      label: 'Date',
+      label: 'File',
     },
 
     edit: {
@@ -63,10 +63,10 @@ const Constants = {
       contact: 'contact'
     },
     leasing: {
-      label: 'Calculate',
-      car: 'Calculate car lease',
-      movables: 'Mobilien Leasing Calculate',
-      inquiry: 'Request Leasing Request',
+      label: 'Development',
+      car: 'Test 1',
+      movables: 'Test 2',
+      inquiry: 'Test 3',
     },
   },
   touchBar: {

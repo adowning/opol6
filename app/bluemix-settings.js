@@ -58,7 +58,11 @@ var settings = module.exports = {
     httpStatic: path.join(__dirname,"public"),
 
     functionGlobalContext: { },
-
+    httpNodeCors: {
+        origin: "*",
+        methods: "GET,PUT,POST,DELETE,OPTIONS",
+        preflightContinue: true
+    },
     // Configure the logging output
     logging: {
         // Only console logging is currently supported

@@ -508,6 +508,69 @@
      "file": "/home/ash/opol6/app/.node-red/node_modules/@nickcis/node-red-node-cf-cloudant/77-cloudant-cf.js"
     }
    }
+  },
+  "node-red-contrib-iiot-jwt": {
+   "name": "node-red-contrib-iiot-jwt",
+   "version": "0.1.3",
+   "local": true,
+   "nodes": {
+    "JWT-In": {
+     "name": "JWT-In",
+     "types": [
+      "JWT-IN"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-iiot-jwt",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-iiot-jwt/jwt/jwt-in.js"
+    },
+    "JWT-Out": {
+     "name": "JWT-Out",
+     "types": [
+      "JWT-OUT"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-iiot-jwt",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-iiot-jwt/jwt/jwt-out.js"
+    }
+   }
+  },
+  "node-red-contrib-jwt": {
+   "name": "node-red-contrib-jwt",
+   "version": "0.0.10",
+   "local": true,
+   "nodes": {
+    "jwt": {
+     "name": "jwt",
+     "types": [
+      "jwt sign",
+      "jwt verify"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-jwt",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-jwt/jwt.js"
+    }
+   }
+  },
+  "node-red-contrib-auth": {
+   "name": "node-red-contrib-auth",
+   "version": "0.1.7",
+   "local": true,
+   "nodes": {
+    "JsonWebToken": {
+     "name": "JsonWebToken",
+     "types": [
+      "JsonWebToken",
+      "JsonWebToken_config"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-auth",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-auth/jsonWebToken.js"
+    }
+   }
   }
  },
  "_credentialSecret": "ac7f92345be2e04f079069ad344952a55c3b1592b963bb5521bcb979741f0bb7",

@@ -20,7 +20,7 @@
     data() {
       return {
         username: '',
-        email: 'ashdowning+ff.name@gmail.com',
+       // email: 'ashdowning+ff.name@gmail.com',
                pass: 'Andrews1',
       }
     },

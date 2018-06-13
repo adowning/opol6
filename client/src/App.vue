@@ -97,7 +97,7 @@ export default {
       } catch (err) {
         console.log(err);
         console.log(err);
-        // this.fireAuthNotify(this.error);
+       this.fireNotify(this.error);
       }
     },
       

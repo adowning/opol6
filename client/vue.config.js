@@ -18,6 +18,11 @@ module.exports = {
           // pathRewrite: {"^/api" : ""},
           secure: false
         },
+        "/location": {
+          target: "ws://192.168.1.6:1880/ws/location",
+          pathRewrite: {"^/location" : ""},
+          secure: false
+        },
         "/iss": {
           target: "http://api.open-notify.org/iss-now.json",
           pathRewrite: {"^/iss" : ""},

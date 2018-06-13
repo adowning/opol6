@@ -143,7 +143,7 @@ export default {
   }
 };
 </script>
-<style style="stylus">
+<style>
 .footer {
   position: absolute;
   right: 0;
@@ -153,5 +153,6 @@ export default {
   padding: 1rem;
   background-color: #0092db !important;
   text-align: center;
+  -webkit-app-region: drag;
 }
 </style>

@@ -9,7 +9,7 @@ const awsmobile = {
     'aws_app_analytics': 'enable',
     'aws_bots': 'enable',
     'aws_bots_config': [{"name":"MakeAppointmentMOBILEHUB","alias":"$LATEST","description":"Bot to book a dentist appointment.","bot-template":"bot-appointments","commands-help":["I would like to book an appointment","Book an appointment","I would like to see the dentist","I would like to schedule a visit","Make appointment"],"region":"us-east-1"}],
-    'aws_cognito_identity_pool_id': 'us-west-2:126e937b-d594-49cb-8687-172ff1e7ea30',
+    'aws_cognito_identity_pool_id': 'us-east-1:ab197551-9a20-4dbb-be97-d902d293118d',
     'aws_cognito_region': 'us-west-2',
     'aws_content_delivery': 'enable',
     'aws_content_delivery_bucket': 'opol-hosting-mobilehub-88837624',
@@ -25,8 +25,8 @@ const awsmobile = {
     'aws_resource_name_prefix': 'opol-mobilehub-88837624',
     'aws_sign_in_enabled': 'enable',
     'aws_user_pools': 'enable',
-    'aws_user_pools_id': 'us-west-2_hCVnLcSMS',
-    'aws_user_pools_web_client_id': '777osdop41qq005c4f4977nbcq',
+    'aws_user_pools_id': 'us-east-1_xwnQBRbGa',
+    'aws_user_pools_web_client_id': '35qkglmgdvv8g8do97j53q7sn8',
 }
 
 export default awsmobile;

@@ -123,8 +123,8 @@ export default {
     async checkOut(asset, assigned_to) {
       this.loading = true
       console.log(asset.id);
-      console.log(this.$store.state.auth.user.username);
-      var _username = this.$store.state.auth.user.username
+      // var _username = this.$store.state.auth.user.username      
+      var _username = this.$store.state.cognito.username      
       console.log(_username)
       this.$store.dispatch("assets/checkOutHardware", {
         assetId: asset.id,

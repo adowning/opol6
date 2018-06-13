@@ -4,8 +4,8 @@ import AWS from 'aws-sdk/global'
 
 // import { USER_POOL_ID, USER_POOL_APP_CLIENT, AWS_REGION } from '../../globals/resources'
 const config = {
-  USER_POOL_ID: 'us-west-2_hCVnLcSMS',
-  USER_POOL_CLIENT_ID: '2a1tt3j4vjh46cro3fu4spquaf',
+  USER_POOL_ID: 'us-east-1_xwnQBRbGa',
+  USER_POOL_CLIENT_ID: '35qkglmgdvv8g8do97j53q7sn8',
   AWS_REGION: 'us-west-2',
   API_GATEWAY_ENDPOINT: 'https://z1mp2pbwcg.execute-api.us-west-2.amazonaws.com/dev',
   IOT_ENDPOINT: 'a2irl5b2s0go37.iot.us-west-2.amazonaws.com',
@@ -45,6 +45,9 @@ const getters = {}
 const mutations = {
   setUserId: (state, payload, rootState) => {
     rootState.auth.userId = payload
+  },
+  setUsername: (state, payload, rootState) => {
+    state.username = payload
   }
 }
 
@@ -192,10 +195,10 @@ console.log('log in successful')
           Name: 'email',
           Value: user.email
         }),
-        new CognitoUserAttribute({
-          Name: 'custom:apiData',
-          Value: JSON.stringify(apiData)
-        }),
+        // new CognitoUserAttribute({
+        //   Name: 'custom:apiData',
+        //   Value: JSON.stringify(apiData)
+        // }),
       ]
         console.log(attributeList)
       state.userPool.signUp(user.username, user.pass, attributeList, null, (err, result) => {
@@ -235,15 +238,18 @@ console.log('log in successful')
   setUserId({commit, state}) {
     console.log('setting user id...')
     let user = state.userPool.getCurrentUser()
+    console.log(user.username)
     return new Promise((resolve, reject) => {
       user.getSession((err, session) => {
         if (err) {
           return reject(err)
         }
+        console.log(session)
         user.getUserAttributes((err, attributes) => {
           if (err) {
             return reject(err)
           }
+          console.log(attributes)
           commit('setUserId', attributes.find((i) => {
             return i.Name === 'sub'
           }).Value)
@@ -252,6 +258,34 @@ console.log('log in successful')
         })
       })
     })
+  },
+  setUsername({commit, state}) {
+    console.log('setting user id...')
+    let user = state.userPool.getCurrentUser()
+    console.log(user.username)
+    return new Promise((resolve, reject) => {
+    commit('setUsername', user.username)
+    resolve(state.username)
+    })
+    // return new Promise((resolve, reject) => {
+    //   user.getSession((err, session) => {
+    //     if (err) {
+    //       return reject(err)
+    //     }
+    //     console.log(session)
+    //     user.getUserAttributes((err, attributes) => {
+    //       if (err) {
+    //         return reject(err)
+    //       }
+    //       console.log(attributes)
+    //       commit('setUsername', attributes.find((i) => {
+    //         return i.Name === 'sub'
+    //       }).Value)
+    //       //console.log(state.userId)
+    //       resolve(state.userId)
+    //     })
+    //   })
+    // })
   }
 }
 

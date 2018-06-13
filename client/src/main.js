@@ -25,7 +25,7 @@ router.beforeEach((to, from, next) => {
     // authentication is required
     console.log('must load user')
     store.dispatch('auth/loadUser').then(() => {
-       store.dispatch('mqtt/startClient')
+     //  store.dispatch('mqtt/startClient')
       next()
     }, (err) => {
       console.log('redirecting to signin...', err)

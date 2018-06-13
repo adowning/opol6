@@ -171,7 +171,7 @@ export default {
         }, (err) => {
           console.log('there was an error')
           // alert('there was an error')
-          vm.fireAuthNotify(err);
+         // vm.fireAuthNotify(err);
         })
       },
       

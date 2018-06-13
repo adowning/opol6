@@ -6,14 +6,14 @@
        
 <router-link v-if="!$_isAuthenticated" to="auth/signin" class="button--grey">Sign In</router-link>
 <router-link v-if="!$_isAuthenticated" to="Auth/SignUp" class="button--grey">Sign Up</router-link> 
-        <blockquote>
+        <!-- <blockquote>
           &#8220;First, solve the problem. Then, write the code.&#8221;
           <footer>
             <small>
               <em>&mdash;John Johnson</em>
             </small>
           </footer>
-        </blockquote>
+        </blockquote> -->
           <!-- <formio src="https://kjzdduvppatlaap.form.io/profile" v-on:submit="onSubmitMethod" /> -->
 
       </v-layout>
