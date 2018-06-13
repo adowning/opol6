@@ -2875,7 +2875,7 @@
         "type": "function",
         "z": "46ce32e3.d88f6c",
         "name": "match checkoutlist to owntracks",
-        "func": "var assetList = global.get('checkedoutlist').rows\nnode.warn(assetList)\nfor (var asset of msg.payload.rows) {\n    if (msg.locationdata.tid == asset.custom_fields.tid.value) {\n        msg.locationdata.assigned_to = {}\n        msg.locationdata.assigned_to.id = asset.assigned_to.id\n        msg.locationdata.assigned_to.username = asset.assigned_to.username\n        msg.payload = msg.locationdata\n        return [null, msg]\n    }\n}\nmsg.payload = msg.locationdata\nmsg.payload.status = 'error'\nmsg.payload.value = 404\nreturn [msg, null]",
+        "func": "var assetList = global.get('checkedoutlist').rows\nnode.warn(assetList)\nfor (var asset of assetList) {\n    if (msg.locationdata.tid == asset.custom_fields.tid.value) {\n        msg.locationdata.assigned_to = {}\n        msg.locationdata.assigned_to.id = asset.assigned_to.id\n        msg.locationdata.assigned_to.username = asset.assigned_to.username\n        msg.payload = msg.locationdata\n        return [null, msg]\n    }\n}\nmsg.payload = msg.locationdata\nmsg.payload.status = 'error'\nmsg.payload.value = 404\nreturn [msg, null]",
         "outputs": 2,
         "noerr": 0,
         "x": 710,
