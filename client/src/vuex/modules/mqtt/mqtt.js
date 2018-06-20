@@ -2,7 +2,7 @@
 import UserService from '../../../services/UserService.vue'
 
 import AWS from 'aws-sdk/global'
-import AWSMqtt from 'aws-mqtt'
+// import AWSMqtt from 'aws-mqtt'
 // Initialize the Amazon Cognito credentials provider
 AWS.config.region = 'us-west-2'
 const config  = {
@@ -65,7 +65,7 @@ const actions = {
     let chatIds = rootState.auth.user.chats || []
     //console.log(rootState.auth.user)
     //commit('startClient', { userId, chatIds })
-    
+
     if (state.client) return;
     //console.log('chatIds are : ', chatIds)
     let params = {
@@ -77,10 +77,10 @@ const actions = {
       identityPoolId: config.IDENTITY_POOL_ID
     }
     //console.log(params)
-    state.client = AWSMqtt.connect(params)
+    // state.client = AWSMqtt.connect(params)
 
     //let messageHandler = new MessageHandler(state, IOT_CHANNEL)
-    
+
     state.client.on('connect', () => {
       state.client.subscribe(`${config.IOT_CHANNEL}/user/${userId}`)
       state.client.subscribe(`${config.IOT_CHANNEL}/group`)

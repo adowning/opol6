@@ -1,9 +1,9 @@
 // import Amplify, { Auth, Logger} from 'aws-amplify'
-import Amplify from "aws-amplify";
-import AWSExports from "../aws-exports";
-import { Auth, PubSub } from 'aws-amplify'
-import { AWSIoTProvider } from 'aws-amplify/lib/PubSub/Providers';
-Amplify.configure(AWSExports);
+import Amplify from 'aws-amplify'
+import AWSExports from '../aws-exports'
+// import { Auth, PubSub } from 'aws-amplify'
+// import { AWSIoTProvider } from 'aws-amplify/lib/PubSub/Providers';
+Amplify.configure(AWSExports)
 // Amplify.Logger.LOG_LEVEL = "WARN";
 // const logger = new Logger('main')
 
@@ -21,6 +21,5 @@ Amplify.configure(AWSExports);
 //     // });
 //     })
 //   .catch(err => console.log(err))
-
 
 

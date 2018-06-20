@@ -1,6 +1,6 @@
 {
   "name": "andrews-admin",
-  "short_name": "proxy-test",
+  "short_name": "andrews-admin",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",

@@ -106,201 +106,203 @@
 
 <script>
 export default {
-  // props: [
-  //   'Name',
-  //   'primaryImageURL',
-  //   'PrimaryAssetID',
-  //   'AssetList',
-  //   'Department',
-  //   'Alerts',
-  //   'Status',
-  //   'DailyInspections',
-  //   'WeeklyInspections',
-  //   'Inspectionsist',
-  // ],
-  data: () => ({
-    loading: true,
-    inspection: false,
-    Limit: 10,
-    LastEvaluatedKey: {},
-    searchQuery: '',
-    // awsversion: AWS.VERSION,
-    dialog: false,
-    items: [],
-    editedIndex: -1,
-    editedItem: {
-      name: '',
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0,
+    // props: [
+    //   'Name',
+    //   'primaryImageURL',
+    //   'PrimaryAssetID',
+    //   'AssetList',
+    //   'Department',
+    //   'Alerts',
+    //   'Status',
+    //   'DailyInspections',
+    //   'WeeklyInspections',
+    //   'Inspectionsist',
+    // ],
+    data: () => {
+        return {
+            loading: true,
+            inspection: false,
+            Limit: 10,
+            LastEvaluatedKey: {},
+            searchQuery: '',
+            // awsversion: AWS.VERSION,
+            dialog: false,
+            items: [],
+            editedIndex: -1,
+            editedItem: {
+                name: '',
+                calories: 0,
+                fat: 0,
+                carbs: 0,
+                protein: 0,
+            },
+            defaultItem: {
+                name: '',
+                calories: 0,
+                fat: 0,
+                carbs: 0,
+                protein: 0,
+            },
+        }
     },
-    defaultItem: {
-      name: '',
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0,
-    },
-  }),
 
-  asyncComputed: {
-    total() {
-      var AwsDocClient = {}
-      var params = {
-        TableName: 'PACKAGE_TABLE',
-        IndexName: 'status-updated_at-index',
-        KeyConditionExpression: '#status = :key',
-        ExpressionAttributeValues: {
-          ':key': this.$route.params.status,
+    asyncComputed: {
+        total: function() {
+            let AwsDocClient = {}
+            let params = {
+                TableName: 'PACKAGE_TABLE',
+                IndexName: 'status-updated_at-index',
+                KeyConditionExpression: '#status = :key',
+                ExpressionAttributeValues: {
+                    ':key': this.$route.params.status,
+                },
+                ExpressionAttributeNames: {
+                    '#status': 'status',
+                },
+                Select: 'COUNT',
+            }
+            return AwsDocClient.query(params)
+                .promise()
+                .then((data) => {
+                    console.log('COUNT', data)
+                    document.title = `Status: ${this.$route.params.status
+                        .charAt(0)
+                        .toUpperCase() + this.$route.params.status.slice(1)} has ${
+                        data.Count
+                    } items`
+                    return data.Count
+                })
         },
-        ExpressionAttributeNames: {
-          '#status': 'status',
+
+        filteredItems: function() {
+            console.log('Route', this.$route)
+            console.log(
+                'Route status',
+                this.$route.params.status,
+                'Query',
+                this.$route.query
+            )
+            const status = this.$route.params.status
+            console.log('Status', status)
+            let params = {
+                TableName: 'Movies',
+                Limit: this.Limit,
+                ScanIndexForward: false,
+                IndexName: 'status-updated_at-index',
+                KeyConditionExpression: '#status = :key',
+                ExpressionAttributeValues: {
+                    ':key': status,
+                },
+                ExpressionAttributeNames: {
+                    '#status': 'status',
+                },
+            }
+            if (this.$route.query.uuid) {
+                console.log('Starting from', this.$route.query)
+                params.ExclusiveStartKey = this.$route.query
+            }
+            let AwsDocClient = {}
+
+            return AwsDocClient.query(params)
+                .promise()
+                .then((data) => {
+                    // console.log(data)
+                    this.loading = false
+                    this.LastEvaluatedKey = data.LastEvaluatedKey
+                    // this.count = data.Items.length
+                    return data.Items
+                })
         },
-        Select: 'COUNT',
-      }
-      return AwsDocClient.query(params)
-        .promise()
-        .then(data => {
-          console.log('COUNT', data)
-          document.title = `Status: ${this.$route.params.status
-            .charAt(0)
-            .toUpperCase() + this.$route.params.status.slice(1)} has ${
-            data.Count
-          } items`
-          return data.Count
-        })
-    },
 
-    filteredItems() {
-      console.log('Route', this.$route)
-      console.log(
-        'Route status',
-        this.$route.params.status,
-        'Query',
-        this.$route.query
-      )
-      const status = this.$route.params.status
-      console.log('Status', status)
-      var params = {
-        TableName: 'Movies',
-        Limit: this.Limit,
-        ScanIndexForward: false,
-        IndexName: 'status-updated_at-index',
-        KeyConditionExpression: '#status = :key',
-        ExpressionAttributeValues: {
-          ':key': status,
+        formTitle: function() {
+            return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
         },
-        ExpressionAttributeNames: {
-          '#status': 'status',
+    },
+
+    watch: {
+        dialog: function(val) {
+            val || this.close()
         },
-      }
-      if (this.$route.query.uuid) {
-        console.log('Starting from', this.$route.query)
-        params.ExclusiveStartKey = this.$route.query
-      }
-      var AwsDocClient = {}
-
-      return AwsDocClient.query(params)
-        .promise()
-        .then(data => {
-          // console.log(data)
-          this.loading = false
-          this.LastEvaluatedKey = data.LastEvaluatedKey
-          // this.count = data.Items.length
-          return data.Items
-        })
     },
 
-    formTitle() {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+    created: function() {
+        this.initialize()
     },
-  },
 
-  watch: {
-    dialog(val) {
-      val || this.close()
-    },
-  },
-
-  created() {
-    this.initialize()
-  },
-
-  methods: {
-    initialize() {
-      this.items = [
-        {
-          name: 'White van',
-          primaryImageURL:
+    methods: {
+        initialize: function() {
+            this.items = [
+                {
+                    name: 'White van',
+                    primaryImageURL:
             'http://192.168.1.171:83/uploads/assets/7DHCWRWnWqwv8GpFKrjShuQhc.png',
-          department: 'Carpet Cleaning',
-          assetList: [
-            {
-              asset_id: 1,
-              asset_tag: 1233,
-              model: 'Boxxer',
-              category: 'Truckmount',
-            },
-            {
-              asset_id: 2,
-              asset_tag: 3232,
-              model: 'Ford 150',
-              category: 'Vehicle',
-            },
-          ],
-        },
-        {
-          name: 'Green Truck',
-          primaryImageURL:
+                    department: 'Carpet Cleaning',
+                    assetList: [
+                        {
+                            asset_id: 1,
+                            asset_tag: 1233,
+                            model: 'Boxxer',
+                            category: 'Truckmount',
+                        },
+                        {
+                            asset_id: 2,
+                            asset_tag: 3232,
+                            model: 'Ford 150',
+                            category: 'Vehicle',
+                        },
+                    ],
+                },
+                {
+                    name: 'Green Truck',
+                    primaryImageURL:
             'http://192.168.1.171:83/uploads/assets/7DHCWRWnWqwv8GpFKrjShuQhc.png',
-          department: 'Carpet Cleaning',
-          assetList: [
-            {
-              asset_id: 1,
-              asset_tag: 1233,
-              model: 'Boxxer',
-              category: 'Truckmount',
-            },
-            {
-              asset_id: 2,
-              asset_tag: 3232,
-              model: 'Ford 150',
-              category: 'Vehicle',
-            },
-          ],
+                    department: 'Carpet Cleaning',
+                    assetList: [
+                        {
+                            asset_id: 1,
+                            asset_tag: 1233,
+                            model: 'Boxxer',
+                            category: 'Truckmount',
+                        },
+                        {
+                            asset_id: 2,
+                            asset_tag: 3232,
+                            model: 'Ford 150',
+                            category: 'Vehicle',
+                        },
+                    ],
+                },
+            ]
         },
-      ]
-    },
 
-    editItem(item) {
-      this.editedIndex = this.items.indexOf(item)
-      this.editedItem = Object.assign({}, item)
-      this.dialog = true
-    },
+        editItem: function(item) {
+            this.editedIndex = this.items.indexOf(item)
+            this.editedItem = Object.assign({}, item)
+            this.dialog = true
+        },
 
-    deleteItem(item) {
-      const index = this.items.indexOf(item)
-      confirm('Are you sure you want to delete this item?') &&
+        deleteItem: function(item) {
+            const index = this.items.indexOf(item)
+            confirm('Are you sure you want to delete this item?') &&
         this.items.splice(index, 1)
-    },
+        },
 
-    close() {
-      this.dialog = false
-      setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
-      }, 300)
-    },
+        close: function() {
+            this.dialog = false
+            setTimeout(() => {
+                this.editedItem = Object.assign({}, this.defaultItem)
+                this.editedIndex = -1
+            }, 300)
+        },
 
-    save() {
-      if (this.editedIndex > -1) {
-        Object.assign(this.items[this.editedIndex], this.editedItem)
-      } else {
-        this.items.push(this.editedItem)
-      }
-      this.close()
+        save: function() {
+            if (this.editedIndex > -1) {
+                Object.assign(this.items[this.editedIndex], this.editedItem)
+            } else {
+                this.items.push(this.editedItem)
+            }
+            this.close()
+        },
     },
-  },
 }
 </script>

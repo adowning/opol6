@@ -5,12 +5,12 @@
 </div>
 </template>
 <script>
-  import Hardware from '../../components/assets/Hardware'
+import Hardware from '../../components/assets/Hardware'
 
-  export default {
+export default {
 
-  components: {
-    Hardware
-  }
-  }
+    components: {
+        Hardware: Hardware
+    }
+}
 </script>

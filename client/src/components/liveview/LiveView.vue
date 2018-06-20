@@ -2,18 +2,20 @@
         <div>
         </div>
 </template>
-    
+
 <script>
 // import Mapbox from './Mapbox'
 import GoogleMap from './GoogleMap'
 export default {
-  name: "LiveView",
-  components: {
-   GoogleMap
-  },
-  data: () => ({
- 
-  }),
+    name: 'LiveView',
+    components: {
+        GoogleMap: GoogleMap
+    },
+    data: () => {
+        return {
+
+        }
+    },
 
 }
 

@@ -1,5 +1,7 @@
-const products = state => state.products;
+const products = (state) => {
+    return state.products
+}
 
 export default {
-  products
-};
+    products: products
+}

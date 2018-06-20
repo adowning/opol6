@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import Profile from "../../components/people/Profile";
+import Profile from '../../components/people/Profile'
 export default {
-  components: {
-    Profile
-  }
-};
+    components: {
+        Profile: Profile
+    }
+}
 </script>

@@ -1,33 +1,33 @@
 module.exports = {
-  lintOnSave: true,
-  configureWebpack: {
+    lintOnSave: true,
+    configureWebpack: {
     // output: {
     //   path: __dirname + "../app/public/"
     // },
-    devtool: 'sourcemap',
-   
-  },
+        devtool: 'sourcemap',
+
+    },
     devServer: {
-      proxy: {
-        "/gists": {
-          target: "https://api.github.com",
-          secure: false
-        },
-        "/api": {
-          target: "http://192.168.1.6:1880/",
-          // pathRewrite: {"^/api" : ""},
-          secure: false
-        },
-        "/location": {
-          target: "ws://192.168.1.6:1880/ws/location",
-          pathRewrite: {"^/location" : ""},
-          secure: false
-        },
-        "/iss": {
-          target: "http://api.open-notify.org/iss-now.json",
-          pathRewrite: {"^/iss" : ""},
-          secure: false
+        proxy: {
+            '/gists': {
+                target: 'https://api.github.com',
+                secure: false
+            },
+            '/api': {
+                target: 'http://192.168.1.6:1880/',
+                // pathRewrite: {"^/api" : ""},
+                secure: false
+            },
+            '/location': {
+                target: 'ws://192.168.1.6:1880/ws/location',
+                pathRewrite: { '^/location' : '' },
+                secure: false
+            },
+            '/iss': {
+                target: 'http://api.open-notify.org/iss-now.json',
+                pathRewrite: { '^/iss' : '' },
+                secure: false
+            }
         }
-      }
     }
-  };
+}

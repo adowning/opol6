@@ -7,11 +7,11 @@
 
 <script>
 // import Schedule from "../../components/schedule/Schedule";
-import Calendar from "../../components/schedule/Calendar";
+import Calendar from '../../components/schedule/Calendar'
 export default {
-  components: {
+    components: {
     // "schedule": Schedule,
-    "calendar": Calendar
-  },
-};
+        calendar: Calendar
+    },
+}
 </script>

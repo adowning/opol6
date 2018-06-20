@@ -5,12 +5,12 @@
 </div>
 </template>
 <script>
-  import Maintenance from '../../components/assets/Maintenance'
+import Maintenance from '../../components/assets/Maintenance'
 
-  export default {
+export default {
 
-  components: {
-    Maintenance
-  }
-  }
+    components: {
+        Maintenance: Maintenance
+    }
+}
 </script>

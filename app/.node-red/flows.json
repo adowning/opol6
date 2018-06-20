@@ -113,6 +113,36 @@
         "secret": "xI9Wuwbd+IJGRWaj1fysU/hV4wTw+UR3KFPeZ1ysh5s="
     },
     {
+        "id": "abf6c429.cc6e68",
+        "type": "google-conn",
+        "z": "",
+        "name": "Google",
+        "key": "\\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDZvKjRuVqZWMeO\\nIldge3L5SUb9QUXqCol7Qp2jmBArK0cZGsWH0O9X1i8w6KJgWOooVmFDYWANy4bB\\nNyRrI/h03cbuJkbz+SDDvVEZ+kOvWXXidXgeb006pzVioGC0VePHm+0alcyJJiRp\\nPJdDDDzCL5sdsj7+atvIjPz7X++unUvxJw7UgwKwoqJn/a8ux84rkmN0lxxpRc9b\\nm6V06zugZinNkQxCEzHWh9Qn2z2IJ7jWH+dTZ1GTAy0Bd12NOTuKia2dZt9keHtF\\nz2pwk9mK3fSL4zwaox8xbwZpO1wXrU1FmSySl5qTkmtEi3x3fyPce1MtO9aOWXoX\\nlNCXR0AZAgMBAAECggEAZ5nTvc5y5EoQ0XlXl+nFQAX0yCXZrU2MMuD0ftWow9GY\\nx8IsQL5SU7nuxFe8gxlrePv41YWsnYO8v4yMQIph+sFXmRMPaaCdTWV0BGdG81Ue\\nuTzphZmx5nmO9jmXKddARUbU33RtWMiURJp24okdE8xxAwU/4fBYWSl0aesw8SS4\\nMo8ax6cOoSucBZiOF8bPkJCn8Fn01/LgwrAV/dXgMcLgoYJwU0v+iuAmIqei4sVt\\ncjhGCWhjoDPv075fsz7iNQgYexn7YXEgppXkMm4ow7eSLjforH/BHfrMJjUGCA5O\\n+wqsKJmFI3XRQOnl2KGnPMku5iis3fHO84jI6X4DDQKBgQDx+aTP0RdwP6JVxqzU\\nWpx45fcXy9QnfReHl95jNXZuzJ2v/wxt6IZA6F9MopMhiZOqsIFUUqSuxPvzAK7Y\\n1EY/dNOQf/4Gr9CnjB4WRS45qC1DbWdqmwJAXwQnIWrcB9O5FjV0C7kh8hncHrlV\\nd8YinL5rfuVD7GfJ5RvYTPixnwKBgQDmW2BHvf4xdaM71ORb+KdNsPyEiQhEz50Y\\njgRU+YDZ/5r5mBzI7U3ovPolIVLNUYimfLnBDaEj+EUtDQnfFrKxDLxdgExyDrxA\\ndKdZArL1GA7dc+ETkwQWKkCwsOVb35MdlABEnxcJmrCurtq1bmAz4/FiJA0KByec\\nGv7IYHLjRwKBgQCEQv5REWsMUdv7oqLpV7XbZ2eOPD10cC2iUeKeu6RGn9U5U+GJ\\nWeW4KMueaeaeGEL8s4mde6bEWKuWgbMQlcbn/IV/oFZLdWJJko8HgTzpCwHirzQt\\n0xiB8u2kLeHo7uZNbtQ84AOLiHeWF70Z+GP2m1KCE1RhsiBw/KghrMDq5QKBgAEO\\n2GFb+QfnH2nN74KQoMwVjQNa0cPnJDSRqmltf+8AYojU7wTpOhtgitGS1puEzVje\\nZ8gANQZCRKcRUUNKCmYPxem0BiXb9XdiUcZx4bqIcsEHoDgDy9gCN6vYFCWY4EcZ\\nf+rQxD1SDY+v0+dTa3Oxj1FBEyJBqCfqY9MtxjlPAoGBAJ1k/FIABWv66t8QKq81\\n0ZgTsTFY1xQGMYY9ue6vUdA4PGaZHC50IH8CmJs9uLtQyqoJ9qfGhaS8sEEv5X4i\\nrO8gk1BtKAFnsH79iDD4LccVKYaXyL4djFgppf+w7glAfwhZBPv/HXQDL4TJ8A4Q\\nlYxSmWX5lzuX5VcLd65sDGvj\\n",
+        "scopes": "https://www.googleapis.com/auth/calendar\nhttps://www.googleapis.com/auth/calendar.readonly"
+    },
+    {
+        "id": "131866e8.98a339",
+        "type": "google-credentials",
+        "z": "",
+        "displayName": ""
+    },
+    {
+        "id": "134475e8.1bfe0a",
+        "type": "google-conn",
+        "z": "",
+        "name": "Google",
+        "key": "",
+        "scopes": ""
+    },
+    {
+        "id": "7ef58e01.1ed59",
+        "type": "google-conn",
+        "z": "",
+        "name": "Googledsfsdf",
+        "key": "-----BEGIN PRIVATE KEY-----\\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCl5KgOBs0Id7pL\\ngAuuoakEfnLEbeALS4A+tFaoGFfnzouc+yrMFecd1hvHpM9Kx9q7MMtRIyn5E2jW\\nBcCLiuNX7272gwCAVrIw7OLQ/825roEf1zjXyTokJM5UZyxG1XzKTX8z1WWTgiQl\\nlIRyImzrrkYGWr5JBPsPA4c3jsBiGsnuQ7THAL39qAAYkkD7PJ+Dk6EnX5VBvK1m\\n9pgXFramzQOQ+HUn/Eq/lU2ARLfK+ZtxqI/ZR8ZHkVmULqVdzBcwy5tRKS7OHnCi\\n6U3MfwrH5K1WWW/c0GWVLSO9e4GzDDWxWSQk8EArx7VfnEgG0GEWFETEkQ8WTS50\\nnvgpPxVVAgMBAAECggEAGrmxkUDrOxf+vTcNqr6EeiLc3mRNGcS6DmADLeVuE/wk\\nZc/Y3zQQHbBmnU0h0AxOYqXDu3iMxIGp/ADFOjXP1lTObYxBQmu1HUisabssK2O/\\njZ+gmrLiWPxM+S/95BN0nSrK+VDBonfu1tcMV07QeU+EHHX1/dF9mLeaywqGV8dy\\nkdBUuTOFJRpjaEU7viRRKBXxTpokZy0RCTrsgwOBedGsueQou2JK1YnAhI3wOPWn\\nc+KgNt+dM6QnUPdvSUNwu2CFSQejhVWUBrj00oZDrSFmpVv7NW5VxpMPqT0C0Lpa\\nkU9s1JgBdBSGCjW0CHb/FbFFhuuNYUs3Y3ei7lPOKQKBgQDYcrHE2NG2GzSKI6vh\\nInQ+Kdo/hbc+vNjvQI45XQcngNQLdsiSunfh9nY9jjWFa5AA2pVhL0nXjdBKfJoj\\nd/fRNuoI3w8U2UD9etGh6wE4QzzuSIqLkhm/jfTRVYUYqKTnJ7a7TBd9+GFmnOJ3\\nOFMmkvsWcsUbbqywujGSoe4ObwKBgQDENQm0V7NpPtftk1B6oXMYpe4b7q3wW9P6\\nIUSvRuMUCdFu7Fa2jUGH39nPu2VBPRTsXLwVpztfZTI4hwBNs4X0obyzVeeOqHXV\\nZfJwZCgUfBgcxkOm0M9/KZT9ADeulmChtopBkQG8Iw7F5IhMH3MB2rfru4k3ejjX\\nw9vbOXc6ewKBgApyRqgkesKaP4fnPtVnz0psxK7KKlTp0mKBsBuOpNjAO/utqPKD\\n82NBfOVtpqGg1ltkMU92c87mdkYSC3JoyNodF2CEO3sbHSresZ1p9S4c+KTbdWxV\\nCc8X79fmk7zj7smFPil9+6hFw5WrPrbYThMPhvTHZ0Hyrnz9D4VvMUkbAoGAIcwl\\nDMyimfl6RnE+xrDy24cRmfwmOCYJQKfkZfDnAreiPOI3GaEBbb9QjKjyCyfTZ9ed\\ninlRD+ClovkWQ0wuQfJuR9H/XiKEkarK9TM7eDPcD3DTjHOhmnz2LhKQhOFgadrA\\nvASXcOn1DH+OPtaX//TGA7Q9MbI7Ame5gmzGresCgYAONPmcfEZPYsc1VgkloI7z\\nG3N1bFWgv0Nj7oUJ/vcQAkXJXZBQbCB9qYNNsxriF8UHPhg/m0lS+WfXxtTd5eDg\\n/S89oZCECS+7713GA8IShoY2xyJSB9Dxhdr1LHQT6oB84WSDaubG1gb62KKbJLTj\\nZN2b5hRr4IIfJFfWs2tuIQ==\\n-----END PRIVATE KEY-----",
+        "scopes": "\nhttps://www.googleapis.com/auth/calendar\nhttps://www.googleapis.com/auth/calendar.readonly"
+    },
+    {
         "id": "a2287ef.3c7478",
         "type": "function",
         "z": "6b628289.79f0ac",
@@ -784,29 +814,6 @@
         ]
     },
     {
-        "id": "58e62f21.3b307",
-        "type": "delay",
-        "z": "b7b775e0.9589b8",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "2",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 1110,
-        "y": 60,
-        "wires": [
-            [
-                "793017a8.a454b8"
-            ]
-        ]
-    },
-    {
         "id": "aa3b7054.595ec",
         "type": "http response",
         "z": "b7b775e0.9589b8",
@@ -907,21 +914,6 @@
                 "70ead7f9.ddaf18"
             ]
         ]
-    },
-    {
-        "id": "793017a8.a454b8",
-        "type": "cloudant out",
-        "z": "b7b775e0.9589b8",
-        "name": "insert profile",
-        "cloudant": "8ab126de.c9de68",
-        "database": "profiles",
-        "service": "_ext_",
-        "payonly": true,
-        "operation": "insert",
-        "successOutput": false,
-        "x": 1330,
-        "y": 60,
-        "wires": []
     },
     {
         "id": "a4098363.5310c",
@@ -2777,7 +2769,7 @@
         "field": "payload",
         "fieldType": "msg",
         "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Owntracks & Node-Red Live Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n \n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n \n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://192.168.1.6:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        lat: -12.043333,\n        lng: -77.028333\n      });\n      \n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[el.lat, el.lng]];\n\t\t\t});\n        \n        map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(17);\n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#131540',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script>\n</body>\n</html>",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Owntracks & Node-Red Live Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n \n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n \n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://192.168.1.6:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        lat: 32.043333,\n        lng: -95.028333\n      });\n      \n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[el.lat, el.lng]];\n\t\t\t});\n        \n        map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(17);\n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#131540',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script>\n</body>\n</html>",
         "x": 1593,
         "y": 311,
         "wires": [
@@ -4175,8 +4167,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": "",
-        "x": 200,
-        "y": 1580,
+        "x": 190,
+        "y": 1300,
         "wires": [
             [
                 "e32b72a6.b4afc"
@@ -4194,8 +4186,8 @@
         "search": "_id_",
         "design": "",
         "index": "",
-        "x": 560,
-        "y": 1580,
+        "x": 550,
+        "y": 1300,
         "wires": [
             [
                 "9b16fd0f.b0e45"
@@ -4210,8 +4202,8 @@
         "active": true,
         "console": "false",
         "complete": "false",
-        "x": 980,
-        "y": 1580,
+        "x": 970,
+        "y": 1300,
         "wires": []
     },
     {
@@ -4226,8 +4218,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": "",
-        "x": 220,
-        "y": 1620,
+        "x": 210,
+        "y": 1340,
         "wires": [
             [
                 "e32b72a6.b4afc"
@@ -4246,8 +4238,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": "",
-        "x": 200,
-        "y": 1660,
+        "x": 190,
+        "y": 1380,
         "wires": [
             [
                 "e32b72a6.b4afc"
@@ -4265,8 +4257,8 @@
         "search": "_idx_",
         "design": "history",
         "index": "history",
-        "x": 780,
-        "y": 1680,
+        "x": 770,
+        "y": 1400,
         "wires": [
             [
                 "cc81ccdf.25808"
@@ -4281,8 +4273,8 @@
         "func": "\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 380,
-        "y": 1620,
+        "x": 370,
+        "y": 1340,
         "wires": [
             [
                 "5fdfb1c4.916a4",
@@ -4298,8 +4290,8 @@
         "active": true,
         "console": "false",
         "complete": "true",
-        "x": 960,
-        "y": 1680,
+        "x": 950,
+        "y": 1400,
         "wires": []
     },
     {
@@ -4310,8 +4302,8 @@
         "func": "msg.payload = { query:\"name:\" + msg.payload + \"*\",\n    \"limit\": \"20\",\n    \"sort\": \"-seqnum\"\n };\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 590,
-        "y": 1680,
+        "x": 580,
+        "y": 1400,
         "wires": [
             [
                 "6b341bba.c977b4"
@@ -4324,8 +4316,8 @@
         "z": "5d4e82a1.6b341c",
         "name": "test queries",
         "info": "",
-        "x": 200,
-        "y": 1540,
+        "x": 190,
+        "y": 1260,
         "wires": []
     },
     {
@@ -4334,8 +4326,8 @@
         "z": "5d4e82a1.6b341c",
         "name": "current register",
         "info": "",
-        "x": 710,
-        "y": 1600,
+        "x": 700,
+        "y": 1320,
         "wires": []
     },
     {
@@ -4344,8 +4336,8 @@
         "z": "5d4e82a1.6b341c",
         "name": "history array",
         "info": "array of most recent register values,\nin descending order",
-        "x": 700,
-        "y": 1640,
+        "x": 690,
+        "y": 1360,
         "wires": []
     },
     {
@@ -4357,7 +4349,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 270,
+        "x": 280,
         "y": 1160,
         "wires": [
             [
@@ -4373,8 +4365,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1080,
-        "y": 1155,
+        "x": 1490,
+        "y": 1160,
         "wires": []
     },
     {
@@ -4388,12 +4380,12 @@
         "search": "_id_",
         "design": "",
         "index": "",
-        "x": 680,
+        "x": 690,
         "y": 1155,
         "wires": [
             [
                 "a32d8f2b.f6b01",
-                "35242f1a.c9c78"
+                "4e647c86.1e9bf4"
             ]
         ]
     },
@@ -4408,10 +4400,12 @@
         "syntax": "mustache",
         "template": "\n    {{#payload}}\n    {{value}}\n    {{/payload}}\n",
         "output": "str",
-        "x": 930,
+        "x": 1020,
         "y": 1120,
         "wires": [
-            []
+            [
+                "b2e08827.720ea8"
+            ]
         ]
     },
     {
@@ -4419,10 +4413,10 @@
         "type": "function",
         "z": "5d4e82a1.6b341c",
         "name": "list",
-        "func": "//get list of currently registered values\nvar regs = global.get(\"registers\");\nvar devs = global.get(\"devices\");\nvar chk = [];\nfor( var r of regs){\n   for ( var d of devs) {\n        chk.push(r + \"@\" + d);\n   }\n}\nnode.warn(devs);\nmsg.payload = chk;\nreturn msg;",
+        "func": "//get list of currently registered values\nvar regs = global.get(\"registers\");\nvar devs = global.get(\"devices\");\nvar chk = [];\nfor( var r of regs){\n   for ( var d of devs) {\n        chk.push(r + \"@\" + d);\n   }\n}\n// node.warn(devs);\nmsg.payload = chk;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 440,
+        "x": 450,
         "y": 1155,
         "wires": [
             [
@@ -4441,7 +4435,7 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 560,
+        "x": 570,
         "y": 1155,
         "wires": [
             [
@@ -4469,7 +4463,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 800,
+        "x": 830,
         "y": 1120,
         "wires": [
             [
@@ -4485,7 +4479,7 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 800,
+        "x": 810,
         "y": 1215,
         "wires": []
     },
@@ -4497,7 +4491,7 @@
         "active": false,
         "console": "false",
         "complete": "true",
-        "x": 440,
+        "x": 450,
         "y": 1215,
         "wires": []
     },
@@ -4513,15 +4507,19 @@
         "key": "topic",
         "joiner": "\\n",
         "joinerType": "str",
-        "accumulate": "false",
+        "accumulate": false,
         "timeout": "",
         "count": "",
         "reduceRight": false,
-        "x": 860,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1030,
         "y": 1160,
         "wires": [
             [
-                "b2e08827.720ea8"
+                "b305c14.dbdd34"
             ]
         ]
     },
@@ -4532,7 +4530,7 @@
         "name": "",
         "server": "a56be3a0.bbc3e",
         "client": "",
-        "x": 1260,
+        "x": 1540,
         "y": 220,
         "wires": []
     },
@@ -4607,6 +4605,660 @@
         "y": 180,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "4e647c86.1e9bf4",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "func": "msg.payload = {\n    \"geometry\": msg.payload.d.loc,\n    \"type\": \"Feature\",\n    \"properties\": {\"user\": msg.payload.d.assigned_to.username}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 890,
+        "y": 1160,
+        "wires": [
+            [
+                "35242f1a.c9c78"
+            ]
+        ]
+    },
+    {
+        "id": "b305c14.dbdd34",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "func": "// node.warn(msg)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1170,
+        "y": 1200,
+        "wires": [
+            [
+                "b2e08827.720ea8"
+            ]
+        ]
+    },
+    {
+        "id": "68f575f8.09b4fc",
+        "type": "template",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Owntracks & Node-Red Live Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n \n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n \n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://192.168.1.6:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        lat: 32.043333,\n        lng: -95.028333\n      });\n      \n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[el.lat, el.lng]];\n\t\t\t});\n        \n        map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(13);\n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#131540',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script>\n</body>\n</html>",
+        "x": 1420,
+        "y": 420,
+        "wires": [
+            [
+                "6b6c6970.351248"
+            ]
+        ]
+    },
+    {
+        "id": "6b6c6970.351248",
+        "type": "http response",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "x": 1604,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "cb5f3c1c.7ae92",
+        "type": "http in",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "url": "/map",
+        "method": "get",
+        "x": 1199,
+        "y": 425,
+        "wires": [
+            [
+                "68f575f8.09b4fc"
+            ]
+        ]
+    },
+    {
+        "id": "53f4889d.f20148",
+        "type": "inject",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "405",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 1660,
+        "wires": [
+            [
+                "b79136b1.384f88"
+            ]
+        ]
+    },
+    {
+        "id": "b79136b1.384f88",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "func": "var string = '-95.265071,32.306508 -95.266221,32.306464 -95.266389,32.306456 -95.266508,32.306449 -95.266633,32.306437 -95.26716,32.306385 -95.267778,32.307752 -95.268067,32.308375 -95.268241,32.308701 -95.268425,32.309019 -95.268503,32.309154 -95.268648,32.309372 -95.268823,32.309633 -95.269213,32.310148 -95.269839,32.310949 -95.27036,32.311616 -95.270735,32.312098 -95.270512,32.312182 -95.269773,32.312478 -95.269643,32.31253 -95.269455,32.312607 -95.269245,32.312692 -95.269015,32.312786 -95.26898,32.312805 -95.268804,32.312899 -95.268133,32.313274 -95.267811,32.313524 -95.267724,32.313419 -95.267656,32.313347 -95.267587,32.31327 -95.267507,32.313165 -95.267428,32.313062 -95.267027,32.312439 -95.266695,32.311957 -95.266649,32.311904 -95.266606,32.311855 -95.266549,32.311804 -95.266477,32.311747 -95.266435,32.311716 -95.266389,32.311687 -95.266343,32.311664 -95.266288,32.311638 -95.266226,32.311611 -95.266136,32.311579 -95.266059,32.311557 -95.265987,32.311543 -95.265919,32.311531 -95.265843,32.311524 -95.265748,32.31152 -95.26563,32.311519 -95.264384,32.311525 -95.262457,32.311528 -95.262412,32.311528 -95.262457,32.311528 -95.263036,32.311527 -95.262457,32.311528 -95.260775,32.311536 -95.260376,32.311535 -95.259621,32.311541 -95.258347,32.311541 -95.258338,32.309365 -95.258342,32.308698 -95.258341,32.307414 -95.258343,32.307116 -95.259314,32.30689 -95.259511,32.306847 -95.259637,32.30682 -95.259779,32.306795 -95.260042,32.30675 -95.260295,32.306713 -95.260462,32.306692 -95.260687,32.306671 -95.26093,32.306658 -95.261072,32.306653 -95.261948,32.30662 -95.262257,32.306607 -95.262637,32.306596 -95.263224,32.306574 -95.263729,32.306559 -95.265071,32.306508 '\nvar sTring = '-95.265071,32.306508 -95.266221,32.306464 -95.266389,32.306456 -95.266508,32.306449 -95.266633,32.306437 -95.26716,32.306385 -95.267778,32.307752 -95.268067,32.308375 -95.268241,32.308701 -95.268425,32.309019 -95.268503,32.309154 -95.268648,32.309372 -95.268823,32.309633 -95.269213,32.310148 -95.269839,32.310949 -95.27036,32.311616 -95.270735,32.312098 -95.270512,32.312182 -95.269773,32.312478 -95.269643,32.31253 -95.269455,32.312607 -95.269245,32.312692 -95.269015,32.312786 -95.26898,32.312805 -95.268804,32.312899 -95.268133,32.313274 -95.267811,32.313524 -95.267724,32.313419 -95.267656,32.313347 -95.267587,32.31327 -95.267507,32.313165 -95.267428,32.313062 -95.267027,32.312439 -95.266695,32.311957 -95.266649,32.311904 -95.266606,32.311855 -95.266549,32.311804 -95.266477,32.311747 -95.266435,32.311716 -95.266389,32.311687 -95.266343,32.311664 -95.266288,32.311638 -95.266226,32.311611 -95.266136,32.311579 -95.266059,32.311557 -95.265987,32.311543 -95.265919,32.311531 -95.265843,32.311524 -95.265748,32.31152 -95.26563,32.311519 -95.264384,32.311525 -95.262457,32.311528 -95.262412,32.311528 -95.260775,32.311536 -95.260376,32.311535 -95.259621,32.311541 -95.258347,32.311541 -95.257526,32.311545 -95.257066,32.311553 -95.256838,32.311559 -95.256612,32.311567 -95.256338,32.311578 -95.256143,32.311588 -95.255926,32.311604 -95.255705,32.31162 -95.255492,32.311636 -95.255244,32.311657 -95.25471,32.311712 -95.254365,32.311754 -95.25409,32.311787 -95.253754,32.311833 -95.253487,32.31187 -95.253013,32.311948 -95.252211,32.312088 -95.250378,32.312416 -95.248511,32.312746 -95.245084,32.313355 -95.245291,32.313561 -95.246132,32.314527 -95.24656,32.315012 -95.247244,32.315795 -95.247494,32.31608 -95.247701,32.316327 -95.248043,32.316743 -95.248251,32.316981 -95.248342,32.317085 -95.248562,32.31734 -95.248642,32.317429 -95.248715,32.317508 -95.24882,32.317618 -95.248164,32.318002 -95.248005,32.31782 -95.247841,32.317646 -95.247755,32.317601 -95.247708,32.317595 -95.247708,32.31724 -95.247692,32.317171 -95.247644,32.317136 -95.247576,32.317126 -95.247252,32.317125 -95.247576,32.317126 -95.247644,32.317136 -95.247692,32.317171 -95.247708,32.31724 -95.247708,32.317595 -95.247755,32.317601 -95.247841,32.317646 -95.248005,32.31782 -95.248164,32.318002 -95.24882,32.317618 -95.248715,32.317508 -95.248642,32.317429 -95.248562,32.31734 -95.248342,32.317085 -95.248251,32.316981 -95.248043,32.316743 -95.247701,32.316327 -95.247494,32.31608 -95.247244,32.315795 -95.24656,32.315012 -95.246132,32.314527 -95.245291,32.313561 -95.245084,32.313355 -95.248511,32.312746 -95.250378,32.312416 -95.252211,32.312088 -95.253013,32.311948 -95.253487,32.31187 -95.253754,32.311833 -95.25409,32.311787 -95.254365,32.311754 -95.25471,32.311712 -95.255244,32.311657 -95.255492,32.311636 -95.255705,32.31162 -95.255926,32.311604 -95.256143,32.311588 -95.256338,32.311578 -95.256612,32.311567 -95.256838,32.311559 -95.257066,32.311553 -95.257526,32.311545 -95.258347,32.311541 -95.258338,32.309365 -95.258342,32.308698 -95.258341,32.307414 -95.258343,32.307116 -95.259314,32.30689 -95.259511,32.306847 -95.259637,32.30682 -95.259779,32.306795 -95.260042,32.30675 -95.260295,32.306713 -95.260462,32.306692 -95.260687,32.306671 -95.26093,32.306658 -95.261072,32.306653 -95.261948,32.30662 -95.262257,32.306607 -95.262637,32.306596 -95.263224,32.306574 -95.263729,32.306559 -95.265071,32.306508 '\n\n\nvar arr = string.split(' ')\nvar list = []\nvar t = 1\nfor(var _p of arr){\n    var point = _p.split(',')\n    var json = {\n    \"latlng\": [\n        point[1],\n        point[0]\n    ],\n    \"locationupdate\": [\n        \"j.chance\",\n        point[0],\n        point[1],\n    ],\n    \"loc\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n           point[0],\n           point[1],\n        ]\n    },\n    \"alt\": 0,\n    \"acc\": 94,\n    \"batt\": 77,\n    \"conn\": null,\n    \"tid\": \"01\",\n    \"ts\": \"2018-06-13T19:07:4\"+t+\".000Z\",\n    \"lat\": point[1],\n    \"lng\": point[0],\n    \"assigned_to\": {\n        \"id\": 55,\n        \"username\": \"j.chance\"\n    }\n}\nlist.push(json)\nt++\n}\nnode.warn(list[5])\n// var json = {\n//     \"latlng\": [\n//         lat,\n//         32.3173912\n//     ],\n//     \"locationupdate\": [\n//         \"j.chance\",\n//         -95.2474154,\n//         32.3173912\n//     ],\n//     \"loc\": {\n//         \"type\": \"Point\",\n//         \"coordinates\": [\n//             -95.2474154,\n//             32.3173912\n//         ]\n//     },\n//     \"alt\": 0,\n//     \"acc\": 94,\n//     \"batt\": 77,\n//     \"conn\": null,\n//     \"tid\": \"01\",\n//     \"ts\": \"2018-06-13T19:07:45.000Z\",\n//     \"lat\": 32.3173912,\n//     \"lng\": -95.2474154,\n//     \"assigned_to\": {\n//         \"id\": 55,\n//         \"username\": \"j.chance\"\n//     }\n// }\nmsg.payload = list\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 1660,
+        "wires": [
+            [
+                "6d0a19d.9e126e8"
+            ]
+        ]
+    },
+    {
+        "id": "6d0a19d.9e126e8",
+        "type": "split",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 430,
+        "y": 1660,
+        "wires": [
+            [
+                "14d40997.9e1646"
+            ]
+        ]
+    },
+    {
+        "id": "236e819d.01ee6e",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "func": "var p = {\n    \"geometry\": msg.payload.loc,\n    \"type\": \"Feature\",\n    \"properties\": {\"title\": msg.payload.assigned_to.username, \"icon\": \"monument\"}\n}\n// var currentLoc = {}\n\n// currentLoc.loc = msg.payload\n// currentLoc.id = 'Tab01'\nglobal.set('dummydata_Tab01', p)\n\nreturn msg;\n\n ",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 1720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dd4b33f4.a0e41",
+        "type": "http in",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "url": "/api/mockroute/:id",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 1560,
+        "wires": [
+            [
+                "a63e5fd.8dcaca"
+            ]
+        ]
+    },
+    {
+        "id": "e34278eb.113498",
+        "type": "http response",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "14d40997.9e1646",
+        "type": "delay",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 340,
+        "y": 1720,
+        "wires": [
+            [
+                "236e819d.01ee6e"
+            ]
+        ]
+    },
+    {
+        "id": "288e03aa.52f08c",
+        "type": "inject",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "405",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 1800,
+        "wires": [
+            [
+                "e8d64dd7.91e55"
+            ]
+        ]
+    },
+    {
+        "id": "e8d64dd7.91e55",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "func": "var string = '-95.247448,32.317126 -95.247576,32.317126 -95.247644,32.317136 -95.247692,32.317171 -95.247708,32.31724 -95.247708,32.317595 -95.247755,32.317601 -95.247841,32.317646 -95.248005,32.31782 -95.248164,32.318002 -95.24882,32.317618 -95.248715,32.317508 -95.248642,32.317429 -95.248562,32.31734 -95.248342,32.317085 -95.248251,32.316981 -95.248043,32.316743 -95.247701,32.316327 -95.247494,32.31608 -95.247244,32.315795 -95.24656,32.315012 -95.246132,32.314527 -95.245291,32.313561 -95.245084,32.313355 -95.248511,32.312746 -95.250378,32.312416 -95.252211,32.312088 -95.253013,32.311948 -95.253487,32.31187 -95.253754,32.311833 -95.25409,32.311787 -95.254365,32.311754 -95.25471,32.311712 -95.255244,32.311657 -95.255492,32.311636 -95.255705,32.31162 -95.255926,32.311604 -95.256143,32.311588 -95.256338,32.311578 -95.256612,32.311567 -95.256838,32.311559 -95.257066,32.311553 -95.257526,32.311545 -95.258347,32.311541 -95.259621,32.311541 -95.260376,32.311535 -95.260775,32.311536 -95.262412,32.311528 -95.262423,32.311528 -95.260775,32.311536 -95.260376,32.311535 -95.259621,32.311541 -95.258347,32.311541 -95.257526,32.311545 -95.257066,32.311553 -95.256838,32.311559 -95.256612,32.311567 -95.256338,32.311578 -95.256143,32.311588 -95.255926,32.311604 -95.255705,32.31162 -95.255492,32.311636 -95.255244,32.311657 -95.25471,32.311712 -95.254365,32.311754 -95.25409,32.311787 -95.253754,32.311833 -95.253487,32.31187 -95.253013,32.311948 -95.252211,32.312088 -95.250378,32.312416 -95.248511,32.312746 -95.245084,32.313355 -95.245291,32.313561 -95.246132,32.314527 -95.24656,32.315012 -95.247244,32.315795 -95.247494,32.31608 -95.247701,32.316327 -95.248043,32.316743 -95.248251,32.316981 -95.248342,32.317085 -95.248562,32.31734 -95.248642,32.317429 -95.248715,32.317508 -95.24882,32.317618 -95.248164,32.318002 -95.248005,32.31782 -95.247841,32.317646 -95.247755,32.317601 -95.247708,32.317595 -95.247708,32.31724 -95.247692,32.317171 -95.247644,32.317136 -95.247576,32.317126 -95.247448,32.317126 '\nvar arr = string.split(' ')\nvar list = []\nvar t = 1\nfor(var _p of arr){\n    var point = _p.split(',')\n    var json = {\n    \"latlng\": [\n        point[1],\n        point[0]\n    ],\n    \"locationupdate\": [\n        \"j.chance\",\n        point[0],\n        point[1],\n    ],\n    \"loc\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n           point[0],\n           point[1],\n        ]\n    },\n    \"alt\": 0,\n    \"acc\": 94,\n    \"batt\": 77,\n    \"conn\": null,\n    \"tid\": \"01\",\n    \"ts\": \"2018-06-13T19:07:4\"+t+\".000Z\",\n    \"lat\": point[1],\n    \"lng\": point[0],\n    \"assigned_to\": {\n        \"id\": 55,\n        \"username\": \"ash\"\n    }\n}\nlist.push(json)\nt++\n}\nnode.warn(list[5])\n// var json = {\n//     \"latlng\": [\n//         lat,\n//         32.3173912\n//     ],\n//     \"locationupdate\": [\n//         \"j.chance\",\n//         -95.2474154,\n//         32.3173912\n//     ],\n//     \"loc\": {\n//         \"type\": \"Point\",\n//         \"coordinates\": [\n//             -95.2474154,\n//             32.3173912\n//         ]\n//     },\n//     \"alt\": 0,\n//     \"acc\": 94,\n//     \"batt\": 77,\n//     \"conn\": null,\n//     \"tid\": \"01\",\n//     \"ts\": \"2018-06-13T19:07:45.000Z\",\n//     \"lat\": 32.3173912,\n//     \"lng\": -95.2474154,\n//     \"assigned_to\": {\n//         \"id\": 55,\n//         \"username\": \"j.chance\"\n//     }\n// }\nmsg.payload = list\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 1800,
+        "wires": [
+            [
+                "43b0b6fd.793fb8"
+            ]
+        ]
+    },
+    {
+        "id": "43b0b6fd.793fb8",
+        "type": "split",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 430,
+        "y": 1800,
+        "wires": [
+            [
+                "1e7a2419.0d357c"
+            ]
+        ]
+    },
+    {
+        "id": "eac7c4c1.74ef98",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "func": "var p = {\n    \"geometry\": msg.payload.loc,\n    \"type\": \"Feature\",\n    \"properties\": {\"title\": msg.payload.assigned_to.username, \"icon\": \"monument\"}\n}\n// var currentLoc = {}\n\n// currentLoc.loc = msg.payload\n// currentLoc.id = 'Tab01'\nglobal.set('dummydata_Tab02', p)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 1860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1e7a2419.0d357c",
+        "type": "delay",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 340,
+        "y": 1860,
+        "wires": [
+            [
+                "eac7c4c1.74ef98"
+            ]
+        ]
+    },
+    {
+        "id": "a63e5fd.8dcaca",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "func": "var id = msg.req.params.id;\n\nvar p1 = global.get('dummydata_Tab01')\nvar p2 = global.get('dummydata_Tab02')\nvar arr = []\n\narr.push(p1)\narr.push(p2)\nmsg.payload = arr[id]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 1560,
+        "wires": [
+            [
+                "6cfe9646.e2b988"
+            ]
+        ]
+    },
+    {
+        "id": "6cfe9646.e2b988",
+        "type": "json",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 590,
+        "y": 1560,
+        "wires": [
+            [
+                "e34278eb.113498"
+            ]
+        ]
+    },
+    {
+        "id": "4ce4b3ed.1d48ec",
+        "type": "http in",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "url": "/api/mockroute/",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 1520,
+        "wires": [
+            [
+                "99fe0deb.98bc4"
+            ]
+        ]
+    },
+    {
+        "id": "dc2c5dcc.90547",
+        "type": "http response",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "99fe0deb.98bc4",
+        "type": "function",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "func": "var id = msg.req.params.id;\n\nvar p1 = global.get('dummydata_Tab01')\nvar p2 = global.get('dummydata_Tab02')\nvar arr = []\n\narr.push(p1)\narr.push(p2)\nmsg.payload = arr\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 1520,
+        "wires": [
+            [
+                "75731172.f90ab"
+            ]
+        ]
+    },
+    {
+        "id": "75731172.f90ab",
+        "type": "json",
+        "z": "5d4e82a1.6b341c",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 590,
+        "y": 1520,
+        "wires": [
+            [
+                "dc2c5dcc.90547"
+            ]
+        ]
+    },
+    {
+        "id": "766ceb06.ccddc4",
+        "type": "google",
+        "z": "46ce32e3.d88f6c",
+        "name": "adsf",
+        "google": "abf6c429.cc6e68",
+        "api": "calendar:v3",
+        "operation": "events.list",
+        "x": 530,
+        "y": 1920,
+        "wires": [
+            [
+                "e80df207.edd53"
+            ]
+        ]
+    },
+    {
+        "id": "b1942943.ed00f8",
+        "type": "inject",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "topic": "",
+        "payload": "andrewscarpetcleaning.com_hql90ovvmj58uil7c2ks1qpdp8@group.calendar.google.com",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 340,
+        "y": 1920,
+        "wires": [
+            [
+                "766ceb06.ccddc4",
+                "9f7ab0f4.36cf2",
+                "27e769fd.25f736",
+                "9b34daa2.f50268"
+            ]
+        ]
+    },
+    {
+        "id": "9f7ab0f4.36cf2",
+        "type": "google",
+        "z": "46ce32e3.d88f6c",
+        "name": "asdf",
+        "google": "7ef58e01.1ed59",
+        "api": "servicemanagement:v1",
+        "operation": "",
+        "x": 500,
+        "y": 2060,
+        "wires": [
+            [
+                "e80df207.edd53"
+            ]
+        ]
+    },
+    {
+        "id": "e80df207.edd53",
+        "type": "debug",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 940,
+        "y": 2080,
+        "wires": []
+    },
+    {
+        "id": "c88796fb.4375c8",
+        "type": "inject",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "topic": "",
+        "payload": "Tennis practice at 5pm",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 230,
+        "y": 2060,
+        "wires": [
+            [
+                "9f7ab0f4.36cf2",
+                "766ceb06.ccddc4",
+                "27e769fd.25f736",
+                "9b34daa2.f50268"
+            ]
+        ]
+    },
+    {
+        "id": "ea3b5c1e.3e294",
+        "type": "google calendar in",
+        "z": "46ce32e3.d88f6c",
+        "google": "131866e8.98a339",
+        "name": "ash",
+        "calendar": "andrewscarpetcleaning.com_hql90ovvmj58uil7c2ks1qpdp8@group.calendar.google.com",
+        "offsetType": "at",
+        "offsetFrom": "start",
+        "offset": "10",
+        "offsetUnits": "minutes",
+        "x": 640,
+        "y": 2280,
+        "wires": [
+            [
+                "e80df207.edd53"
+            ]
+        ]
+    },
+    {
+        "id": "27e769fd.25f736",
+        "type": "google calendar out",
+        "z": "46ce32e3.d88f6c",
+        "google": "131866e8.98a339",
+        "name": "nate",
+        "calendar": "andrewscarpetcleaning.com_hql90ovvmj58uil7c2ks1qpdp8@group.calendar.google.com",
+        "x": 500,
+        "y": 2200,
+        "wires": []
+    },
+    {
+        "id": "90c39aa6.ed7b28",
+        "type": "inject",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "topic": "",
+        "payload": "carpet cleaning job tomorrow at 3pm",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 220,
+        "y": 2160,
+        "wires": [
+            [
+                "27e769fd.25f736",
+                "9f7ab0f4.36cf2",
+                "766ceb06.ccddc4",
+                "9b34daa2.f50268"
+            ]
+        ]
+    },
+    {
+        "id": "7c7ced82.8b7ea4",
+        "type": "google calendar in",
+        "z": "46ce32e3.d88f6c",
+        "google": "131866e8.98a339",
+        "name": "nate",
+        "calendar": "andrewscarpetcleaning.com_hql90ovvmj58uil7c2ks1qpdp8@group.calendar.google.com",
+        "offsetType": "at",
+        "offsetFrom": "start",
+        "offset": "10",
+        "offsetUnits": "minutes",
+        "x": 660,
+        "y": 2160,
+        "wires": [
+            [
+                "e80df207.edd53"
+            ]
+        ]
+    },
+    {
+        "id": "9b34daa2.f50268",
+        "type": "google calendar out",
+        "z": "46ce32e3.d88f6c",
+        "google": "131866e8.98a339",
+        "name": "ash",
+        "calendar": "andrewscarpetcleaning.com_hql90ovvmj58uil7c2ks1qpdp8@group.calendar.google.com",
+        "x": 430,
+        "y": 2300,
+        "wires": []
+    },
+    {
+        "id": "50ad506c.1960a",
+        "type": "inject",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 230,
+        "y": 2300,
+        "wires": [
+            [
+                "9b34daa2.f50268",
+                "9f7ab0f4.36cf2"
+            ]
+        ]
+    },
+    {
+        "id": "8cf23992.6174f8",
+        "type": "iot-datasource",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "tstampField": "",
+        "dataField": "",
+        "disableDiscover": false,
+        "x": 1540,
+        "y": 1340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e42e550.da8b08",
+        "type": "inject",
+        "z": "46ce32e3.d88f6c",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "x": 1390,
+        "y": 1180,
+        "wires": [
+            [
+                "c50c1697.2894c8"
+            ]
+        ]
+    },
+    {
+        "id": "c50c1697.2894c8",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "Random Data",
+        "func": "var now = ( new Date() ).getTime();\nvar value = Math.floor( Math.random() * 100 );\nmsg.payload = {\n    tstamp: now,\n    data: value\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1632,
+        "y": 1180,
+        "wires": [
+            [
+                "10d16339.54c51d"
+            ]
+        ]
+    },
+    {
+        "id": "10d16339.54c51d",
+        "type": "iot-datasource",
+        "z": "46ce32e3.d88f6c",
+        "name": "Random Datasource",
+        "tstampField": "",
+        "dataField": "",
+        "disableDiscover": false,
+        "x": 1921,
+        "y": 1180,
+        "wires": [
+            [
+                "29ea681b.3659d8"
+            ]
+        ]
+    },
+    {
+        "id": "29ea681b.3659d8",
+        "type": "function",
+        "z": "46ce32e3.d88f6c",
+        "name": "Random History",
+        "func": "// Get request timestamps\nvar start = msg.payload.start;\nvar end = msg.payload.end;\n\nvar data = [];\nfor( var ts = start; ts < end; ts += 1000 )\n{\n    var value = Math.floor( Math.random() * 100 );\n    data.push( {\n        tstamp: ts,\n        data: value\n    } );\n}\nmsg.payload = data;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1917,
+        "y": 1283,
+        "wires": [
+            [
+                "10d16339.54c51d"
+            ]
         ]
     }
 ]

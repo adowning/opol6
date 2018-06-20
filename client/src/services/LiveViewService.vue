@@ -1,17 +1,15 @@
 <script>
-  import Vue from 'vue'
-  // import { API_GATEWAY_ENDPOINT } from '../globals/resources'
-  const url = 'http://localhost:1880'
+import Vue from 'vue'
 
-  export default {       
+export default {
     methods: {
-      getRegisters() {
-        return Vue.http.get(`/api/registersjson`).then((res) => {
-          return res.body
-        })
-      },
-    
+        getRegisters: function() {
+            return Vue.http.get('/api/registersjson').then((res) => {
+                return res.body
+            })
+        },
+
     }
-  }
+}
 </script>
 

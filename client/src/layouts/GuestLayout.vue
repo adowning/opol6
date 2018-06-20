@@ -11,11 +11,11 @@
 
 <script>
 export default {
-  name: "Guest",
-  data() {
-    return {
-      fixed: false
-    };
-  }
-};
+    name: 'Guest',
+    data: function() {
+        return {
+            fixed: false
+        }
+    }
+}
 </script>

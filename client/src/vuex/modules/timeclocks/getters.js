@@ -3,10 +3,10 @@
 // const loggedinusername = state => state.user.username
 
 export default {
-  isAuthenticated: state => {
-    return Boolean(state.user);
-  },
-  loggedinUser: state => {
-    return state.user;
-  }
-};
+    isAuthenticated: (state) => {
+        return Boolean(state.user)
+    },
+    loggedinUser: (state) => {
+        return state.user
+    }
+}

@@ -13,7 +13,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/analysis/72-sentiment.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/analysis/72-sentiment.js"
     },
     "inject": {
      "name": "inject",
@@ -23,7 +23,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/core/20-inject.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/core/20-inject.js"
     },
     "catch": {
      "name": "catch",
@@ -33,7 +33,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/core/25-catch.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/core/25-catch.js"
     },
     "status": {
      "name": "status",
@@ -43,7 +43,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/core/25-status.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/core/25-status.js"
     },
     "debug": {
      "name": "debug",
@@ -53,7 +53,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/core/58-debug.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/core/58-debug.js"
     },
     "link": {
      "name": "link",
@@ -64,7 +64,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/core/60-link.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/core/60-link.js"
     },
     "function": {
      "name": "function",
@@ -74,7 +74,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/core/80-function.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/core/80-function.js"
     },
     "template": {
      "name": "template",
@@ -84,7 +84,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/core/80-template.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/core/80-template.js"
     },
     "delay": {
      "name": "delay",
@@ -94,7 +94,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/core/89-delay.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/core/89-delay.js"
     },
     "trigger": {
      "name": "trigger",
@@ -104,7 +104,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/core/89-trigger.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/core/89-trigger.js"
     },
     "comment": {
      "name": "comment",
@@ -114,7 +114,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/core/90-comment.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/core/90-comment.js"
     },
     "unknown": {
      "name": "unknown",
@@ -124,7 +124,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/core/98-unknown.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/core/98-unknown.js"
     },
     "tls": {
      "name": "tls",
@@ -134,7 +134,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/io/05-tls.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/io/05-tls.js"
     },
     "mqtt": {
      "name": "mqtt",
@@ -146,7 +146,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/io/10-mqtt.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/io/10-mqtt.js"
     },
     "httpin": {
      "name": "httpin",
@@ -157,7 +157,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/io/21-httpin.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/io/21-httpin.js"
     },
     "httprequest": {
      "name": "httprequest",
@@ -167,7 +167,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/io/21-httprequest.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/io/21-httprequest.js"
     },
     "websocket": {
      "name": "websocket",
@@ -180,7 +180,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/io/22-websocket.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/io/22-websocket.js"
     },
     "switch": {
      "name": "switch",
@@ -190,7 +190,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/logic/10-switch.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/logic/10-switch.js"
     },
     "change": {
      "name": "change",
@@ -200,7 +200,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/logic/15-change.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/logic/15-change.js"
     },
     "range": {
      "name": "range",
@@ -210,7 +210,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/logic/16-range.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/logic/16-range.js"
     },
     "split": {
      "name": "split",
@@ -221,7 +221,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/logic/17-split.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/logic/17-split.js"
     },
     "sort": {
      "name": "sort",
@@ -231,7 +231,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/logic/18-sort.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/logic/18-sort.js"
     },
     "batch": {
      "name": "batch",
@@ -241,7 +241,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/logic/19-batch.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/logic/19-batch.js"
     },
     "CSV": {
      "name": "CSV",
@@ -251,7 +251,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/parsers/70-CSV.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/parsers/70-CSV.js"
     },
     "HTML": {
      "name": "HTML",
@@ -261,7 +261,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/parsers/70-HTML.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/parsers/70-HTML.js"
     },
     "JSON": {
      "name": "JSON",
@@ -271,7 +271,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/parsers/70-JSON.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/parsers/70-JSON.js"
     },
     "XML": {
      "name": "XML",
@@ -281,7 +281,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/parsers/70-XML.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/parsers/70-XML.js"
     },
     "YAML": {
      "name": "YAML",
@@ -291,7 +291,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/nodes/core/parsers/70-YAML.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red/nodes/core/parsers/70-YAML.js"
     }
    }
   },
@@ -308,7 +308,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red-node-rbe",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/node_modules/node-red-node-rbe/rbe.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-rbe/rbe.js"
     }
    }
   },
@@ -326,7 +326,7 @@
      "enabled": true,
      "local": false,
      "module": "node-red-node-email",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/node_modules/node-red-node-email/61-email.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-email/61-email.js"
     }
    }
   },
@@ -343,13 +343,13 @@
      "enabled": true,
      "local": false,
      "module": "node-red-node-feedparser",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/node_modules/node-red-node-feedparser/32-feedparse.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-feedparser/32-feedparse.js"
     }
    }
   },
   "node-red-node-twitter": {
    "name": "node-red-node-twitter",
-   "version": "1.0.0",
+   "version": "1.0.1",
    "local": false,
    "nodes": {
     "twitter": {
@@ -362,41 +362,7 @@
      "enabled": false,
      "local": false,
      "module": "node-red-node-twitter",
-     "file": "/home/ash/.nvm/versions/node/v9.11.1/lib/node_modules/node-red/node_modules/node-red-node-twitter/27-twitter.js"
-    }
-   }
-  },
-  "node-red-contrib-parallel-iterator": {
-   "name": "node-red-contrib-parallel-iterator",
-   "version": "0.1.3",
-   "local": true,
-   "nodes": {
-    "Parallel-Iterator": {
-     "name": "Parallel-Iterator",
-     "types": [
-      "Parallel Iterator"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-parallel-iterator",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-parallel-iterator/91-02-pr-iterator.js"
-    }
-   }
-  },
-  "node-red-contrib-match": {
-   "name": "node-red-contrib-match",
-   "version": "1.0.2",
-   "local": true,
-   "nodes": {
-    "match": {
-     "name": "match",
-     "types": [
-      "match"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-match",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-match/match.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-twitter/27-twitter.js"
     }
    }
   },
@@ -439,7 +405,7 @@
   "node-red-contrib-scx-ibmiotapp": {
    "name": "node-red-contrib-scx-ibmiotapp",
    "version": "0.0.49",
-   "local": true,
+   "local": false,
    "nodes": {
     "ibmiotapp": {
      "name": "ibmiotapp",
@@ -449,9 +415,9 @@
       "ibmiot in"
      ],
      "enabled": true,
-     "local": true,
+     "local": false,
      "module": "node-red-contrib-scx-ibmiotapp",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-scx-ibmiotapp/application/97-iotnewapp-cf.js"
+     "file": "/home/ash/opol6/app/node_modules/node-red-contrib-scx-ibmiotapp/application/97-iotnewapp-cf.js"
     }
    }
   },
@@ -509,51 +475,6 @@
     }
    }
   },
-  "node-red-contrib-iiot-jwt": {
-   "name": "node-red-contrib-iiot-jwt",
-   "version": "0.1.3",
-   "local": true,
-   "nodes": {
-    "JWT-In": {
-     "name": "JWT-In",
-     "types": [
-      "JWT-IN"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-iiot-jwt",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-iiot-jwt/jwt/jwt-in.js"
-    },
-    "JWT-Out": {
-     "name": "JWT-Out",
-     "types": [
-      "JWT-OUT"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-iiot-jwt",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-iiot-jwt/jwt/jwt-out.js"
-    }
-   }
-  },
-  "node-red-contrib-jwt": {
-   "name": "node-red-contrib-jwt",
-   "version": "0.0.10",
-   "local": true,
-   "nodes": {
-    "jwt": {
-     "name": "jwt",
-     "types": [
-      "jwt sign",
-      "jwt verify"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-jwt",
-     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-jwt/jwt.js"
-    }
-   }
-  },
   "node-red-contrib-auth": {
    "name": "node-red-contrib-auth",
    "version": "0.1.7",
@@ -569,6 +490,484 @@
      "local": true,
      "module": "node-red-contrib-auth",
      "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-auth/jsonWebToken.js"
+    }
+   }
+  },
+  "node-red-bluemix-nodes": {
+   "name": "node-red-bluemix-nodes",
+   "version": "1.1.10",
+   "local": false,
+   "nodes": {
+    "tcp": {
+     "name": "tcp",
+     "types": [
+      "tcp in",
+      "tcp out",
+      "tcp request"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-bluemix-nodes",
+     "file": "/home/ash/opol6/app/node_modules/node-red-bluemix-nodes/io/31-tcpin-cf.js"
+    },
+    "udp": {
+     "name": "udp",
+     "types": [
+      "udp out"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-bluemix-nodes",
+     "file": "/home/ash/opol6/app/node_modules/node-red-bluemix-nodes/io/32-udp-cf.js"
+    },
+    "mqlight": {
+     "name": "mqlight",
+     "types": [
+      "mqlight in",
+      "mqlight out"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-bluemix-nodes",
+     "file": "/home/ash/opol6/app/node_modules/node-red-bluemix-nodes/mqlight/mqlight.js"
+    },
+    "mongodb": {
+     "name": "mongodb",
+     "types": [
+      "mongodb",
+      "mongodb out",
+      "mongodb in"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-bluemix-nodes",
+     "file": "/home/ash/opol6/app/node_modules/node-red-bluemix-nodes/mongo/66-mongodb-cf.js"
+    },
+    "twilio": {
+     "name": "twilio",
+     "types": [
+      "twilio out",
+      "twilio-api"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-bluemix-nodes",
+     "file": "/home/ash/opol6/app/node_modules/node-red-bluemix-nodes/twilio/56-twilio-cf.js"
+    },
+    "weather": {
+     "name": "weather",
+     "types": [
+      "weather_insights"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-bluemix-nodes",
+     "file": "/home/ash/opol6/app/node_modules/node-red-bluemix-nodes/weather/weather_insights.js"
+    },
+    "businessrules": {
+     "name": "businessrules",
+     "types": [
+      "business-rules"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-bluemix-nodes",
+     "file": "/home/ash/opol6/app/node_modules/node-red-bluemix-nodes/businessrules/v1.js"
+    },
+    "spssscoring": {
+     "name": "spssscoring",
+     "types": [
+      "predictive_analytics"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-bluemix-nodes",
+     "file": "/home/ash/opol6/app/node_modules/node-red-bluemix-nodes/spss/spssscoring.js"
+    }
+   }
+  },
+  "node-red-node-cf-cloudant": {
+   "name": "node-red-node-cf-cloudant",
+   "version": "0.2.17",
+   "local": false,
+   "nodes": {
+    "cloudant-cf": {
+     "name": "cloudant-cf",
+     "types": [
+      "cloudant",
+      "cloudant out",
+      "cloudant in"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-cf-cloudant",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-cf-cloudant/77-cloudant-cf.js"
+    }
+   }
+  },
+  "node-red-node-openwhisk": {
+   "name": "node-red-node-openwhisk",
+   "version": "0.3.4",
+   "local": false,
+   "nodes": {
+    "openwhisk": {
+     "name": "openwhisk",
+     "types": [
+      "openwhisk-service",
+      "openwhisk-trigger",
+      "openwhisk-action"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-openwhisk",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-openwhisk/openwhisk/openwhisk.js"
+    }
+   }
+  },
+  "node-red-node-watson": {
+   "name": "node-red-node-watson",
+   "version": "0.6.14",
+   "local": false,
+   "nodes": {
+    "watson-conversation-v1": {
+     "name": "watson-conversation-v1",
+     "types": [
+      "watson-conversation-v1"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/conversation/v1.js"
+    },
+    "watson-conversation-workspace-manager-v1": {
+     "name": "watson-conversation-workspace-manager-v1",
+     "types": [
+      "watson-conversation-v1-workspace-manager"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/conversation/v1-workspace-manager.js"
+    },
+    "watson-discovery-v1": {
+     "name": "watson-discovery-v1",
+     "types": [
+      "watson-discovery-v1"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/discovery/v1.js"
+    },
+    "watson-discovery-v1-document-loader": {
+     "name": "watson-discovery-v1-document-loader",
+     "types": [
+      "watson-discovery-v1-document-loader"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/discovery/v1-document-loader.js"
+    },
+    "watson-discovery-v1-query-builder": {
+     "name": "watson-discovery-v1-query-builder",
+     "types": [
+      "watson-discovery-v1-query-builder"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/discovery/v1-query-builder.js"
+    },
+    "watson-language-translator-v2": {
+     "name": "watson-language-translator-v2",
+     "types": [
+      "watson-translator"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/language_translator/v2.js"
+    },
+    "watson-language-translator-identify-v2": {
+     "name": "watson-language-translator-identify-v2",
+     "types": [
+      "watson-language-translator-identify"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/language_translator_identify/v2.js"
+    },
+    "watson-language-translator-util-v2": {
+     "name": "watson-language-translator-util-v2",
+     "types": [
+      "watson-translator-util"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/language_translator_util/v2.js"
+    },
+    "watson-natural-language-classifier-v1": {
+     "name": "watson-natural-language-classifier-v1",
+     "types": [
+      "watson-natural-language-classifier"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/natural_language_classifier/v1.js"
+    },
+    "watson-natural-language-understanding-v1": {
+     "name": "watson-natural-language-understanding-v1",
+     "types": [
+      "natural-language-understanding"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/natural_language_understanding/v1.js"
+    },
+    "watson-personality-insights-v3": {
+     "name": "watson-personality-insights-v3",
+     "types": [
+      "watson-personality-insights-v3"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/personality_insights/v3.js"
+    },
+    "watson-retrieve-and-rank-v1": {
+     "name": "watson-retrieve-and-rank-v1",
+     "types": [
+      "watson-retrieve-rank-credentials",
+      "watson-retrieve-rank-create-cluster",
+      "watson-retrieve-rank-cluster-settings",
+      "watson-retrieve-rank-upload-solr-configuration",
+      "watson-retrieve-rank-solr-configuration-settings",
+      "watson-retrieve-rank-solr-collection",
+      "watson-retrieve-rank-create-ranker",
+      "watson-retrieve-rank-ranker-settings",
+      "watson-retrieve-rank-search-and-rank"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/retrieve_and_rank/v1.js"
+    },
+    "watson-speech-to-text-v1": {
+     "name": "watson-speech-to-text-v1",
+     "types": [
+      "watson-speech-to-text"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/speech_to_text/v1.js"
+    },
+    "watson-speech-to-text-corpus-builder-v1": {
+     "name": "watson-speech-to-text-corpus-builder-v1",
+     "types": [
+      "watson-speech-to-text-v1-query-builder"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/speech_to_text/v1-corpus-builder.js"
+    },
+    "watson-text-to-speech-v1": {
+     "name": "watson-text-to-speech-v1",
+     "types": [
+      "watson-text-to-speech"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/text_to_speech/v1.js"
+    },
+    "watson-text-to-speech-corpus-builder-v1": {
+     "name": "watson-text-to-speech-corpus-builder-v1",
+     "types": [
+      "watson-text-to-speech-v1-query-builder"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/text_to_speech/v1-corpus-builder.js"
+    },
+    "watson-tone-analyzer-v3": {
+     "name": "watson-tone-analyzer-v3",
+     "types": [
+      "watson-tone-analyzer-v3"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/tone_analyzer/v3.js"
+    },
+    "watson-visual-recognition-v3": {
+     "name": "watson-visual-recognition-v3",
+     "types": [
+      "visual-recognition-v3",
+      "visual-recognition-util-v3"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-node-watson",
+     "file": "/home/ash/opol6/app/node_modules/node-red-node-watson/services/visual_recognition/v3.js"
+    }
+   }
+  },
+  "node-red-nodes-cf-sqldb-dashdb": {
+   "name": "node-red-nodes-cf-sqldb-dashdb",
+   "version": "0.2.28",
+   "local": false,
+   "nodes": {
+    "sqldb-dashdb-cf": {
+     "name": "sqldb-dashdb-cf",
+     "types": [
+      "dashDB",
+      "dashDB out",
+      "dashDB in"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-nodes-cf-sqldb-dashdb",
+     "file": "/home/ash/opol6/app/node_modules/node-red-nodes-cf-sqldb-dashdb/98-sqldb-dashdb-cf.js"
+    }
+   }
+  },
+  "node-red-contrib-light-scheduler": {
+   "name": "node-red-contrib-light-scheduler",
+   "version": "0.0.11",
+   "local": true,
+   "nodes": {
+    "light-scheduler": {
+     "name": "light-scheduler",
+     "types": [
+      "light-scheduler"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-light-scheduler",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-light-scheduler/light-scheduler.js"
+    },
+    "light-scheduler-settings": {
+     "name": "light-scheduler-settings",
+     "types": [
+      "light-scheduler-settings"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-light-scheduler",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-light-scheduler/light-scheduler-settings.js"
+    }
+   }
+  },
+  "node-red-contrib-google": {
+   "name": "node-red-contrib-google",
+   "version": "0.2.0",
+   "local": true,
+   "nodes": {
+    "google": {
+     "name": "google",
+     "types": [
+      "google-conn",
+      "google"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-google/google.js"
+    }
+   }
+  },
+  "node-red-node-google": {
+   "name": "node-red-node-google",
+   "version": "0.1.4",
+   "local": true,
+   "nodes": {
+    "google plus": {
+     "name": "google plus",
+     "types": [
+      "google plus"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/plus.js"
+    },
+    "google places": {
+     "name": "google places",
+     "types": [
+      "google places"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/places.js"
+    },
+    "google-api-config": {
+     "name": "google-api-config",
+     "types": [
+      "google-credentials",
+      "google-api-config"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/google.js"
+    },
+    "google geocoding": {
+     "name": "google geocoding",
+     "types": [
+      "google geocoding"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/geocoding.js"
+    },
+    "google directions": {
+     "name": "google directions",
+     "types": [
+      "google directions"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/directions.js"
+    },
+    "google calendar": {
+     "name": "google calendar",
+     "types": [
+      "google calendar in",
+      "google calendar",
+      "google calendar out"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-google",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-node-google/calendar.js"
+    }
+   }
+  },
+  "node-red-contrib-graphs": {
+   "name": "node-red-contrib-graphs",
+   "version": "0.3.5",
+   "local": true,
+   "nodes": {
+    "datasource": {
+     "name": "datasource",
+     "types": [
+      "iot-datasource"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-graphs",
+     "file": "/home/ash/opol6/app/.node-red/node_modules/node-red-contrib-graphs/datasource.js"
     }
    }
   }

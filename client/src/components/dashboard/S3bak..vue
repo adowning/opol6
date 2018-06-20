@@ -3,7 +3,7 @@
     <!-- <link rel="shortcut icon" href="https://aws.amazon.com/favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css"> 
+    <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css">
 
         <div class="row">
             <div class="col-lg-12">
@@ -661,24 +661,24 @@ export default {
         #wrapper {
             padding-left: 0;
         }
-        
+
         #page-wrapper {
             width: 100%;
             padding: 5px 15px;
         }
-        
+
         #tb-s3objects {
             width: 100% !Important;
         }
-        
+
         a {
             color: #00B7FF;
         }
-        
+
         body {
             font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
         }
-        
+
         td {
             font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
         }

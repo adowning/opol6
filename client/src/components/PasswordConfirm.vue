@@ -39,49 +39,51 @@
 
 <script>
 export default {
-  name: 'PasswordConfirmation',
-  data: () => ({
-    errorMessage: null,
-    successMessage: null,
-    disableAllInputs: false,
-    protectedUI: false,
-    username: '',
-    code: '',
-    newPassword: 'Andrews1',
-    newPasswordConfirmation: 'Andrews1',
-  }),
-  methods: {
-    handleSubmit() {
-      // Remove alert boxes
-      this.successMessage = null;
-      this.errorMessage = null;
-      this.protectedUI = true;
-      this.$store.dispatch('confirmPassword', {
-        username: this.username,
-        code: this.code,
-        newPassword: this.newPassword,
-      }).then(() => {
-        this.disableAllInputs = true;
-        this.successMessage = 'Successfuly confirmed';
-      }).catch((err) => {
-        this.errorMessage = err.message;
-        this.protectedUI = false;
-      });
+    name: 'PasswordConfirmation',
+    data: () => {
+        return {
+            errorMessage: null,
+            successMessage: null,
+            disableAllInputs: false,
+            protectedUI: false,
+            username: '',
+            code: '',
+            newPassword: 'Andrews1',
+            newPasswordConfirmation: 'Andrews1',
+        }
     },
-  },
-  computed: {
-    formIsValid() {
-      return /[\S]+/.test(this.username)
-      && this.code.length >= 6
-      && /[a-z]+/.test(this.newPassword)
-      && /[A-Z]+/.test(this.newPassword)
-      && /[0-9]+/.test(this.newPassword)
-      && /[!@#$%^&*()_+={}[\]\\;:.,|]+/.test(this.newPassword)
-      && this.newPassword.length >= 6
-      && this.newPassword === this.newPasswordConfirmation;
+    methods: {
+        handleSubmit: function() {
+            // Remove alert boxes
+            this.successMessage = null
+            this.errorMessage = null
+            this.protectedUI = true
+            this.$store.dispatch('confirmPassword', {
+                username: this.username,
+                code: this.code,
+                newPassword: this.newPassword,
+            }).then(() => {
+                this.disableAllInputs = true
+                this.successMessage = 'Successfuly confirmed'
+            }).catch((err) => {
+                this.errorMessage = err.message
+                this.protectedUI = false
+            })
+        },
     },
-  },
-};
+    computed: {
+        formIsValid: function() {
+            return (/[\S]+/).test(this.username) &&
+      this.code.length >= 6 &&
+      (/[a-z]+/).test(this.newPassword) &&
+      (/[A-Z]+/).test(this.newPassword) &&
+      (/[0-9]+/).test(this.newPassword) &&
+      (/[!@#$%^&*()_+={}[\]\\;:.,|]+/).test(this.newPassword) &&
+      this.newPassword.length >= 6 &&
+      this.newPassword === this.newPasswordConfirmation
+        },
+    },
+}
 </script>
 
 <style>

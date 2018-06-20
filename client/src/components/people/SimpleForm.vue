@@ -42,68 +42,74 @@
 </template>
 
 <script>
-import { Storage } from "aws-amplify";
+import { Storage } from 'aws-amplify'
 console.log(Storage)
 export default {
-  name: "SimpleForm",
-  data() {
-    return {
-      disabled: true,
-      profile: {},
-      formHasErrors: false,
-      errorMessages: []
-    };
-  },
-  props: ["path", "fields"],
-  computed: {
-    userId: function() {
-      return this.$store.state.auth.user.username;
+    name: 'SimpleForm',
+    data: function() {
+        return {
+            disabled: true,
+            profile: {},
+            formHasErrors: false,
+            errorMessages: []
+        }
+    },
+    props: [ 'path', 'fields' ],
+    computed: {
+        userId: function() {
+            return this.$store.state.auth.user.username
+        }
+    },
+
+    created: function() {
+        console.debug('simple form created...')
+        this.load()
+    },
+    methods: {
+        changedDisabled: function() {
+            this.disabled = !this.disabled
+        },
+        addressCheck: function() {
+            this.errorMessages =
+        this.address && !this.name ? [ 'Hey! I\'m required' ] : []
+
+            return true
+        },
+        resetForm: function() {
+            this.errorMessages = []
+            this.formHasErrors = false
+
+            Object.keys(this.form).forEach((f) => {
+                this.$refs[f].reset()
+            })
+        },
+        load: function() {
+            Storage.get(this.path, {
+                download: true
+            })
+                .then((data) => {
+                    const body = data.Body.toString('utf8')
+                    this.profile = JSON.parse(body)
+                })
+                .catch((err) => {
+                    return console.error(err)
+                })
+        },
+        save: function() {
+            if (!this.userId) {
+                return
+            }
+            const data = JSON.stringify(this.profile)
+            Storage.put(this.path, data, {
+                contentType: 'application/json'
+            })
+                .then((data) => {
+                    return console.debug(data)
+                })
+                .catch((err) => {
+                    return console.error(err)
+                })
+        }
     }
-  },
-
-  created() {
-    console.debug("simple form created...");
-    this.load();
-  },
-  methods: {
-    changedDisabled() {
-      this.disabled = !this.disabled;
-    },
-    addressCheck() {
-      this.errorMessages =
-        this.address && !this.name ? ["Hey! I'm required"] : [];
-
-      return true;
-    },
-    resetForm() {
-      this.errorMessages = [];
-      this.formHasErrors = false;
-
-      Object.keys(this.form).forEach(f => {
-        this.$refs[f].reset();
-      });
-    },
-    load() {
-      Storage.get(this.path, {
-        download: true
-      })
-        .then(data => {
-          const body = data.Body.toString("utf8");
-          this.profile = JSON.parse(body);
-        })
-        .catch(err => console.error(err));
-    },
-    save() {
-      if (!this.userId) {
-        return;
-      }
-      const data = JSON.stringify(this.profile);
-      Storage.put(this.path, data, {
-        contentType: "application/json"
-      })
-        .then(data => console.debug(data))
-        .catch(err => console.error(err));
-    }
-  }
-};
+}
 </script>

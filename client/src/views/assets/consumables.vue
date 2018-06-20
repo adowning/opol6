@@ -5,12 +5,12 @@
 </div>
 </template>
 <script>
-  import Consumables from '../../components/assets/Consumables'
+import Consumables from '../../components/assets/Consumables'
 
-  export default {
+export default {
 
-  components: {
-    Consumables
-  }
-  }
+    components: {
+        Consumables: Consumables
+    }
+}
 </script>

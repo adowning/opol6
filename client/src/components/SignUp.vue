@@ -15,30 +15,30 @@
   </div>
 </template>
 <script>
-  import { mapActions } from 'vuex'
-  export default {
-    data() {
-      return {
-        username: '',
-       // email: 'ashdowning+ff.name@gmail.com',
-               pass: 'Andrews1',
-      }
+import { mapActions } from 'vuex'
+export default {
+    data: function() {
+        return {
+            username: '',
+            // email: 'ashdowning+ff.name@gmail.com',
+            pass: 'Andrews1',
+        }
     },
     methods: {
-      triggerSignUp() {
+        triggerSignUp: function() {
         // this.signUp({username: this.username, email: this.email, pass: this.pass, humanityname: this.humanityname, humanitypass: this.humanitypass, humanityid: this.humanityid}).then(() => {
-        this.signUp({username: this.username, pass: this.pass, email: this.email }).then(() => {
-          console.log('successfully signed up!')
-          this.$router.push({path: '/confirm', query: {username: this.username}})
-        }, () => {
-          // alert('there was an error')
+            this.signUp({ username: this.username, pass: this.pass, email: this.email }).then(() => {
+                console.log('successfully signed up!')
+                this.$router.push({ path: '/confirm', query: { username: this.username } })
+            }, () => {
+                // alert('there was an error')
+            })
+        },
+        ...mapActions('cognito', {
+            signUp: 'signUp'
         })
-      },
-      ...mapActions('cognito', {
-        signUp: 'signUp'
-      })
     }
-  }
+}
 </script>
 <style lang="scss" scoped>
   div {

@@ -6,7 +6,7 @@
       <h3>404</h3>
          <blockquote>
           &#8220;You are lost.&#8221;
-          
+
         </blockquote>
       </v-layout>
     </v-slide-y-transition>

@@ -1,16 +1,16 @@
-import actions from "./actions";
-import getters from "./getters";
-import mutations from "./mutations";
+import actions from './actions'
+import getters from './getters'
+import mutations from './mutations'
 
 const state = {
-  clockStatus: null,
-  clocks: null
-};
+    clockStatus: null,
+    clocks: null
+}
 
 export default {
-  namespaced: true,
-  state,
-  actions,
-  getters,
-  mutations
-};
+    namespaced: true,
+    state: state,
+    actions: actions,
+    getters: getters,
+    mutations: mutations
+}

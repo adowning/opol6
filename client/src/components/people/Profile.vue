@@ -13,48 +13,48 @@
 </template>
 
 <script>
-import SimpleForm from "./SimpleForm";
+import SimpleForm from './SimpleForm'
 // import PhotoPicker from "./PhotoPicker";
 
 export default {
-  name: "Profile",
-  components: {
-    "a-simple-form": SimpleForm,
+    name: 'Profile',
+    components: {
+        'a-simple-form': SimpleForm,
     // "a-photo-picker": PhotoPicker
-  },
-  data() {
-    return {
-      fields: [
-        {
-          type: "string",
-          name: "firstName",
-          label: "FirstName"
-        },
-        {
-          type: "string",
-          name: "lastName",
-          label: "LastName"
-        },
-        {
-          type: "lineBreak"
-        },
-        {
-          type: "string",
-          name: "nickname",
-          label: "Nickname"
-        }
-      ]
-    };
-  },
-  computed: {
-    user: function() {
-      return this.$store.state.auth.user;
     },
-    userId: function() {
-      return this.$store.state.auth.user.username;
+    data: function() {
+        return {
+            fields: [
+                {
+                    type: 'string',
+                    name: 'firstName',
+                    label: 'FirstName'
+                },
+                {
+                    type: 'string',
+                    name: 'lastName',
+                    label: 'LastName'
+                },
+                {
+                    type: 'lineBreak'
+                },
+                {
+                    type: 'string',
+                    name: 'nickname',
+                    label: 'Nickname'
+                }
+            ]
+        }
+    },
+    computed: {
+        user: function() {
+            return this.$store.state.auth.user
+        },
+        userId: function() {
+            return this.$store.state.auth.user.username
+        }
     }
-  }
-};
+}
 </script>
 <style scoped>
 </style>
